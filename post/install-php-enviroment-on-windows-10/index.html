@@ -135,25 +135,26 @@
 </blockquote>
 <h3 id=41-installation>4.1. Installation</h3>
 <p><strong>PHP 7.x</strong></p>
-<p>Download php_xdebug-3.0.4-7.4-vc15-x86_64.dll
-Move the downloaded file to C:\xampp\php\ext
-Edit C:\xampp\php\php.ini and add the line
-zend_extension = C:\xampp\php\ext\php_xdebug-3.0.4-7.4-vc15-x86_64.dll
-Restart the webserver</p>
-<p><strong>PHP 8.x</strong>
-Download php_xdebug-3.0.4-8.0-vs16-x86_64.dll
-Rename <strong>php_xdebug.dll</strong>
-Move the downloaded file to C:\desk\xampp\php\ext
-Update C:\desk\xampp\php\php.ini to have the line:
-zend_extension = xdebug
-Restart the Apache Webserver</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>Download php_xdebug-3.0.4-7.4-vc15-x86_64.dll
+Move the downloaded file to C:<span style=color:#ae81ff>\x</span>ampp<span style=color:#ae81ff>\p</span>hp<span style=color:#ae81ff>\e</span>xt
+Edit C:<span style=color:#ae81ff>\x</span>ampp<span style=color:#ae81ff>\p</span>hp<span style=color:#ae81ff>\p</span>hp.ini and add the line
+zend_extension <span style=color:#f92672>=</span> C:<span style=color:#ae81ff>\x</span>ampp<span style=color:#ae81ff>\p</span>hp<span style=color:#ae81ff>\e</span>xt<span style=color:#ae81ff>\p</span>hp_xdebug-3.0.4-7.4-vc15-x86_64.dll
+</code></pre></div><p>Restart the webserver</p>
+<p><strong>PHP 8.x</strong></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>Download php_xdebug-3.0.4-8.0-vs16-x86_64.dll
+Rename **php_xdebug.dll**
+Move the downloaded file to C:<span style=color:#ae81ff>\x</span>ampp<span style=color:#ae81ff>\p</span>hp<span style=color:#ae81ff>\e</span>xt
+Update C:<span style=color:#ae81ff>\x</span>ampp<span style=color:#ae81ff>\p</span>hp<span style=color:#ae81ff>\p</span>hp.ini to have the line:
+zend_extension <span style=color:#f92672>=</span> xdebug
+</code></pre></div><p>Restart the Apache Webserver</p>
 <h3 id=42-debug>4.2. Debug</h3>
 <p><a href="https://marketplace.visualstudio.com/items?itemName=felixfbecker.php-debug">https://marketplace.visualstudio.com/items?itemName=felixfbecker.php-debug</a></p>
-<p>; XDebug
-zend_extension = C:\xampp\php\ext\php_xdebug-3.0.4-7.4-vc15-x86_64.dll</p>
-<p>xdebug.mode = debug
-xdebug.start_with_request = yes</p>
-<h3 id=5-debug-with-phpstorm>5. Debug with PHPStorm</h3>
+<p><strong>Your php.ini</strong></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ini data-lang=ini><span style=color:#75715e>; XDebug</span>
+<span style=color:#a6e22e>zend_extension</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>xdebug</span>
+<span style=color:#a6e22e>xdebug.mode</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>debug</span>
+<span style=color:#a6e22e>xdebug.start_with_request</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>yes</span>
+</code></pre></div><h3 id=5-debug-with-phpstorm>5. Debug with PHPStorm</h3>
 <p><strong>Add CLI Intepreter</strong></p>
 <blockquote>
 <p>Settings => Search &ldquo;PHP&rdquo;</p>
@@ -189,6 +190,9 @@ Select PHP > Servers > Add Insert</p>
 <li>F8 : step over</li>
 </ul>
 <p>Enjoy!!!</p>
+<pre tabindex=0><code>
+</code></pre><pre tabindex=0><code>
+</code></pre>
 <div class="m-1 p-1">
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://blog.phpguru.net/categories/cheatsheet>cheatsheet</a>
 </div>
