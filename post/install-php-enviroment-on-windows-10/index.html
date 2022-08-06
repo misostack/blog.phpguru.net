@@ -82,6 +82,67 @@
 <p>
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://blog.phpguru.net/categories/cheatsheet>cheatsheet</a>
 </p>
+<blockquote>
+<p>Todo</p>
+</blockquote>
+<h2 id=1-install-xampp-with-php>1. Install XAMPP with PHP</h2>
+<h2 id=2-add-custom-configuration-for-vhost>2. Add custom configuration for vhost</h2>
+<blockquote>
+<p>C:\xampp\apache\conf\httpd.conf</p>
+</blockquote>
+<p><strong>Add this line at the end</strong></p>
+<p>Include &ldquo;C:/custom_virtual_hoit.conf&rdquo;</p>
+<p><strong>Add your first virtual host</strong></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>&lt;Directory <span style=color:#e6db74>&#34;C:/www&#34;</span>&gt;
+    AllowOverride All
+    Options None
+    Require all granted
+&lt;/Directory&gt;
+
+<span style=color:#75715e># Default</span>
+&lt;VirtualHost *:80&gt;
+    DocumentRoot <span style=color:#e6db74>&#34;C:/www/localhost&#34;</span>
+	ServerName localhost
+    LogLevel warn
+    ErrorLog <span style=color:#e6db74>&#34;C:/www/localhost_error.log&#34;</span>
+    CustomLog <span style=color:#e6db74>&#34;C:/www/localhost_access.log&#34;</span> combined
+&lt;/VirtualHost&gt;
+</code></pre></div><p><strong>Create new file C:/www/localhost/index.php</strong></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-php data-lang=php><span style=color:#a6e22e>phpinfo</span>();
+</code></pre></div><p><strong>Restart XAMPP and open your localhost</strong></p>
+<h2 id=create-php-path-variable>Create PHP Path Variable</h2>
+<p><img src=https://user-images.githubusercontent.com/31009750/125823161-ad1f4009-430b-406d-8a3b-4290c7f1f6a3.png alt=image></p>
+<p><strong>Edit Path</strong></p>
+<p><img src=https://user-images.githubusercontent.com/31009750/125823337-c7eed734-a2ff-4ddf-8827-4dce0a0d2664.png alt=image></p>
+<p><strong>Add Path</strong></p>
+<p><img src=https://user-images.githubusercontent.com/31009750/125823267-7c5d5b11-4ace-4d42-9c78-f715595c4102.png alt=image></p>
+<p><strong>Open your terminal</strong></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>php -i
+</code></pre></div><h2 id=4-install-xdebug>4. Install XDebug</h2>
+<p><strong>Install PHP Xdebug</strong></p>
+<ul>
+<li>URL : <a href=https://xdebug.org/wizard>https://xdebug.org/wizard</a></li>
+</ul>
+<h3 id=1-installation>1. Installation</h3>
+<p><strong>PHP 7.x</strong></p>
+<p>Download php_xdebug-3.0.4-7.4-vc15-x86_64.dll
+Move the downloaded file to C:\xampp\php\ext
+Edit C:\xampp\php\php.ini and add the line
+zend_extension = C:\xampp\php\ext\php_xdebug-3.0.4-7.4-vc15-x86_64.dll
+Restart the webserver</p>
+<p><strong>PHP 8.x</strong>
+Download php_xdebug-3.0.4-8.0-vs16-x86_64.dll
+Rename <strong>php_xdebug.dll</strong>
+Move the downloaded file to C:\desk\xampp\php\ext
+Update C:\desk\xampp\php\php.ini to have the line:
+zend_extension = xdebug
+Restart the Apache Webserver</p>
+<h3 id=2-debug>2. Debug</h3>
+<p><a href="https://marketplace.visualstudio.com/items?itemName=felixfbecker.php-debug">https://marketplace.visualstudio.com/items?itemName=felixfbecker.php-debug</a></p>
+<p>; XDebug
+zend_extension = C:\xampp\php\ext\php_xdebug-3.0.4-7.4-vc15-x86_64.dll</p>
+<p>xdebug.mode = debug
+xdebug.start_with_request = yes</p>
 <div class="m-1 p-1">
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://blog.phpguru.net/categories/cheatsheet>cheatsheet</a>
 </div>
