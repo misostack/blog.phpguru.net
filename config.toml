@@ -1,0 +1,19 @@
+baseURL = 'https://blog.phpguru.net'
+languageCode = 'en-us'
+title = '1 hour of deep work is better than 8 hours of shallow work'
+theme = '2022'
+ignoreFiles = ['\assets\node_modules\.*']
+[params]
+    name = "Blog PHPGuru"
+    description = "A place for you to learn PHP from zero to hero includes: PHP language, Laravel, Wordpress, Codeignitor, ..."
+    keywords = "php"
+    dateFormat = "2006-01-02 15:04:05"
+    image = "/themes/2022/src/assets/images/logo.png"
+    blog_pager = 10
+    note_pager = 10
+    article_pager = 10
+    home_post_limit = 10
+    GACode = "G-44831C2LM4"
+[taxonomies]
+    category = "categories"
+    tag = "tags"
