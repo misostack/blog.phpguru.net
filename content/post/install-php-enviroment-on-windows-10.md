@@ -11,7 +11,13 @@ image: "/common/no-image.png"
 
 > Todo
 
-## 1. Install XAMPP with PHP
+- [x] Install XAMPP
+- [x] Add custom configuration for vhost
+- [x] Create PHP Path Variable
+- [x] Install XDebug
+- [x] Debug with PHPStorm
+
+## 1. Install XAMPP
 
 ## 2. Add custom configuration for vhost
 
@@ -19,7 +25,7 @@ image: "/common/no-image.png"
 
 **Add this line at the end**
 
-Include "C:/custom_virtual_hoit.conf"
+Include "C:/custom_virtual_host.conf"
 
 **Add your first virtual host**
 
@@ -48,7 +54,7 @@ phpinfo();
 
 **Restart XAMPP and open your localhost**
 
-## Create PHP Path Variable
+## 3. Create PHP Path Variable
 
 ![image](https://user-images.githubusercontent.com/31009750/125823161-ad1f4009-430b-406d-8a3b-4290c7f1f6a3.png)
 
@@ -72,7 +78,9 @@ php -i
 
 - URL : https://xdebug.org/wizard
 
-### 1. Installation
+> Follow the instruction from xdebug
+
+### 4.1. Installation
 
 **PHP 7.x**
 
@@ -90,7 +98,7 @@ Update C:\desk\xampp\php\php.ini to have the line:
 zend_extension = xdebug
 Restart the Apache Webserver
 
-### 2. Debug
+### 4.2. Debug
 
 https://marketplace.visualstudio.com/items?itemName=felixfbecker.php-debug
 
@@ -99,3 +107,52 @@ zend_extension = C:\xampp\php\ext\php_xdebug-3.0.4-7.4-vc15-x86_64.dll
 
 xdebug.mode = debug
 xdebug.start_with_request = yes
+
+### 5. Debug with PHPStorm
+
+**Add CLI Intepreter**
+
+> Settings => Search "PHP"
+
+Select your PHP version
+
+![image](https://user-images.githubusercontent.com/31009750/183253725-7fc5851a-64ad-4493-8ab1-00bf06d330af.png)
+
+**Create your server setting**
+
+> Settings => Search "server"
+> Select PHP > Servers > Add Insert
+
+![image](https://user-images.githubusercontent.com/31009750/183253800-b0c6607b-b18e-4f69-bb9e-8a8ccf34fd92.png)
+
+**Add your Debug Configuration**
+
+> Run -> Edit Configuration
+
+Add New -> PHP Web Page
+
+Select your server and set the default open URL
+
+![image](https://user-images.githubusercontent.com/31009750/183253983-5ed9368d-20a9-4ff2-9930-116fd08eba9c.png)
+
+> Let's debug
+
+Presse Shift + F9 or Debug Icon to start. Your URL may look like this
+
+http://phonebook.phpguru.local/?XDEBUG_SESSION_START=13163
+
+Then make sure you clicked on "Start Listening Debug PHP Connection" next to the debug icon
+
+![image](https://user-images.githubusercontent.com/31009750/183254119-03f9a2c6-0491-4301-99cd-720929192366.png)
+
+You can start adding your debug breakpoint, and it will look like this
+
+![image](https://user-images.githubusercontent.com/31009750/183254169-64b1812f-2eb7-48e3-ab62-d9bf59016885.png)
+
+Some shorcuts:
+
+- Shift + F9 : start debug
+- Shift + F8 : toggle debug breakdown
+- F8 : step over
+
+Enjoy!!!
