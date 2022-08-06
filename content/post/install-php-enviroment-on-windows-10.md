@@ -84,29 +84,39 @@ php -i
 
 **PHP 7.x**
 
+```bash
 Download php_xdebug-3.0.4-7.4-vc15-x86_64.dll
 Move the downloaded file to C:\xampp\php\ext
 Edit C:\xampp\php\php.ini and add the line
 zend_extension = C:\xampp\php\ext\php_xdebug-3.0.4-7.4-vc15-x86_64.dll
+```
+
 Restart the webserver
 
 **PHP 8.x**
+
+```bash
 Download php_xdebug-3.0.4-8.0-vs16-x86_64.dll
 Rename **php_xdebug.dll**
-Move the downloaded file to C:\desk\xampp\php\ext
-Update C:\desk\xampp\php\php.ini to have the line:
+Move the downloaded file to C:\xampp\php\ext
+Update C:\xampp\php\php.ini to have the line:
 zend_extension = xdebug
+```
+
 Restart the Apache Webserver
 
 ### 4.2. Debug
 
 https://marketplace.visualstudio.com/items?itemName=felixfbecker.php-debug
 
-; XDebug
-zend_extension = C:\xampp\php\ext\php_xdebug-3.0.4-7.4-vc15-x86_64.dll
+**Your php.ini**
 
+```ini
+; XDebug
+zend_extension = xdebug
 xdebug.mode = debug
 xdebug.start_with_request = yes
+```
 
 ### 5. Debug with PHPStorm
 
@@ -156,3 +166,11 @@ Some shorcuts:
 - F8 : step over
 
 Enjoy!!!
+
+```
+
+```
+
+```
+
+```
