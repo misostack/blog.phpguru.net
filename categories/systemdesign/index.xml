@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>systemdesign on 1 hour of deep work is better than 8 hours of shallow work</title>
+    <link>https://blog.jsguru.net/categories/systemdesign/</link>
+    <description>Recent content in systemdesign on 1 hour of deep work is better than 8 hours of shallow work</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 12 Jul 2022 11:39:43 +0700</lastBuildDate><atom:link href="https://blog.jsguru.net/categories/systemdesign/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>System Design Head First</title>
+      <link>https://blog.jsguru.net/post/system-design-head-first/</link>
+      <pubDate>Tue, 12 Jul 2022 11:39:43 +0700</pubDate>
+      
+      <guid>https://blog.jsguru.net/post/system-design-head-first/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

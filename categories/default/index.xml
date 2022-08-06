@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>default on My New Hugo Site</title>
+    <link>//blog.jsguru.net/categories/default/</link>
+    <description>Recent content in default on My New Hugo Site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 21 Jun 2022 15:43:50 +0700</lastBuildDate><atom:link href="//blog.jsguru.net/categories/default/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>001 Create Static Blog With Hugo and Github Pages in 5 Minutes</title>
+      <link>//blog.jsguru.net/post/001-create-static-blog-with-hugo-and-github-pages-in-5-minutes/</link>
+      <pubDate>Tue, 21 Jun 2022 15:43:50 +0700</pubDate>
+      
+      <guid>//blog.jsguru.net/post/001-create-static-blog-with-hugo-and-github-pages-in-5-minutes/</guid>
+      <description>Todo [x] Download hugo releases for windows 10 https://gohugo.io/getting-started/installing/ Extract and copy hugo.exe to your HUGO_PATH Add your HUGO_PATH to environment path. Window Icon + &amp;rsquo;env&amp;rsquo; =&amp;gt; Edit System Variables Eg: C:/softwares/hugo
+Open system environment variable Add new hugo path Add hugo path to path Test
+hugo --help [x] Create new hugo site hugo new site blog.jsguru.net --force [x] Setup gh-pages for hugo https://github.com/marketplace/actions/hugo-setup
+.github\workflows\gh-pages.yml
+name: GitHub Pages on: push: branches: - main # Set a branch to deploy pull_request: jobs: deploy: runs-on: ubuntu-20.</description>
+    </item>
+    
+    <item>
+      <title>002 Create Static Blog With Hugo and Github Pages in 5 Minutes</title>
+      <link>//blog.jsguru.net/post/test/</link>
+      <pubDate>Tue, 21 Jun 2022 15:43:50 +0700</pubDate>
+      
+      <guid>//blog.jsguru.net/post/test/</guid>
+      <description>asdeqwaqwe</description>
+    </item>
+    
+    <item>
+      <title>Setup NodeJS Development Environment in 5 Minutes</title>
+      <link>//blog.jsguru.net/post/setup-nodejs-development-enviroment-in-5-minutes/</link>
+      <pubDate>Tue, 21 Jun 2022 15:43:50 +0700</pubDate>
+      
+      <guid>//blog.jsguru.net/post/setup-nodejs-development-enviroment-in-5-minutes/</guid>
+      <description>Installation https://nodejs.org/en/download/</description>
+    </item>
+    
+  </channel>
+</rss>
