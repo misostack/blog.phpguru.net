@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="home" href="https://blog.phpguru.net" />
+    <meta name="generator" content="jsguru cms" />
+
+    
+    
+
+    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />    
+
+    
+    
+      
+              
+        
+        <link rel="stylesheet" href="https://blog.phpguru.net/themes/2022/public/main.css" />
+             
+    
+      
+              
+        
+        <link rel="stylesheet" href="https://blog.phpguru.net/themes/2022/public/home.css" />
+             
+    
+      
+              
+        
+        <link rel="stylesheet" href="https://blog.phpguru.net/themes/2022/public/page.css" />
+             
+        
+
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-44831C2LM4"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-44831C2LM4');
+    </script>    
+    
+<title>Install Php Enviroment on Windows 10 | Install Php Enviroment on Windows 10 | Useful PHP Tricks, Laravel Tips, Tricks and Best Practices</title>
+<meta name="robots" content="all" />
+<meta name="keywords" content="Install Php Enviroment on Windows 10" />
+<meta name="description" content="Install Php Enviroment on Windows 10" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="https://blog.phpguru.net/common/no-image.png" />
+<meta property="og:image:type" content="image/jpeg" />
+<meta property="og:image:width" content="750" />
+<meta property="og:image:height" content="300" />
+
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png" />
+<link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png" />
+<link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png" />
+<link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png" />
+<link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png" />
+<link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png" />
+<link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png" />
+<link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png" />
+<link
+  rel="icon"
+  type="image/png"
+  sizes="192x192"
+  href="/android-icon-192x192.png"
+/>
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+<link rel="manifest" href="/manifest.json" />
+<meta name="msapplication-TileColor" content="#ffffff" />
+<meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
+<meta name="theme-color" content="#ffffff" />
+
+  </head>
+  <body class="body-nav-fixed">
+    <nav class="nav-fixed nav-default z-50">
+    <div class="container">
+      <div class="nav-container flex flex-wrap justify-between items-center">
+        <a href="https://blog.phpguru.net" class="nav-brand inline-block">
+          
+          <img class="h-16" src="https://blog.phpguru.net/themes/2022/src/assets/images/logo.png" 
+          alt="Stunning" />
+        </a>
+        <a href="javascript:void(0);" data-menu="#menu-main_menu" class="nav-menu-toggle"><span
+          class="material-icons">menu</span></a>
+        <ul id="menu-main_menu" class="nav-menu h-0 md:h-auto">
+          <form class="nav-menu-search-bar md:hidden relative">
+            <button class="nav-menu-search-bar-search-btn absolute h-full">
+              <svg class="w-3 h-3 text-gray-600" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24">
+                <path
+                  d="M16.32 14.9l5.39 5.4a1 1 0 0 1-1.42 1.4l-5.38-5.38a8 8 0 1 1 1.41-1.41zM10 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12z">
+                </path>
+              </svg>
+            </button>
+            <input name="s" type="text" class="w-full" />
+          </form>
+          
+            
+                
+                    
+                    <li class="nav-menu-item"><a class="nav-menu-link" 
+                        href="https://blog.phpguru.net/categories/cheatsheet">cheatsheet</a></li>
+                
+                    
+                    <li class="nav-menu-item"><a class="nav-menu-link" 
+                        href="https://blog.phpguru.net/categories/frameworks">frameworks</a></li>
+                
+                    
+                    <li class="nav-menu-item"><a class="nav-menu-link" 
+                        href="https://blog.phpguru.net/categories/lifestyle">lifestyle</a></li>
+                
+            
+          
+            
+          
+          
+            <li class="nav-menu-item">
+            <a class="nav-menu-link" href="https://blog.phpguru.net">Tools
+                
+                    <span class="material-icons">keyboard_arrow_down</span>
+                
+            </a>
+            
+                <ul class="sub-menu">                                    
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="https://regex101.com/">Online Regex</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://www.bashoneliners.com/">Bash Online</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="https://www.epochconverter.com/">Unix Timestamp Conversion</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="https://ryanstutorials.net/bash-scripting-tutorial/">Bash Scripting</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="https://explainshell.com/">Explain Shell</a></li>
+                
+                </ul>
+            
+            </li>
+          
+          <form class="nav-menu-search-bar hidden md:flex relative">
+            <button class="nav-menu-search-bar-search-btn absolute h-full">
+              <svg class="w-3 h-3 text-gray-600" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24">
+                <path
+                  d="M16.32 14.9l5.39 5.4a1 1 0 0 1-1.42 1.4l-5.38-5.38a8 8 0 1 1 1.41-1.41zM10 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12z">
+                </path>
+              </svg>
+            </button>
+            <input name="s" type="text" class="w-full" />
+          </form>
+        </ul>
+      </div>
+    </div>
+</nav>
+
+    <main>
+    
+  <section class="container section">
+    <div class="page-content max-w-2xl mx-auto">
+        <img src="https://blog.phpguru.net/common/no-image.png" class="img-responsive" alt="Install Php Enviroment on Windows 10" />
+        <h1>Install Php Enviroment on Windows 10</h1>
+        <p>
+            
+            <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href="https://blog.phpguru.net/categories/cheatsheet">cheatsheet</a>
+            
+        </p>
+        <blockquote>
+<p>Todo</p>
+</blockquote>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> Install XAMPP</li>
+<li><input checked="" disabled="" type="checkbox"> Add custom configuration for vhost</li>
+<li><input checked="" disabled="" type="checkbox"> Create PHP Path Variable</li>
+<li><input checked="" disabled="" type="checkbox"> Install XDebug</li>
+<li><input checked="" disabled="" type="checkbox"> Debug with PHPStorm</li>
+</ul>
+<h2 id="1-install-xampp">1. Install XAMPP</h2>
+<h2 id="2-add-custom-configuration-for-vhost">2. Add custom configuration for vhost</h2>
+<blockquote>
+<p>C:\xampp\apache\conf\httpd.conf</p>
+</blockquote>
+<p><strong>Add this line at the end</strong></p>
+<p>Include &ldquo;C:/custom_virtual_host.conf&rdquo;</p>
+<p><strong>Add your first virtual host</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>&lt;Directory <span style="color:#e6db74">&#34;C:/www&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    AllowOverride All
+</span></span><span style="display:flex;"><span>    Options None
+</span></span><span style="display:flex;"><span>    Require all granted
+</span></span><span style="display:flex;"><span>&lt;/Directory&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Default</span>
+</span></span><span style="display:flex;"><span>&lt;VirtualHost *:80&gt;
+</span></span><span style="display:flex;"><span>    DocumentRoot <span style="color:#e6db74">&#34;C:/www/localhost&#34;</span>
+</span></span><span style="display:flex;"><span>	ServerName localhost
+</span></span><span style="display:flex;"><span>    LogLevel warn
+</span></span><span style="display:flex;"><span>    ErrorLog <span style="color:#e6db74">&#34;C:/www/localhost_error.log&#34;</span>
+</span></span><span style="display:flex;"><span>    CustomLog <span style="color:#e6db74">&#34;C:/www/localhost_access.log&#34;</span> combined
+</span></span><span style="display:flex;"><span>&lt;/VirtualHost&gt;
+</span></span></code></pre></div><p><strong>Create new file C:/www/localhost/index.php</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#a6e22e">phpinfo</span>();
+</span></span></code></pre></div><p><strong>Restart XAMPP and open your localhost</strong></p>
+<h2 id="3-create-php-path-variable">3. Create PHP Path Variable</h2>
+<p><img src="https://user-images.githubusercontent.com/31009750/125823161-ad1f4009-430b-406d-8a3b-4290c7f1f6a3.png" alt="image"></p>
+<p><strong>Edit Path</strong></p>
+<p><img src="https://user-images.githubusercontent.com/31009750/125823337-c7eed734-a2ff-4ddf-8827-4dce0a0d2664.png" alt="image"></p>
+<p><strong>Add Path</strong></p>
+<p><img src="https://user-images.githubusercontent.com/31009750/125823267-7c5d5b11-4ace-4d42-9c78-f715595c4102.png" alt="image"></p>
+<p><strong>Open your terminal</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>php -i
+</span></span></code></pre></div><h2 id="4-install-xdebug">4. Install XDebug</h2>
+<p><strong>Install PHP Xdebug</strong></p>
+<ul>
+<li>URL : <a href="https://xdebug.org/wizard">https://xdebug.org/wizard</a></li>
+</ul>
+<blockquote>
+<p>Follow the instruction from xdebug</p>
+</blockquote>
+<h3 id="41-installation">4.1. Installation</h3>
+<p><strong>PHP 7.x</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Download php_xdebug-3.0.4-7.4-vc15-x86_64.dll
+</span></span><span style="display:flex;"><span>Move the downloaded file to C:<span style="color:#ae81ff">\x</span>ampp<span style="color:#ae81ff">\p</span>hp<span style="color:#ae81ff">\e</span>xt
+</span></span><span style="display:flex;"><span>Edit C:<span style="color:#ae81ff">\x</span>ampp<span style="color:#ae81ff">\p</span>hp<span style="color:#ae81ff">\p</span>hp.ini and add the line
+</span></span><span style="display:flex;"><span>zend_extension <span style="color:#f92672">=</span> C:<span style="color:#ae81ff">\x</span>ampp<span style="color:#ae81ff">\p</span>hp<span style="color:#ae81ff">\e</span>xt<span style="color:#ae81ff">\p</span>hp_xdebug-3.0.4-7.4-vc15-x86_64.dll
+</span></span></code></pre></div><p>Restart the webserver</p>
+<p><strong>PHP 8.x</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Download php_xdebug-3.0.4-8.0-vs16-x86_64.dll
+</span></span><span style="display:flex;"><span>Rename **php_xdebug.dll**
+</span></span><span style="display:flex;"><span>Move the downloaded file to C:<span style="color:#ae81ff">\x</span>ampp<span style="color:#ae81ff">\p</span>hp<span style="color:#ae81ff">\e</span>xt
+</span></span><span style="display:flex;"><span>Update C:<span style="color:#ae81ff">\x</span>ampp<span style="color:#ae81ff">\p</span>hp<span style="color:#ae81ff">\p</span>hp.ini to have the line:
+</span></span><span style="display:flex;"><span>zend_extension <span style="color:#f92672">=</span> xdebug
+</span></span></code></pre></div><p>Restart the Apache Webserver</p>
+<h3 id="42-debug">4.2. Debug</h3>
+<p><a href="https://marketplace.visualstudio.com/items?itemName=felixfbecker.php-debug">https://marketplace.visualstudio.com/items?itemName=felixfbecker.php-debug</a></p>
+<p><strong>Your php.ini</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ini" data-lang="ini"><span style="display:flex;"><span><span style="color:#75715e">; XDebug</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">zend_extension</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">xdebug</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">xdebug.mode</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">debug</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">xdebug.start_with_request</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">yes</span>
+</span></span></code></pre></div><h3 id="5-debug-with-phpstorm">5. Debug with PHPStorm</h3>
+<p><strong>Add CLI Intepreter</strong></p>
+<blockquote>
+<p>Settings =&gt; Search &ldquo;PHP&rdquo;</p>
+</blockquote>
+<p>Select your PHP version</p>
+<p><img src="https://user-images.githubusercontent.com/31009750/183253725-7fc5851a-64ad-4493-8ab1-00bf06d330af.png" alt="image"></p>
+<p><strong>Create your server setting</strong></p>
+<blockquote>
+<p>Settings =&gt; Search &ldquo;server&rdquo;
+Select PHP &gt; Servers &gt; Add Insert</p>
+</blockquote>
+<p><img src="https://user-images.githubusercontent.com/31009750/183253800-b0c6607b-b18e-4f69-bb9e-8a8ccf34fd92.png" alt="image"></p>
+<p><strong>Add your Debug Configuration</strong></p>
+<blockquote>
+<p>Run -&gt; Edit Configuration</p>
+</blockquote>
+<p>Add New -&gt; PHP Web Page</p>
+<p>Select your server and set the default open URL</p>
+<p><img src="https://user-images.githubusercontent.com/31009750/183253983-5ed9368d-20a9-4ff2-9930-116fd08eba9c.png" alt="image"></p>
+<blockquote>
+<p>Let&rsquo;s debug</p>
+</blockquote>
+<p>Presse Shift + F9 or Debug Icon to start. Your URL may look like this</p>
+<p><a href="http://phonebook.phpguru.local/?XDEBUG_SESSION_START=13163">http://phonebook.phpguru.local/?XDEBUG_SESSION_START=13163</a></p>
+<p>Then make sure you clicked on &ldquo;Start Listening Debug PHP Connection&rdquo; next to the debug icon</p>
+<p><img src="https://user-images.githubusercontent.com/31009750/183254119-03f9a2c6-0491-4301-99cd-720929192366.png" alt="image"></p>
+<p>You can start adding your debug breakpoint, and it will look like this</p>
+<p><img src="https://user-images.githubusercontent.com/31009750/183254169-64b1812f-2eb7-48e3-ab62-d9bf59016885.png" alt="image"></p>
+<p>Some shorcuts:</p>
+<ul>
+<li>Shift + F9 : start debug</li>
+<li>Shift + F8 : toggle debug breakdown</li>
+<li>F8 : step over</li>
+</ul>
+<p>Enjoy!!!</p>
+<pre tabindex="0"><code></code></pre><pre tabindex="0"><code></code></pre>        
+      
+      <div class="m-1 p-1">
+        
+          <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href="https://blog.phpguru.net/categories/cheatsheet">cheatsheet</a>
+        
+      </div>
+    </div>
+  </section>
+  <section class="container section">
+    <div class="max-w-2xl mx-auto">
+      <div class="font-heading text-2xl font-semibold">You Might Also Like</div>
+      <div class="mt-8 grid  gap-8">
+        
+        
+        
+        
+        <ul class="sidebar-links">
+        
+        
+            <li><a href="/post/how-to-write-unit-in-php/">How to Write Unit in Php</a></li>
+        
+        </ul>
+                
+      </div>
+    </div>
+  </section>
+
+    
+    </main>
+    <footer class="footer">
+      <div class="container flex">
+        <section class="footer-section-info basis-2/5">
+          <div class="address">
+            <a class="logo" href="/" title="JSBase Vietnam">
+              JSBASEVIETNAM
+            </a>
+            <h4 class="footer-heading">
+               PRODUCTION MODE  
+            <h4>                
+          </div>
+        </section>
+        <div class="footer-section-navigation-menu basis-1/5">
+          <h4 class="footer-heading">Laravel</h4>
+          <ul class="footer-section-navigation-menu-links">
+            
+            
+              <li><a href="https://blog.phpguru.net/post/laravel-the-first-website/">Laravel the First Website</a></li>              
+             
+          </ul>
+        </div>
+        <div class="footer-section-navigation-menu basis-1/5">
+          <h4 class="footer-heading">NextJS</h4>
+          <ul class="footer-section-navigation-menu-links">
+            
+            
+              <li><a href="https://blog.phpguru.net/post/codeigniter-the-first-website/">Codeigniter the First Website</a></li>              
+             
+          </ul>
+        </div>
+        <div class="footer-section-navigation-menu basis-1/5">
+          <h4 class="footer-heading">Wordpress</h4>
+          <ul class="footer-section-navigation-menu-links">
+            
+            
+              <li><a href="https://blog.phpguru.net/post/wordpress-the-first-website/">Wordpress the First Website</a></li>              
+             
+          </ul>
+        </div>
+      </div>
+      <div class="container">
+        <div class="text-center">
+          <a href=""><span class="material-icons text-4xl">facebook</span></a>
+          <a href=""><span class="material-icons text-4xl">smart_display</span></a>
+        </div>
+        <div class="text-center text-lg py-4">
+          Copyright @ blog.phpguru.net 2022
+        </div>
+        <div class="text-center text-sm">
+          Powered by <a class="font-bold text-primary" href="https://gohugo.io/">Go Hugo</a> - Made
+          with love from <a class="font-bold text-primary" href="https://blog.phpguru.net/">blog.phpguru.net</a> -
+          Build
+          Version 2022-08-07 09:55:08 &#43;0700 &#43;07
+        </div>
+      </div>
+    </footer>
+
+    
+    
+      
+        
+        
+        
+          <script type="text/javascript" src="https://blog.phpguru.net/core/jquery-3.6.0.min.js"></script>
+        
+             
+    
+      
+        
+        
+        
+          <script type="text/javascript" src="https://blog.phpguru.net/themes/2022/public/main.js"></script>
+        
+             
+    
+      
+        
+        
+        
+          <script type="text/javascript" src="https://blog.phpguru.net/themes/2022/public/home.js"></script>
+        
+             
+        
+  </body>
+</html>

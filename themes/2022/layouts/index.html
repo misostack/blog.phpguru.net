@@ -2,11 +2,16 @@
 
 <main>
     <section class="container section hero-section">
-      <h1 class="hero-section-heading">PHP</h1>
+      <h1 class="hero-section-heading">{{ .Site.Title }}</h1>
       <div class="hero-section-content">
-        <p>A popular general-purpose scripting language that is especially suited to web development.<br/> Fast, flexible and pragmatic</p>
+        <h2>{{ .Site.Params.description }}</h2>
+        <ul>
+          <li>PHP Tutorials</li>
+          <li>Laravel, Wordpress, Codeigniter Tips</li>
+          <li>Wordpress Free Templates, Laravel Free Dashboard</li>
+        </ul>
       </div>
-    </section>
+    </section>  
     {{ $postImage := resources.GetMatch "themes/2022/src/assets/images/post-image.png" }}
     
     <section class="container section news-section clearfix">      

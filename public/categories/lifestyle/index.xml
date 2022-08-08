@@ -1,29 +1,18 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>lifestyle on 1 hour of deep work is better than 8 hours of shallow work</title>
-    <link>https://blog.jsguru.net/categories/lifestyle/</link>
-    <description>Recent content in lifestyle on 1 hour of deep work is better than 8 hours of shallow work</description>
+    <title>lifestyle on Useful PHP Tricks, Laravel Tips, Tricks and Best Practices</title>
+    <link>https://blog.phpguru.net/categories/lifestyle/</link>
+    <description>Recent content in lifestyle on Useful PHP Tricks, Laravel Tips, Tricks and Best Practices</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 28 Jul 2022 09:18:57 +0700</lastBuildDate><atom:link href="https://blog.jsguru.net/categories/lifestyle/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 06 Aug 2022 10:24:55 +0700</lastBuildDate><atom:link href="https://blog.phpguru.net/categories/lifestyle/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Thiện tâm</title>
-      <link>https://blog.jsguru.net/post/thien-tam/</link>
-      <pubDate>Thu, 28 Jul 2022 09:18:57 +0700</pubDate>
+      <title>Php Intership</title>
+      <link>https://blog.phpguru.net/post/php-intership/</link>
+      <pubDate>Sat, 06 Aug 2022 10:24:55 +0700</pubDate>
       
-      <guid>https://blog.jsguru.net/post/thien-tam/</guid>
-      <description>
-Người làm điều thiện, phúc tuy chưa đến mà họa đã rời xa Thế gian lạnh ấm, mãi đan xen Nửa thì mưa gió, nửa phồn hoa Thế nhân không tỏ, thường oán trách Đâu biết vấn đề, ngụ trong tâm #Tướng tùy tâm sinh
-Thiên đạo vô thân Thường giữ thiện nhân Người quân tử yêu cầu bản thân, kẻ tiểu nhân yêu cầu người khác Bần tiện bất năng di Phú quý bất đăng dâm Uy vũ bất đăng khuất Quân tử không đấu với tiểu nhân Ác nhân tự có ác nhân trị Lý tương sinh tương khắc Nhân quả tuần hoàn </description>
-    </item>
-    
-    <item>
-      <title>Ngay Dau Di Lam Dev Backend</title>
-      <link>https://blog.jsguru.net/post/ngay-dau-di-lam-dev-backend/</link>
-      <pubDate>Tue, 12 Jul 2022 11:41:01 +0700</pubDate>
-      
-      <guid>https://blog.jsguru.net/post/ngay-dau-di-lam-dev-backend/</guid>
+      <guid>https://blog.phpguru.net/post/php-intership/</guid>
       <description></description>
     </item>
     

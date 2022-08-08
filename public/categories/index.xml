@@ -1,54 +1,36 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Categories on 1 hour of deep work is better than 8 hours of shallow work</title>
-    <link>https://blog.jsguru.net/categories/</link>
-    <description>Recent content in Categories on 1 hour of deep work is better than 8 hours of shallow work</description>
+    <title>Categories on Useful PHP Tricks, Laravel Tips, Tricks and Best Practices</title>
+    <link>https://blog.phpguru.net/categories/</link>
+    <description>Recent content in Categories on Useful PHP Tricks, Laravel Tips, Tricks and Best Practices</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 05 Aug 2022 10:06:04 +0700</lastBuildDate><atom:link href="https://blog.jsguru.net/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 07 Aug 2022 09:55:08 +0700</lastBuildDate><atom:link href="https://blog.phpguru.net/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>cheatsheet</title>
+      <link>https://blog.phpguru.net/categories/cheatsheet/</link>
+      <pubDate>Sun, 07 Aug 2022 09:55:08 +0700</pubDate>
+      
+      <guid>https://blog.phpguru.net/categories/cheatsheet/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>frameworks</title>
-      <link>https://blog.jsguru.net/categories/frameworks/</link>
-      <pubDate>Fri, 05 Aug 2022 10:06:04 +0700</pubDate>
+      <link>https://blog.phpguru.net/categories/frameworks/</link>
+      <pubDate>Sat, 06 Aug 2022 10:30:21 +0700</pubDate>
       
-      <guid>https://blog.jsguru.net/categories/frameworks/</guid>
+      <guid>https://blog.phpguru.net/categories/frameworks/</guid>
       <description></description>
     </item>
     
     <item>
       <title>lifestyle</title>
-      <link>https://blog.jsguru.net/categories/lifestyle/</link>
-      <pubDate>Thu, 28 Jul 2022 09:18:57 +0700</pubDate>
+      <link>https://blog.phpguru.net/categories/lifestyle/</link>
+      <pubDate>Sat, 06 Aug 2022 10:24:55 +0700</pubDate>
       
-      <guid>https://blog.jsguru.net/categories/lifestyle/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>cheatsheet</title>
-      <link>https://blog.jsguru.net/categories/cheatsheet/</link>
-      <pubDate>Wed, 20 Jul 2022 11:47:31 +0700</pubDate>
-      
-      <guid>https://blog.jsguru.net/categories/cheatsheet/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>java</title>
-      <link>https://blog.jsguru.net/categories/java/</link>
-      <pubDate>Wed, 20 Jul 2022 09:04:17 +0700</pubDate>
-      
-      <guid>https://blog.jsguru.net/categories/java/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>systemdesign</title>
-      <link>https://blog.jsguru.net/categories/systemdesign/</link>
-      <pubDate>Tue, 12 Jul 2022 11:39:43 +0700</pubDate>
-      
-      <guid>https://blog.jsguru.net/categories/systemdesign/</guid>
+      <guid>https://blog.phpguru.net/categories/lifestyle/</guid>
       <description></description>
     </item>
     

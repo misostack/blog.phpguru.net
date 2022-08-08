@@ -12,6 +12,10 @@
       {{ $themePath = "themes/2022/dist/" }}
     {{ end }}
 
+    <!-- Load fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />    
+
     <!-- Load stylesheets -->
     {{ range $style := .Site.Data.assets.styles }}
       {{ if eq $style.theme "2022" }}
@@ -52,7 +56,7 @@
             <h4>                
           </div>
         </section>
-        <div class="footer-section-navigation-menu basis-1/5">
+        <div class="footer-section-navigation-menu md:basis-1/4">
           <h4 class="footer-heading">Laravel</h4>
           <ul class="footer-section-navigation-menu-links">
             {{ $nestjsTag := .Site.Taxonomies.tags.laravel }}
@@ -61,8 +65,8 @@
             {{ end }} 
           </ul>
         </div>
-        <div class="footer-section-navigation-menu basis-1/5">
-          <h4 class="footer-heading">NextJS</h4>
+        <div class="footer-section-navigation-menu md:basis-1/4">
+          <h4 class="footer-heading">Codeigniter</h4>
           <ul class="footer-section-navigation-menu-links">
             {{ $nextjsTag := .Site.Taxonomies.tags.codeigniter }}
             {{ range first 12 (sort $nextjsTag.Pages "Date" "desc") }}
@@ -70,7 +74,7 @@
             {{ end }} 
           </ul>
         </div>
-        <div class="footer-section-navigation-menu basis-1/5">
+        <div class="footer-section-navigation-menu md:basis-1/4">
           <h4 class="footer-heading">Wordpress</h4>
           <ul class="footer-section-navigation-menu-links">
             {{ $nextjsTag := .Site.Taxonomies.tags.wordpress }}
@@ -82,8 +86,8 @@
       </div>
       <div class="container">
         <div class="text-center">
-          <a href=""><span class="material-icons text-4xl">facebook</span></a>
-          <a href=""><span class="material-icons text-4xl">smart_display</span></a>
+          <a href=""><span class="material-icons text-4xl m-4">facebook</span></a>
+          <a href=""><span class="material-icons text-4xl  m-4">smart_display</span></a>
         </div>
         <div class="text-center text-lg py-4">
           Copyright @ blog.phpguru.net 2022

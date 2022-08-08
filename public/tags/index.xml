@@ -1,108 +1,45 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tags on 1 hour of deep work is better than 8 hours of shallow work</title>
-    <link>https://blog.jsguru.net/tags/</link>
-    <description>Recent content in Tags on 1 hour of deep work is better than 8 hours of shallow work</description>
+    <title>Tags on Useful PHP Tricks, Laravel Tips, Tricks and Best Practices</title>
+    <link>https://blog.phpguru.net/tags/</link>
+    <description>Recent content in Tags on Useful PHP Tricks, Laravel Tips, Tricks and Best Practices</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 05 Aug 2022 10:06:04 +0700</lastBuildDate><atom:link href="https://blog.jsguru.net/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 07 Aug 2022 09:55:08 +0700</lastBuildDate><atom:link href="https://blog.phpguru.net/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>nestjs</title>
-      <link>https://blog.jsguru.net/tags/nestjs/</link>
-      <pubDate>Fri, 05 Aug 2022 10:06:04 +0700</pubDate>
+      <title>phpunit</title>
+      <link>https://blog.phpguru.net/tags/phpunit/</link>
+      <pubDate>Sun, 07 Aug 2022 09:55:08 +0700</pubDate>
       
-      <guid>https://blog.jsguru.net/tags/nestjs/</guid>
+      <guid>https://blog.phpguru.net/tags/phpunit/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>đạo đức</title>
-      <link>https://blog.jsguru.net/tags/%C4%91%E1%BA%A1o-%C4%91%E1%BB%A9c/</link>
-      <pubDate>Thu, 28 Jul 2022 09:18:57 +0700</pubDate>
+      <title>wordpress</title>
+      <link>https://blog.phpguru.net/tags/wordpress/</link>
+      <pubDate>Sat, 06 Aug 2022 10:30:21 +0700</pubDate>
       
-      <guid>https://blog.jsguru.net/tags/%C4%91%E1%BA%A1o-%C4%91%E1%BB%A9c/</guid>
+      <guid>https://blog.phpguru.net/tags/wordpress/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>java</title>
-      <link>https://blog.jsguru.net/tags/java/</link>
-      <pubDate>Wed, 20 Jul 2022 09:04:17 +0700</pubDate>
+      <title>codeigniter</title>
+      <link>https://blog.phpguru.net/tags/codeigniter/</link>
+      <pubDate>Sat, 06 Aug 2022 10:27:22 +0700</pubDate>
       
-      <guid>https://blog.jsguru.net/tags/java/</guid>
+      <guid>https://blog.phpguru.net/tags/codeigniter/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>spring</title>
-      <link>https://blog.jsguru.net/tags/spring/</link>
-      <pubDate>Wed, 20 Jul 2022 09:04:17 +0700</pubDate>
+      <title>laravel</title>
+      <link>https://blog.phpguru.net/tags/laravel/</link>
+      <pubDate>Sat, 06 Aug 2022 10:26:15 +0700</pubDate>
       
-      <guid>https://blog.jsguru.net/tags/spring/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>design-patterns</title>
-      <link>https://blog.jsguru.net/tags/design-patterns/</link>
-      <pubDate>Wed, 20 Jul 2022 09:04:00 +0700</pubDate>
-      
-      <guid>https://blog.jsguru.net/tags/design-patterns/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>java-core</title>
-      <link>https://blog.jsguru.net/tags/java-core/</link>
-      <pubDate>Wed, 20 Jul 2022 09:04:00 +0700</pubDate>
-      
-      <guid>https://blog.jsguru.net/tags/java-core/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>java-ee</title>
-      <link>https://blog.jsguru.net/tags/java-ee/</link>
-      <pubDate>Wed, 20 Jul 2022 09:04:00 +0700</pubDate>
-      
-      <guid>https://blog.jsguru.net/tags/java-ee/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>reactjs</title>
-      <link>https://blog.jsguru.net/tags/reactjs/</link>
-      <pubDate>Tue, 12 Jul 2022 15:14:47 +0700</pubDate>
-      
-      <guid>https://blog.jsguru.net/tags/reactjs/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>nodejs</title>
-      <link>https://blog.jsguru.net/tags/nodejs/</link>
-      <pubDate>Tue, 12 Jul 2022 11:39:11 +0700</pubDate>
-      
-      <guid>https://blog.jsguru.net/tags/nodejs/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>nextjs</title>
-      <link>https://blog.jsguru.net/tags/nextjs/</link>
-      <pubDate>Tue, 12 Jul 2022 11:38:00 +0700</pubDate>
-      
-      <guid>https://blog.jsguru.net/tags/nextjs/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>hugo</title>
-      <link>https://blog.jsguru.net/tags/hugo/</link>
-      <pubDate>Tue, 21 Jun 2022 15:43:50 +0700</pubDate>
-      
-      <guid>https://blog.jsguru.net/tags/hugo/</guid>
+      <guid>https://blog.phpguru.net/tags/laravel/</guid>
       <description></description>
     </item>
     

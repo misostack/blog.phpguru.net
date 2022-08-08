@@ -1,12 +1,12 @@
 baseURL = 'https://blog.phpguru.net'
 languageCode = 'en-us'
-title = '1 hour of deep work is better than 8 hours of shallow work'
+title = 'Useful PHP Tricks, Laravel Tips, Tricks and Best Practices'
 theme = '2022'
 ignoreFiles = ['\assets\node_modules\.*']
 [params]
-    name = "Blog PHPGuru"
-    description = "A place for you to learn PHP from zero to hero includes: PHP language, Laravel, Wordpress, Codeignitor, ..."
-    keywords = "php"
+    name = "PHPGuru"
+    description = "PHP Tricks, Laravel Tips to Make You a Better Programmer"
+    keywords = "PHP Tricks, Laravel Tips"
     dateFormat = "2006-01-02 15:04:05"
     image = "/themes/2022/src/assets/images/logo.png"
     blog_pager = 10
