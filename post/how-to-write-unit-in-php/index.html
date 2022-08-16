@@ -88,6 +88,109 @@
 <p>Only ever write code to fix a failing test.</p>
 </blockquote>
 <p><strong>That’s test-driven development, or TDD, in one sentence.</strong></p>
+<h2 id=when-do-we-write-test>When do we write test?</h2>
+<p><img src=https://user-images.githubusercontent.com/31009750/184848843-67c8dfa8-65e0-41c4-9e07-3e5386e23deb.png alt=image></p>
+<h2 id=steps>Steps</h2>
+<blockquote>
+<p>Step 1 : Install PHPUnit using composer</p>
+</blockquote>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>composer require --dev phpunit/phpunit ^9.5
+</code></pre></div><blockquote>
+<p>Step 2: Configuration</p>
+</blockquote>
+<p><strong>bootstrap.php</strong></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-php data-lang=php><span style=color:#66d9ef>require_once</span> <span style=color:#e6db74>&#39;../vendor/autoload.php&#39;</span>;
+</code></pre></div><p><strong>phpunit.xml</strong></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-xml data-lang=xml><span style=color:#75715e>&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
+
+<span style=color:#f92672>&lt;phpunit</span> <span style=color:#a6e22e>bootstrap=</span><span style=color:#e6db74>&#34;./bootstrap.php&#34;</span> <span style=color:#a6e22e>colors=</span><span style=color:#e6db74>&#34;true&#34;</span><span style=color:#f92672>&gt;</span>
+    <span style=color:#f92672>&lt;testsuites&gt;</span>
+        <span style=color:#f92672>&lt;testsuite</span> <span style=color:#a6e22e>name=</span><span style=color:#e6db74>&#34;UnitTestSuite&#34;</span><span style=color:#f92672>&gt;</span>
+            <span style=color:#f92672>&lt;directory&gt;</span>unit<span style=color:#f92672>&lt;/directory&gt;</span>
+        <span style=color:#f92672>&lt;/testsuite&gt;</span>
+        <span style=color:#f92672>&lt;testsuite</span> <span style=color:#a6e22e>name=</span><span style=color:#e6db74>&#34;IntegrationTestSuite&#34;</span><span style=color:#f92672>&gt;</span>
+            <span style=color:#f92672>&lt;directory&gt;</span>integration<span style=color:#f92672>&lt;/directory&gt;</span>
+        <span style=color:#f92672>&lt;/testsuite&gt;</span>
+        <span style=color:#f92672>&lt;testsuite</span> <span style=color:#a6e22e>name=</span><span style=color:#e6db74>&#34;EdgeToEdgeTestSuite&#34;</span><span style=color:#f92672>&gt;</span>
+            <span style=color:#f92672>&lt;directory&gt;</span>edge-to-edge<span style=color:#f92672>&lt;/directory&gt;</span>
+        <span style=color:#f92672>&lt;/testsuite&gt;</span>
+    <span style=color:#f92672>&lt;/testsuites&gt;</span>
+    <span style=color:#f92672>&lt;coverage</span> <span style=color:#a6e22e>cacheDirectory=</span><span style=color:#e6db74>&#34;./cached&#34;</span>
+              <span style=color:#a6e22e>includeUncoveredFiles=</span><span style=color:#e6db74>&#34;true&#34;</span>
+              <span style=color:#a6e22e>processUncoveredFiles=</span><span style=color:#e6db74>&#34;true&#34;</span>
+              <span style=color:#a6e22e>pathCoverage=</span><span style=color:#e6db74>&#34;false&#34;</span>
+              <span style=color:#a6e22e>ignoreDeprecatedCodeUnits=</span><span style=color:#e6db74>&#34;true&#34;</span>
+              <span style=color:#a6e22e>disableCodeCoverageIgnore=</span><span style=color:#e6db74>&#34;true&#34;</span><span style=color:#f92672>&gt;</span>
+        <span style=color:#f92672>&lt;include&gt;</span>
+            <span style=color:#f92672>&lt;directory</span> <span style=color:#a6e22e>suffix=</span><span style=color:#e6db74>&#34;.php&#34;</span><span style=color:#f92672>&gt;</span>../src<span style=color:#f92672>&lt;/directory&gt;</span>
+        <span style=color:#f92672>&lt;/include&gt;</span>
+        <span style=color:#f92672>&lt;report&gt;</span>
+            <span style=color:#f92672>&lt;clover</span> <span style=color:#a6e22e>outputFile=</span><span style=color:#e6db74>&#34;clover.xml&#34;</span><span style=color:#f92672>/&gt;</span>
+            <span style=color:#f92672>&lt;cobertura</span> <span style=color:#a6e22e>outputFile=</span><span style=color:#e6db74>&#34;cobertura.xml&#34;</span><span style=color:#f92672>/&gt;</span>
+            <span style=color:#f92672>&lt;crap4j</span> <span style=color:#a6e22e>outputFile=</span><span style=color:#e6db74>&#34;crap4j.xml&#34;</span> <span style=color:#a6e22e>threshold=</span><span style=color:#e6db74>&#34;50&#34;</span><span style=color:#f92672>/&gt;</span>
+            <span style=color:#f92672>&lt;html</span> <span style=color:#a6e22e>outputDirectory=</span><span style=color:#e6db74>&#34;html-coverage&#34;</span> <span style=color:#a6e22e>lowUpperBound=</span><span style=color:#e6db74>&#34;50&#34;</span> <span style=color:#a6e22e>highLowerBound=</span><span style=color:#e6db74>&#34;90&#34;</span><span style=color:#f92672>/&gt;</span>
+            <span style=color:#f92672>&lt;php</span> <span style=color:#a6e22e>outputFile=</span><span style=color:#e6db74>&#34;coverage.php&#34;</span><span style=color:#f92672>/&gt;</span>
+            <span style=color:#f92672>&lt;text</span> <span style=color:#a6e22e>outputFile=</span><span style=color:#e6db74>&#34;coverage.txt&#34;</span> <span style=color:#a6e22e>showUncoveredFiles=</span><span style=color:#e6db74>&#34;false&#34;</span> <span style=color:#a6e22e>showOnlySummary=</span><span style=color:#e6db74>&#34;true&#34;</span><span style=color:#f92672>/&gt;</span>
+            <span style=color:#f92672>&lt;xml</span> <span style=color:#a6e22e>outputDirectory=</span><span style=color:#e6db74>&#34;xml-coverage&#34;</span><span style=color:#f92672>/&gt;</span>
+        <span style=color:#f92672>&lt;/report&gt;</span>
+    <span style=color:#f92672>&lt;/coverage&gt;</span>
+<span style=color:#f92672>&lt;/phpunit&gt;</span>
+</code></pre></div><blockquote>
+<p>Step 3: Let&rsquo;s write some test</p>
+</blockquote>
+<p><strong>src/StringManipulation.php</strong></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-php data-lang=php><span style=color:#66d9ef>namespace</span> <span style=color:#a6e22e>PhpGuru</span>;
+
+<span style=color:#66d9ef>class</span> <span style=color:#a6e22e>StringManipulation</span>
+{
+	<span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>trimVietnameseAccent</span>($str)
+	{
+		$str <span style=color:#f92672>=</span> <span style=color:#a6e22e>preg_replace</span>(<span style=color:#e6db74>&#34;/(à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ)/&#34;</span>, <span style=color:#e6db74>&#39;a&#39;</span>, $str);
+		$str <span style=color:#f92672>=</span> <span style=color:#a6e22e>preg_replace</span>(<span style=color:#e6db74>&#34;/(è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ)/&#34;</span>, <span style=color:#e6db74>&#39;e&#39;</span>, $str);
+		$str <span style=color:#f92672>=</span> <span style=color:#a6e22e>preg_replace</span>(<span style=color:#e6db74>&#34;/(ì|í|ị|ỉ|ĩ)/&#34;</span>, <span style=color:#e6db74>&#39;i&#39;</span>, $str);
+		$str <span style=color:#f92672>=</span> <span style=color:#a6e22e>preg_replace</span>(<span style=color:#e6db74>&#34;/(ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ)/&#34;</span>, <span style=color:#e6db74>&#39;o&#39;</span>, $str);
+		$str <span style=color:#f92672>=</span> <span style=color:#a6e22e>preg_replace</span>(<span style=color:#e6db74>&#34;/(ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ)/&#34;</span>, <span style=color:#e6db74>&#39;u&#39;</span>, $str);
+		$str <span style=color:#f92672>=</span> <span style=color:#a6e22e>preg_replace</span>(<span style=color:#e6db74>&#34;/(ỳ|ý|ỵ|ỷ|ỹ)/&#34;</span>, <span style=color:#e6db74>&#39;y&#39;</span>, $str);
+		$str <span style=color:#f92672>=</span> <span style=color:#a6e22e>preg_replace</span>(<span style=color:#e6db74>&#34;/(đ)/&#34;</span>, <span style=color:#e6db74>&#39;d&#39;</span>, $str);
+		$str <span style=color:#f92672>=</span> <span style=color:#a6e22e>preg_replace</span>(<span style=color:#e6db74>&#34;/(À|Á|Ạ|Ả|Ã|Â|Ầ|Ấ|Ậ|Ẩ|Ẫ|Ă|Ằ|Ắ|Ặ|Ẳ|Ẵ)/&#34;</span>, <span style=color:#e6db74>&#39;A&#39;</span>, $str);
+		$str <span style=color:#f92672>=</span> <span style=color:#a6e22e>preg_replace</span>(<span style=color:#e6db74>&#34;/(È|É|Ẹ|Ẻ|Ẽ|Ê|Ề|Ế|Ệ|Ể|Ễ)/&#34;</span>, <span style=color:#e6db74>&#39;E&#39;</span>, $str);
+		$str <span style=color:#f92672>=</span> <span style=color:#a6e22e>preg_replace</span>(<span style=color:#e6db74>&#34;/(Ì|Í|Ị|Ỉ|Ĩ)/&#34;</span>, <span style=color:#e6db74>&#39;I&#39;</span>, $str);
+		$str <span style=color:#f92672>=</span> <span style=color:#a6e22e>preg_replace</span>(<span style=color:#e6db74>&#34;/(Ò|Ó|Ọ|Ỏ|Õ|Ô|Ồ|Ố|Ộ|Ổ|Ỗ|Ơ|Ờ|Ớ|Ợ|Ở|Ỡ)/&#34;</span>, <span style=color:#e6db74>&#39;O&#39;</span>, $str);
+		$str <span style=color:#f92672>=</span> <span style=color:#a6e22e>preg_replace</span>(<span style=color:#e6db74>&#34;/(Ù|Ú|Ụ|Ủ|Ũ|Ư|Ừ|Ứ|Ự|Ử|Ữ)/&#34;</span>, <span style=color:#e6db74>&#39;U&#39;</span>, $str);
+		$str <span style=color:#f92672>=</span> <span style=color:#a6e22e>preg_replace</span>(<span style=color:#e6db74>&#34;/(Ỳ|Ý|Ỵ|Ỷ|Ỹ)/&#34;</span>, <span style=color:#e6db74>&#39;Y&#39;</span>, $str);
+		$str <span style=color:#f92672>=</span> <span style=color:#a6e22e>preg_replace</span>(<span style=color:#e6db74>&#34;/(Đ)/&#34;</span>, <span style=color:#e6db74>&#39;D&#39;</span>, $str);
+		$str <span style=color:#f92672>=</span> <span style=color:#a6e22e>preg_replace</span>(<span style=color:#e6db74>&#34;/(\“|\”|\‘|\’|\,|\!|\&amp;|\;|\@|\#|\%|\~|\`|\=|\_|\&#39;|\]|\[|\}|\{|\)|\(|\+|\^)/&#34;</span>, <span style=color:#e6db74>&#39;-&#39;</span>, $str);
+		$str <span style=color:#f92672>=</span> <span style=color:#a6e22e>preg_replace</span>(<span style=color:#e6db74>&#34;/( )/&#34;</span>, <span style=color:#e6db74>&#39;-&#39;</span>, $str);
+		<span style=color:#66d9ef>return</span> $str;
+	}
+}
+</code></pre></div><p><strong>tests/unit/StringManipulationTest.php</strong></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-php data-lang=php><span style=color:#66d9ef>declare</span>(<span style=color:#a6e22e>strict_types</span><span style=color:#f92672>=</span><span style=color:#ae81ff>1</span>);
+
+<span style=color:#66d9ef>final</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>StringManipulationTest</span> <span style=color:#66d9ef>extends</span> <span style=color:#a6e22e>\PHPUnit\Framework\TestCase</span>
+{
+	<span style=color:#66d9ef>public</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>testEmpty</span>()<span style=color:#f92672>:</span> <span style=color:#a6e22e>void</span>
+	{
+		$inputStr <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;&#34;</span>;
+		$outputStr <span style=color:#f92672>=</span> <span style=color:#a6e22e>PhpGuru\StringManipulation</span><span style=color:#f92672>::</span><span style=color:#a6e22e>trimVietnameseAccent</span>($inputStr);
+		$this<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>assertEmpty</span>($outputStr);
+	}
+}
+</code></pre></div><blockquote>
+<p>Step 4: run</p>
+</blockquote>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash> XDEBUG_MODE<span style=color:#f92672>=</span>coverage vendor/phpunit/phpunit/phpunit --bootstrap ./vendor/autoload.php --configuration ./tests/phpunit.xml
+</code></pre></div><p><strong>.gitignore</strong> for phpunit</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>/tests/.phpunit.result.cache
+/tests/cached
+/tests/clover.xml
+/tests/cobertura.xml
+/tests/coverage.php
+/tests/coverage.txt
+/tests/crap4j.xml
+/tests/html-coverage
+/tests/xml-coverage
+</code></pre></div>
 <div class="m-1 p-1">
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://blog.phpguru.net/categories/cheatsheet>cheatsheet</a>
 </div>
