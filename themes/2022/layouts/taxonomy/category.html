@@ -1,6 +1,18 @@
 {{ define "main" }}
 <section class="container section hero-section">
-  <h1 class="hero-section-heading">{{ .Title }}</h1>
+  <h1 class="hero-section-heading">
+  {{ if isset .Site.Data.layouts.categories .Title}}
+    {{ index .Site.Data.layouts.categories .Title }}
+  {{ else }}
+    {{  .Title }}
+  {{ end }}
+  </h1>
+  <div style="text-align: left;" class="page-content">
+    {{ $categoryContent := print "/layouts/category/" .Title ".md"}}
+    {{ if fileExists $categoryContent }}
+      {{ $categoryContent | readFile | markdownify }}
+    {{ end }}
+  </div>
 </section>
 <section class="container section grid md:grid-cols-4 gap-8">
   {{ $paginator := .Paginate .Data.Pages .Site.Params.blog_pager }} {{ range
@@ -33,4 +45,32 @@
 <section class="container">
   {{ template "_internal/pagination.html" . }}
 </section>
+{{ end }}
+
+{{ define "seo" }}
+  {{ if isset .Site.Data.layouts.categories .Title}}
+  <script type="application/ld+json">{
+    "@context": "https://schema.org/",
+    "@type": "CreativeWorkSeries",
+    "name": "{{ index .Site.Data.layouts.categories .Title }}",
+    "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "bestRating": "5",
+        "ratingCount": "100"
+    }
+  }</script>  
+  {{ else }}
+  <script type="application/ld+json">{
+    "@context": "https://schema.org/",
+    "@type": "CreativeWorkSeries",
+    "name": "{  .Title }}",
+    "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "bestRating": "5",
+        "ratingCount": "100"
+    }
+  }</script>
+  {{ end }}
 {{ end }}

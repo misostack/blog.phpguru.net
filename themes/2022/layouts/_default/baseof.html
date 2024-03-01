@@ -14,8 +14,7 @@
 
     <!-- Load fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />    
-
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
     <!-- Load stylesheets -->
     {{ range $style := .Site.Data.assets.styles }}
       {{ if eq $style.theme "2022" }}
@@ -24,7 +23,9 @@
         <link rel="stylesheet" href="{{$mainStyle.Permalink}}" />
       {{ end }}       
     {{ end }}    
-
+    
+    <!-- Bing -->
+    {{/*  <meta name="msvalidate.01" content="{{.Site.Params.BingCode}}" />  */}}
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id={{.Site.Params.GACode}}"></script>
     <script>
@@ -32,9 +33,11 @@
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
-      gtag('config', '{{.Site.Params.GACode}}');
-    </script>    
-    {{ partial "meta" . }}
+      gtag('config', '{{.Site.Params.GACode}}');    
+    </script>
+    {{ block "meta" . }}{{ end }}
+    {{ block "seo" .}}{{end}}
+    {{ partial "meta" . }}    
     {{ partial "favicon" . }}
   </head>
   <body class="body-nav-fixed">
@@ -44,11 +47,11 @@
     
     </main>
     <footer class="footer">
-      <div class="container flex">
+      <div class="container md:flex">
         <section class="footer-section-info md:basis-1/4">
           <div class="address">
-            <a class="logo" href="/" title="{{ .Site.Params.Name }}">
-              {{ .Site.Params.Name }}
+            <a class="logo" href="{{.Site.BaseURL}}" title="{{ .Site.Params.name }}">
+              {{ .Site.Params.name }}
             </a>
             <h4 class="footer-heading">
               {{ if hugo.IsProduction }} PRODUCTION MODE {{ end }} {{ if not
@@ -60,25 +63,25 @@
           <h4 class="footer-heading">Laravel</h4>
           <ul class="footer-section-navigation-menu-links">
             {{ $nestjsTag := .Site.Taxonomies.tags.laravel }}
-            {{ range first 12 (sort $nestjsTag.Pages "Date" "desc") }}
+            {{ range first 5 (sort $nestjsTag.Pages "Date" "desc") }}
               <li><a href="{{ .Permalink }}">{{.Title}}</a></li>              
             {{ end }} 
           </ul>
         </div>
         <div class="footer-section-navigation-menu md:basis-1/4">
-          <h4 class="footer-heading">Codeigniter</h4>
+          <h4 class="footer-heading">Devops</h4>
           <ul class="footer-section-navigation-menu-links">
-            {{ $nextjsTag := .Site.Taxonomies.tags.codeigniter }}
-            {{ range first 12 (sort $nextjsTag.Pages "Date" "desc") }}
+            {{ $nextjsTag := .Site.Taxonomies.categories.devops }}
+            {{ range first 5 (sort $nextjsTag.Pages "Date" "desc") }}
               <li><a href="{{ .Permalink }}">{{.Title}}</a></li>              
-            {{ end }} 
+            {{ end }}
           </ul>
         </div>
         <div class="footer-section-navigation-menu md:basis-1/4">
-          <h4 class="footer-heading">Wordpress</h4>
+          <h4 class="footer-heading">Cheatsheet</h4>
           <ul class="footer-section-navigation-menu-links">
-            {{ $nextjsTag := .Site.Taxonomies.tags.wordpress }}
-            {{ range first 12 (sort $nextjsTag.Pages "Date" "desc") }}
+            {{ $cheatsheetTag := .Site.Taxonomies.categories.cheatsheet }}
+            {{ range first 5 (sort $cheatsheetTag.Pages "Date" "desc") }}
               <li><a href="{{ .Permalink }}">{{.Title}}</a></li>              
             {{ end }} 
           </ul>
@@ -90,11 +93,11 @@
           <a href=""><span class="material-icons text-4xl  m-4">smart_display</span></a>
         </div>
         <div class="text-center text-lg py-4">
-          Copyright @ blog.phpguru.net 2022
+          Copyright @ {{ .Site.Params.name }} {{ time.Now.Year }}
         </div>
         <div class="text-center text-sm">
           Powered by <a class="font-bold text-primary" href="https://gohugo.io/">Go Hugo</a> - Made
-          with love from <a class="font-bold text-primary" href="https://blog.phpguru.net/">blog.phpguru.net</a> -
+          with love from <a class="font-bold text-primary" href="{{ .Site.BaseURL }}">{{ .Site.Params.name }}</a> -
           Build
           Version {{.Site.LastChange}}
         </div>
@@ -116,6 +119,24 @@
           <script type="text/javascript" src="{{ $mainScript.Permalink }}"></script>
         {{ end }}
       {{ end }}       
-    {{ end }}    
+    {{ end }}
+
+  <!-- Meta Pixel Code -->
+  <script async>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '{{.Site.Params.FBPixel}}');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id={{.Site.Params.FBPixel}}&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->    
   </body>
 </html>

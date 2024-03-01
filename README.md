@@ -21,3 +21,23 @@ hugo new [archtype]/[post-name].md "Post title"
 
 hugo new post/hello.md "hello"
 ```
+
+```bash
+hugo new post/laravel-tutorial-001-main-concepts.md "Introduction to laravel framework"
+```
+
+```bash
+hugo new post/docker-cheatsheet.md "Docker Cheatsheet for php developers"
+```
+
+```bash
+ hugo new post/php-tutorial-topic.md "PHP Tutorial Topic"
+```
+
+```bash
+ hugo new post/wordpress-tutorial-001-main-concepts.md "Introduction to Wordpress"
+```
+
+```bash
+ hugo new post/golang-tutorial-topic.md "Golang Tutorial Topic"
+```
