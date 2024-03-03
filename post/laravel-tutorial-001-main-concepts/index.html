@@ -155,6 +155,18 @@ $response <span style=color:#f92672>=</span> $kernel<span style=color:#f92672>-&
 $kernel<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>terminate</span>($request, $response);
 
 </code></pre></div><h3 id=laravel-atoms>Laravel Atoms</h3>
+<ol>
+<li>Environment</li>
+</ol>
+<ul>
+<li>Laravel use <a href=https://github.com/vlucas/phpdotenv>dotenv</a> to load env variables. By default the dotenv will use &ldquo;.env&rdquo; file.</li>
+</ul>
+<blockquote>
+<p>Any variable in your .env file can be overridden by external environment variables such as server-level or system-level environment variables.</p>
+</blockquote>
+<blockquote>
+<p>Laravel will attempt to load .env.[APP_ENV] file if existed, if not the default is .env file.</p>
+</blockquote>
 <div class="m-1 p-1">
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://blog.phpguru.net/categories/laravel-tutorial>laravel-tutorial</a>
 </div>
