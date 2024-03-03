@@ -11,10 +11,10 @@
 <link rel=stylesheet href=https://blog.phpguru.net/themes/2022/public/page.css>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-44831C2LM4"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-44831C2LM4')</script>
-<title>Laravel Tutorial 001 Main Concepts | Laravel Tutorial 001 Main Concepts | Useful PHP Tricks, Laravel Tips, Tricks and Best Practices</title>
+<title>Laravel Tutorial 001 Main Concepts | In this article, we will go through all of main concepts in laravel. | Useful PHP Tricks, Laravel Tips, Tricks and Best Practices</title>
 <meta name=robots content="all">
 <meta name=keywords content="laravel">
-<meta name=description content="Laravel Tutorial 001 Main Concepts">
+<meta name=description content="In this article, we will go through all of main concepts in laravel.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://gist.github.com/assets/31009750/84d13faa-dd94-43f9-8aef-d4d13b4f64b1">
 <meta property="og:image:type" content="image/jpeg">
@@ -114,6 +114,47 @@
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=/tags/laravel>laravel</a>
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=/tags/php>, php</a>
 </p>
+<p>The 1st step, create new laravel project with composer</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>composer create-project laravel/laravel example-app
+</code></pre></div><h2 id=topics-will-be-go-through>Topics will be go through</h2>
+<blockquote>
+<p>Laravel Atoms</p>
+</blockquote>
+<ol>
+<li><input disabled type=checkbox> Request Flow</li>
+<li><input disabled type=checkbox> Service Containers</li>
+<li><input disabled type=checkbox> Service Providers</li>
+<li><input disabled type=checkbox> Facades</li>
+</ol>
+<blockquote>
+<p>Go through all basic concepts via &ldquo;Todo Application&rdquo;</p>
+</blockquote>
+<h3 id=overview-architecture>Overview Architecture</h3>
+<p><img src=https://gist.github.com/assets/31009750/58f8d4de-89cb-4be3-a621-0667f14283a2 alt=image></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-php data-lang=php><span style=color:#66d9ef>require</span> <span style=color:#66d9ef>__DIR__</span><span style=color:#f92672>.</span><span style=color:#e6db74>&#39;/../vendor/autoload.php&#39;</span>;
+
+<span style=color:#75715e>/*
+</span><span style=color:#75715e>|--------------------------------------------------------------------------
+</span><span style=color:#75715e>| Run The Application
+</span><span style=color:#75715e>|--------------------------------------------------------------------------
+</span><span style=color:#75715e>|
+</span><span style=color:#75715e>| Once we have the application, we can handle the incoming request using
+</span><span style=color:#75715e>| the application&#39;s HTTP kernel. Then, we will send the response back
+</span><span style=color:#75715e>| to this client&#39;s browser, allowing them to enjoy our application.
+</span><span style=color:#75715e>|
+</span><span style=color:#75715e>*/</span>
+
+$app <span style=color:#f92672>=</span> <span style=color:#66d9ef>require_once</span> <span style=color:#66d9ef>__DIR__</span><span style=color:#f92672>.</span><span style=color:#e6db74>&#39;/../bootstrap/app.php&#39;</span>;
+
+$kernel <span style=color:#f92672>=</span> $app<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>make</span>(<span style=color:#a6e22e>Kernel</span><span style=color:#f92672>::</span><span style=color:#a6e22e>class</span>);
+
+$response <span style=color:#f92672>=</span> $kernel<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>handle</span>(
+    $request <span style=color:#f92672>=</span> <span style=color:#a6e22e>Request</span><span style=color:#f92672>::</span><span style=color:#a6e22e>capture</span>()
+)<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>send</span>();
+
+$kernel<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>terminate</span>($request, $response);
+
+</code></pre></div><h3 id=laravel-atoms>Laravel Atoms</h3>
 <div class="m-1 p-1">
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://blog.phpguru.net/categories/laravel-tutorial>laravel-tutorial</a>
 </div>
