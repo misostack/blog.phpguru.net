@@ -57,3 +57,11 @@ $kernel->terminate($request, $response);
 ```
 
 ### Laravel Atoms
+
+1. Environment
+
+- Laravel use [dotenv](https://github.com/vlucas/phpdotenv) to load env variables. By default the dotenv will use ".env" file.
+
+> Any variable in your .env file can be overridden by external environment variables such as server-level or system-level environment variables.
+
+> Laravel will attempt to load .env.[APP_ENV] file if existed, if not the default is .env file.
