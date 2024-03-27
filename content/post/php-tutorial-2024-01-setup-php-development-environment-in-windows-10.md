@@ -1,5 +1,5 @@
 ---
-title: "Php Tutorial 2024 01 Setup Php Development Environment in Windows 10"
+title: "[Php Tutorial 2024] Lession 01 - Setup Php Development Environment in Windows 10"
 type: "post"
 date: 2024-03-28T00:24:54+07:00
 description: "In this article, you will learn how to install php environment, install, update composer, multiple php versions, useful vscode extensions and debug your php scripts or websites."
