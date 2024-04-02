@@ -11,18 +11,18 @@
 <link rel=stylesheet href=https://blog.phpguru.net/themes/2022/public/page.css>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-44831C2LM4"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-44831C2LM4')</script>
-<title>Docker Cheatsheet for PHP Developers | All in one docker's command and real world examples | Useful PHP Tricks, Laravel Tips, Tricks and Best Practices</title>
+<title>Kubernetes Complete Course | In this tutorial, you will learn about: what kubenertes is, what problems that kubenertes can solve, what features that container orchestration tools offer.s | Useful PHP Tricks, Laravel Tips, Tricks and Best Practices</title>
 <meta name=robots content="all">
-<meta name=keywords content="devops,docker">
-<meta name=description content="All in one docker's command and real world examples">
+<meta name=keywords content="Kubernetes Complete Course">
+<meta name=description content="In this tutorial, you will learn about: what kubenertes is, what problems that kubenertes can solve, what features that container orchestration tools offer.s">
 <meta property="og:type" content="website">
-<meta property="og:image" content="https://blog.phpguru.net/common/no-image.png">
+<meta property="og:image" content="https://gist.github.com/assets/31009750/1b212337-e0b7-4412-9177-eb9a113fc383">
 <meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="750">
 <meta property="og:image:height" content="300">
 <meta property="article:publisher" content="https://www.facebook.com/nextjsvietnam">
-<meta property="article:published_time" content="2024-03-01T22:10:41+07:00">
-<meta property="article:modified_time" content="2024-03-01T22:10:41+07:00">
+<meta property="article:published_time" content="2024-04-01T09:09:35+07:00">
+<meta property="article:modified_time" content="2024-04-01T09:09:35+07:00">
 <link rel=apple-touch-icon sizes=57x57 href=/apple-icon-57x57.png>
 <link rel=apple-touch-icon sizes=60x60 href=/apple-icon-60x60.png>
 <link rel=apple-touch-icon sizes=72x72 href=/apple-icon-72x72.png>
@@ -101,17 +101,58 @@
 <main>
 <section class="container section">
 <div class="page-content max-w-2xl mx-auto">
-<img src=https://blog.phpguru.net/common/no-image.png class=img-responsive alt="Docker Cheatsheet for PHP Developers">
-<h1>Docker Cheatsheet for PHP Developers</h1>
-<p><strong>Post Date</strong> : 2024-03-01T22:10:41+07:00</p>
-<p><strong>Modified Date</strong> : 2024-03-01T22:10:41+07:00</p>
+<img src=https://gist.github.com/assets/31009750/1b212337-e0b7-4412-9177-eb9a113fc383 class=img-responsive alt="Kubernetes Complete Course">
+<h1>Kubernetes Complete Course</h1>
+<p><strong>Post Date</strong> : 2024-04-01T09:09:35+07:00</p>
+<p><strong>Modified Date</strong> : 2024-04-01T09:09:35+07:00</p>
 <p>
 <strong>Category:</strong>
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://blog.phpguru.net/categories/devops>devops</a>
 </p>
 <p>
 <strong>Tags:</strong>
+<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=/tags/k8s>k8s</a>
+<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=/tags/kubenertes>, kubenertes</a>
 </p>
+<h2 id=overview>Overview</h2>
+<p>🔥 What is Kubernetes 🔥
+► What problems does Kubernetes solve?
+► What features do container orchestration tools offer?</p>
+<h3 id=what-kubenertes-is>What Kubenertes is?</h3>
+<ul>
+<li>Open source <strong>Container Orchestration</strong> Tool</li>
+<li>Developed by <strong>Google</strong></li>
+<li>Helps you mange <strong>containerized applications</strong> in different <strong>deployment environments</strong>: physical, virtual machine, cloud, hybrid</li>
+</ul>
+<h3 id=what-problem-does-kubenertes-solve>What problem does Kubenertes solve?</h3>
+<p><strong>1st problem: The need for a container orchestration tool</strong></p>
+<ul>
+<li>Trend from <strong>Monolith</strong> to <strong>Microservices</strong></li>
+<li>Increased usage of <strong>containers</strong></li>
+<li>Demand for a <strong>proper way</strong> of <strong>managing</strong> those hundreds of containers</li>
+</ul>
+<h3 id=what-features-do-container-orchestration-tools-offer>What features do container orchestration tools offer?</h3>
+<ul>
+<li><strong>High Availability</strong> or no downtime</li>
+<li><strong>Scalability</strong> or high performance</li>
+<li><strong>Disater recovery</strong> - backup and restore</li>
+</ul>
+<h2 id=introduction-to-k8s>Introduction to K8s</h2>
+<h3 id=kubenertes-components>Kubenertes Components</h3>
+<p><strong>Pod</strong></p>
+<ul>
+<li>Smallest unit of K8s</li>
+<li>Abstraction over container</li>
+<li>Usually 1 application per Pod</li>
+<li>You can run multiple applications per Pod ( bad practice)</li>
+<li>Each pod gets its own IP Address</li>
+<li>New IP Address on re-recreation</li>
+</ul>
+<p>Eg: your DB container died, then k8s auto re-create and replace the dead one but it use another IP Address.</p>
+<p><img src=https://gist.github.com/assets/31009750/63add615-23c5-4c6b-955f-55d996794f6e alt=image></p>
+<h3 id=replication>Replication</h3>
+<p><img src=https://gist.github.com/assets/31009750/7e00771e-7632-433a-9526-8c2f104fed7d alt=image></p>
+<h2 id=advanced-concepts>Advanced Concepts</h2>
 <div class="m-1 p-1">
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://blog.phpguru.net/categories/devops>devops</a>
 </div>
@@ -122,7 +163,7 @@
 <div class="font-heading text-2xl font-semibold">You Might Also Like</div>
 <div class="mt-8 grid gap-8">
 <ul class=sidebar-links>
-<li><a href=/post/kubernetes-complete-course/>Kubernetes Complete Course</a></li>
+<li><a href=/post/docker-cheatsheet/>Docker Cheatsheet for PHP Developers</a></li>
 </ul>
 </div>
 </div>
