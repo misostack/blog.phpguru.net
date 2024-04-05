@@ -165,3 +165,35 @@ Press F5 to debug your website
 Now when you access your website vscode will jump in the selected breakpoint you set before.
 
 Feel free to working with PHP on window 10
+
+### Add Cmder Terminal in your VsCode
+
+Open File > Preferences > Settings
+Then search "terminal profile window"
+
+![image](https://gist.github.com/assets/31009750/2fa03b70-ecb0-403d-be0c-1f40c2a50a11)
+
+Add the following lines into settings.json
+
+> settings.json
+
+```json
+  "terminal.integrated.profiles.windows": {
+    "Cmder": {
+      "name": "Cmder",
+      "path": [
+          "${env:windir}\\Sysnative\\cmd.exe",
+          "${env:windir}\\System32\\cmd.exe"
+      ],
+      "args": ["/k", "C:\\laragon\\bin\\cmder\\vendor\\bin\\vscode_init.cmd"],
+      "icon": "terminal-cmd",
+      "color": "terminal.ansiGreen"
+    }
+  }
+```
+
+If you wanna change "Cmder" as default profile terminal
+
+```json
+ "terminal.integrated.defaultProfile.windows": "Cmder",
+```
