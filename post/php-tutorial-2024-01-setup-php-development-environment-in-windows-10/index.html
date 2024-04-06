@@ -229,6 +229,29 @@ php -r <span style=color:#e6db74>&#34;unlink(&#39;composer-setup.php&#39;);&#34;
 <p><img src=https://gist.github.com/assets/31009750/77dce5fb-2683-4d45-be26-e239d3d4f694 alt=image></p>
 <p>Now when you access your website vscode will jump in the selected breakpoint you set before.</p>
 <p>Feel free to working with PHP on window 10</p>
+<h3 id=add-cmder-terminal-in-your-vscode>Add Cmder Terminal in your VsCode</h3>
+<p>Open File > Preferences > Settings
+Then search &ldquo;terminal profile window&rdquo;</p>
+<p><img src=https://gist.github.com/assets/31009750/2fa03b70-ecb0-403d-be0c-1f40c2a50a11 alt=image></p>
+<p>Add the following lines into settings.json</p>
+<blockquote>
+<p>settings.json</p>
+</blockquote>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json>  <span style=color:#e6db74>&#34;terminal.integrated.profiles.windows&#34;</span><span style=color:#960050;background-color:#1e0010>:</span> {
+    <span style=color:#f92672>&#34;Cmder&#34;</span>: {
+      <span style=color:#f92672>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;Cmder&#34;</span>,
+      <span style=color:#f92672>&#34;path&#34;</span>: [
+          <span style=color:#e6db74>&#34;${env:windir}\\Sysnative\\cmd.exe&#34;</span>,
+          <span style=color:#e6db74>&#34;${env:windir}\\System32\\cmd.exe&#34;</span>
+      ],
+      <span style=color:#f92672>&#34;args&#34;</span>: [<span style=color:#e6db74>&#34;/k&#34;</span>, <span style=color:#e6db74>&#34;C:\\laragon\\bin\\cmder\\vendor\\bin\\vscode_init.cmd&#34;</span>],
+      <span style=color:#f92672>&#34;icon&#34;</span>: <span style=color:#e6db74>&#34;terminal-cmd&#34;</span>,
+      <span style=color:#f92672>&#34;color&#34;</span>: <span style=color:#e6db74>&#34;terminal.ansiGreen&#34;</span>
+    }
+  }
+</code></pre></div><p>If you wanna change &ldquo;Cmder&rdquo; as default profile terminal</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json> <span style=color:#e6db74>&#34;terminal.integrated.defaultProfile.windows&#34;</span><span style=color:#960050;background-color:#1e0010>:</span> <span style=color:#e6db74>&#34;Cmder&#34;</span><span style=color:#960050;background-color:#1e0010>,</span>
+</code></pre></div>
 <div class="m-1 p-1">
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://blog.phpguru.net/categories/php-tutorial>php-tutorial</a>
 </div>

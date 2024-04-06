@@ -244,6 +244,447 @@ VAR_DUMPER_FORMAT<span style=color:#f92672>=</span>html
   make:voter                                 Creates a new security voter class
 </code></pre></div><h2 id=lets-run-your-symfony-server-for-development-purpose>Let&rsquo;s run your symfony server for development purpose</h2>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>symfony server:start
+</code></pre></div><h2 id=working-with-persistent-layer>Working with Persistent Layer</h2>
+<ul>
+<li>Database</li>
+<li>ORM</li>
+<li>Install/Enable PHP extensions: pdo_mysql(MySQL), pdo_pgsql(PostgreSQL)</li>
+</ul>
+<h3 id=connect-database>Connect Database</h3>
+<blockquote>
+<p>Symfony provide tools for you to work with Database via Doctrine ORM</p>
+</blockquote>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=color:#75715e># install Doctrine via orm Symfony pack</span>
+composer require symfony/orm-pack
+<span style=color:#75715e># maker bundle help you to generate some code</span>
+composer require --dev symfony/maker-bundle
+</code></pre></div><p><strong>Configuration</strong></p>
+<blockquote>
+<p>doctrine.yaml</p>
+</blockquote>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=color:#f92672>doctrine</span>:
+  <span style=color:#f92672>dbal</span>:
+    <span style=color:#f92672>url</span>: <span style=color:#e6db74>&#34;%env(resolve:DATABASE_URL)%&#34;</span>
+
+    <span style=color:#75715e># IMPORTANT: You MUST configure your server version,</span>
+    <span style=color:#75715e># either here or in the DATABASE_URL env var (see .env file)</span>
+    <span style=color:#75715e>#server_version: &#39;16&#39;</span>
+    <span style=color:#f92672>driver</span>: <span style=color:#e6db74>&#34;pdo_pgsql&#34;</span>
+    <span style=color:#f92672>use_savepoints</span>: <span style=color:#66d9ef>true</span>
+  <span style=color:#f92672>orm</span>:
+    <span style=color:#f92672>auto_generate_proxy_classes</span>: <span style=color:#66d9ef>true</span>
+    <span style=color:#f92672>naming_strategy</span>: <span style=color:#ae81ff>doctrine.orm.naming_strategy.underscore_number_aware</span>
+    <span style=color:#f92672>auto_mapping</span>: <span style=color:#66d9ef>true</span>
+    <span style=color:#f92672>mappings</span>:
+      <span style=color:#f92672>App</span>:
+        <span style=color:#f92672>is_bundle</span>: <span style=color:#66d9ef>false</span>
+        <span style=color:#f92672>dir</span>: <span style=color:#e6db74>&#34;%kernel.project_dir%/src/Entity&#34;</span>
+        <span style=color:#f92672>prefix</span>: <span style=color:#e6db74>&#39;App\Entity&#39;</span>
+        <span style=color:#f92672>alias</span>: <span style=color:#ae81ff>App</span>
+
+<span style=color:#f92672>when@test</span>:
+  <span style=color:#f92672>doctrine</span>:
+    <span style=color:#f92672>dbal</span>:
+      <span style=color:#75715e># &#34;TEST_TOKEN&#34; is typically set by ParaTest</span>
+      <span style=color:#f92672>dbname_suffix</span>: <span style=color:#e6db74>&#34;_test%env(default::TEST_TOKEN)%&#34;</span>
+
+<span style=color:#f92672>when@prod</span>:
+  <span style=color:#f92672>doctrine</span>:
+    <span style=color:#f92672>orm</span>:
+      <span style=color:#f92672>auto_generate_proxy_classes</span>: <span style=color:#66d9ef>false</span>
+      <span style=color:#f92672>proxy_dir</span>: <span style=color:#e6db74>&#34;%kernel.build_dir%/doctrine/orm/Proxies&#34;</span>
+      <span style=color:#f92672>query_cache_driver</span>:
+        <span style=color:#f92672>type</span>: <span style=color:#ae81ff>pool</span>
+        <span style=color:#f92672>pool</span>: <span style=color:#ae81ff>doctrine.system_cache_pool</span>
+      <span style=color:#f92672>result_cache_driver</span>:
+        <span style=color:#f92672>type</span>: <span style=color:#ae81ff>pool</span>
+        <span style=color:#f92672>pool</span>: <span style=color:#ae81ff>doctrine.result_cache_pool</span>
+
+  <span style=color:#f92672>framework</span>:
+    <span style=color:#f92672>cache</span>:
+      <span style=color:#f92672>pools</span>:
+        <span style=color:#f92672>doctrine.result_cache_pool</span>:
+          <span style=color:#f92672>adapter</span>: <span style=color:#ae81ff>cache.app</span>
+        <span style=color:#f92672>doctrine.system_cache_pool</span>:
+          <span style=color:#f92672>adapter</span>: <span style=color:#ae81ff>cache.system</span>
+</code></pre></div><blockquote>
+<p>.env</p>
+</blockquote>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>DATABASE_URL<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;postgresql://sf_54_webapp:123456@127.0.0.1:5432/sf_54_webapp?serverVersion=16&amp;charset=utf8&#34;</span>
+</code></pre></div><p><strong>Migration</strong></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=color:#75715e># just check what changes</span>
+php bin<span style=color:#ae81ff>\c</span>onsole doctrine:schema:update --dump-sql
+<span style=color:#75715e># generate</span>
+php bin/console make:migration
+<span style=color:#75715e># run migrations</span>
+php bin/console doctrine:migrations:migrate
+<span style=color:#75715e># crud with doctrine</span>
+</code></pre></div><p>Entity</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-php data-lang=php>
+<span style=color:#66d9ef>namespace</span> <span style=color:#a6e22e>App\Entity</span>;
+
+<span style=color:#66d9ef>use</span> <span style=color:#a6e22e>App\Repository\PostRepository</span>;
+<span style=color:#66d9ef>use</span> <span style=color:#a6e22e>Doctrine\ORM\Mapping</span> <span style=color:#66d9ef>as</span> <span style=color:#a6e22e>ORM</span>;
+
+<span style=color:#e6db74>/**
+</span><span style=color:#e6db74> * @ORM\Entity(repositoryClass=PostRepository::class)
+</span><span style=color:#e6db74> */</span>
+<span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Post</span>
+{
+    <span style=color:#e6db74>/**
+</span><span style=color:#e6db74>     * @ORM\Id
+</span><span style=color:#e6db74>     * @ORM\GeneratedValue
+</span><span style=color:#e6db74>     * @ORM\Column(type=&#34;integer&#34;)
+</span><span style=color:#e6db74>     */</span>
+    <span style=color:#66d9ef>private</span> $id;
+
+    <span style=color:#e6db74>/**
+</span><span style=color:#e6db74>     * @ORM\Column(type=&#34;string&#34;, length=255)
+</span><span style=color:#e6db74>     */</span>
+    <span style=color:#66d9ef>private</span> $title;
+
+    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>getId</span>()<span style=color:#f92672>:</span> <span style=color:#f92672>?</span><span style=color:#a6e22e>int</span>
+    {
+        <span style=color:#66d9ef>return</span> $this<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>id</span>;
+    }
+
+    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>getTitle</span>()<span style=color:#f92672>:</span> <span style=color:#f92672>?</span><span style=color:#a6e22e>string</span>
+    {
+        <span style=color:#66d9ef>return</span> $this<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>title</span>;
+    }
+
+    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>setTitle</span>(<span style=color:#a6e22e>string</span> $title)<span style=color:#f92672>:</span> <span style=color:#a6e22e>self</span>
+    {
+        $this<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>title</span> <span style=color:#f92672>=</span> $title;
+
+        <span style=color:#66d9ef>return</span> $this;
+    }
+}
+
+</code></pre></div><p>Repository</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-php data-lang=php>
+<span style=color:#66d9ef>namespace</span> <span style=color:#a6e22e>App\Repository</span>;
+
+<span style=color:#66d9ef>use</span> <span style=color:#a6e22e>App\Entity\Post</span>;
+<span style=color:#66d9ef>use</span> <span style=color:#a6e22e>Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository</span>;
+<span style=color:#66d9ef>use</span> <span style=color:#a6e22e>Doctrine\Persistence\ManagerRegistry</span>;
+
+<span style=color:#e6db74>/**
+</span><span style=color:#e6db74> * @extends ServiceEntityRepository&lt;Post&gt;
+</span><span style=color:#e6db74> *
+</span><span style=color:#e6db74> * @method Post|null find($id, $lockMode = null, $lockVersion = null)
+</span><span style=color:#e6db74> * @method Post|null findOneBy(array $criteria, array $orderBy = null)
+</span><span style=color:#e6db74> * @method Post[]    findAll()
+</span><span style=color:#e6db74> * @method Post[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+</span><span style=color:#e6db74> */</span>
+<span style=color:#66d9ef>class</span> <span style=color:#a6e22e>PostRepository</span> <span style=color:#66d9ef>extends</span> <span style=color:#a6e22e>ServiceEntityRepository</span>
+{
+    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>function</span> __construct(<span style=color:#a6e22e>ManagerRegistry</span> $registry)
+    {
+        <span style=color:#66d9ef>parent</span><span style=color:#f92672>::</span><span style=color:#a6e22e>__construct</span>($registry, <span style=color:#a6e22e>Post</span><span style=color:#f92672>::</span><span style=color:#a6e22e>class</span>);
+    }
+
+    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>add</span>(<span style=color:#a6e22e>Post</span> $entity, <span style=color:#a6e22e>bool</span> $flush <span style=color:#f92672>=</span> <span style=color:#66d9ef>false</span>)<span style=color:#f92672>:</span> <span style=color:#a6e22e>void</span>
+    {
+        $this<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>getEntityManager</span>()<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>persist</span>($entity);
+
+        <span style=color:#66d9ef>if</span> ($flush) {
+            $this<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>getEntityManager</span>()<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>flush</span>();
+        }
+    }
+
+    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>remove</span>(<span style=color:#a6e22e>Post</span> $entity, <span style=color:#a6e22e>bool</span> $flush <span style=color:#f92672>=</span> <span style=color:#66d9ef>false</span>)<span style=color:#f92672>:</span> <span style=color:#a6e22e>void</span>
+    {
+        $this<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>getEntityManager</span>()<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>remove</span>($entity);
+
+        <span style=color:#66d9ef>if</span> ($flush) {
+            $this<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>getEntityManager</span>()<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>flush</span>();
+        }
+    }
+
+<span style=color:#75715e>//    /**
+</span><span style=color:#75715e>//     * @return Post[] Returns an array of Post objects
+</span><span style=color:#75715e>//     */
+</span><span style=color:#75715e>//    public function findByExampleField($value): array
+</span><span style=color:#75715e>//    {
+</span><span style=color:#75715e>//        return $this-&gt;createQueryBuilder(&#39;p&#39;)
+</span><span style=color:#75715e>//            -&gt;andWhere(&#39;p.exampleField = :val&#39;)
+</span><span style=color:#75715e>//            -&gt;setParameter(&#39;val&#39;, $value)
+</span><span style=color:#75715e>//            -&gt;orderBy(&#39;p.id&#39;, &#39;ASC&#39;)
+</span><span style=color:#75715e>//            -&gt;setMaxResults(10)
+</span><span style=color:#75715e>//            -&gt;getQuery()
+</span><span style=color:#75715e>//            -&gt;getResult()
+</span><span style=color:#75715e>//        ;
+</span><span style=color:#75715e>//    }
+</span><span style=color:#75715e></span>
+<span style=color:#75715e>//    public function findOneBySomeField($value): ?Post
+</span><span style=color:#75715e>//    {
+</span><span style=color:#75715e>//        return $this-&gt;createQueryBuilder(&#39;p&#39;)
+</span><span style=color:#75715e>//            -&gt;andWhere(&#39;p.exampleField = :val&#39;)
+</span><span style=color:#75715e>//            -&gt;setParameter(&#39;val&#39;, $value)
+</span><span style=color:#75715e>//            -&gt;getQuery()
+</span><span style=color:#75715e>//            -&gt;getOneOrNullResult()
+</span><span style=color:#75715e>//        ;
+</span><span style=color:#75715e>//    }
+</span><span style=color:#75715e></span>}
+
+</code></pre></div><p>Let&rsquo;s create a controller</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-php data-lang=php>
+<span style=color:#66d9ef>namespace</span> <span style=color:#a6e22e>App\Controller</span>;
+
+<span style=color:#66d9ef>use</span> <span style=color:#a6e22e>App\Entity\Post</span>;
+<span style=color:#66d9ef>use</span> <span style=color:#a6e22e>App\Repository\PostRepository</span>;
+<span style=color:#66d9ef>use</span> <span style=color:#a6e22e>Doctrine\Persistence\ManagerRegistry</span>;
+<span style=color:#66d9ef>use</span> <span style=color:#a6e22e>Symfony\Bundle\FrameworkBundle\Controller\AbstractController</span>;
+<span style=color:#66d9ef>use</span> <span style=color:#a6e22e>Symfony\Component\HttpFoundation\Request</span>;
+<span style=color:#66d9ef>use</span> <span style=color:#a6e22e>Symfony\Component\HttpFoundation\Response</span>;
+<span style=color:#66d9ef>use</span> <span style=color:#a6e22e>Symfony\Component\Routing\Annotation\Route</span>;
+
+<span style=color:#e6db74>/**
+</span><span style=color:#e6db74> * @Route(&#34;/post&#34;, name=&#34;post.&#34;)
+</span><span style=color:#e6db74> */</span>
+<span style=color:#66d9ef>class</span> <span style=color:#a6e22e>PostController</span> <span style=color:#66d9ef>extends</span> <span style=color:#a6e22e>AbstractController</span>
+{
+    <span style=color:#e6db74>/**
+</span><span style=color:#e6db74>     * @Route(&#34;/&#34;, name=&#34;index&#34;)
+</span><span style=color:#e6db74>     */</span>
+    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>index</span>(<span style=color:#a6e22e>PostRepository</span> $postRepository)<span style=color:#f92672>:</span> <span style=color:#a6e22e>Response</span>
+    {
+        $posts <span style=color:#f92672>=</span> $postRepository<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>findAll</span>();
+        <span style=color:#66d9ef>return</span> $this<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>render</span>(<span style=color:#e6db74>&#39;post/index.html.twig&#39;</span>, [
+            <span style=color:#e6db74>&#39;posts&#39;</span> <span style=color:#f92672>=&gt;</span> $posts
+        ]);
+    }
+
+
+    <span style=color:#e6db74>/**
+</span><span style=color:#e6db74>     * @Route(&#34;/create&#34;, name=&#34;create&#34;)
+</span><span style=color:#e6db74>     */</span>
+    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>create</span>(<span style=color:#a6e22e>Request</span> $request, <span style=color:#a6e22e>ManagerRegistry</span> $doctrine)<span style=color:#f92672>:</span> <span style=color:#a6e22e>Response</span>
+    {
+        <span style=color:#75715e>// create new post with title
+</span><span style=color:#75715e></span>        $post <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>Post</span>();
+        $post<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>setTitle</span>(<span style=color:#e6db74>&#39;This is going to be title!&#39;</span>);
+
+        <span style=color:#75715e>// entity manager to persist data into database
+</span><span style=color:#75715e></span>        $entityManger <span style=color:#f92672>=</span> $doctrine<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>getManager</span>();
+        $entityManger<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>persist</span>($post);
+        $entityManger<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>flush</span>();
+        <span style=color:#75715e>// return a response
+</span><span style=color:#75715e></span>
+        <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>Response</span>(<span style=color:#e6db74>&#39;Post created!&#39;</span>);
+    }
+
+    <span style=color:#e6db74>/**
+</span><span style=color:#e6db74>     * @Route(&#34;/show/{id}&#34;, name=&#34;show&#34;)
+</span><span style=color:#e6db74>     */</span>
+    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>show</span>(<span style=color:#a6e22e>string</span> $id, <span style=color:#a6e22e>PostRepository</span> $postRepository)<span style=color:#f92672>:</span> <span style=color:#a6e22e>Response</span>
+    {
+        $post <span style=color:#f92672>=</span> $postRepository<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>find</span>($id);
+        <span style=color:#66d9ef>return</span> $this<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>render</span>(<span style=color:#e6db74>&#39;post/show.html.twig&#39;</span>, [
+            <span style=color:#e6db74>&#39;post&#39;</span> <span style=color:#f92672>=&gt;</span> $post
+        ]);
+    }
+
+}
+
+</code></pre></div><p>In symfony, you can also do this</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=color:#75715e># Automatically Fetching Objects (ParamConverter)</span>
+composer require sensio/framework-extra-bundle
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-php data-lang=php>    <span style=color:#e6db74>/**
+</span><span style=color:#e6db74>     * @Route(&#34;/show/{id}&#34;, name=&#34;show&#34;)
+</span><span style=color:#e6db74>     */</span>
+    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>show</span>(<span style=color:#a6e22e>Post</span> $post)<span style=color:#f92672>:</span> <span style=color:#a6e22e>Response</span>
+    {
+        <span style=color:#66d9ef>return</span> $this<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>render</span>(<span style=color:#e6db74>&#39;post/show.html.twig&#39;</span>, [
+            <span style=color:#e6db74>&#39;post&#39;</span> <span style=color:#f92672>=&gt;</span> $post
+        ]);
+    }
+</code></pre></div><h3 id=symfony-display-dump-in-profiler>Symfony Display dump in profiler</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>composer require --dev symfony/var-dumper
+composer require --dev symfony/profiler-pack
+</code></pre></div><h3 id=adding-forms>Adding Forms</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>composer require symfony/form
+php bin<span style=color:#ae81ff>\c</span>onsole make:form
+</code></pre></div><p><img src=https://gist.github.com/assets/31009750/53327146-0bb5-49c4-9191-b1312c4811c6 alt=image></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-php data-lang=php><span style=color:#75715e>// src\Form\PostType.php
+</span><span style=color:#75715e></span><span style=color:#66d9ef>namespace</span> <span style=color:#a6e22e>App\Form</span>;
+
+<span style=color:#66d9ef>use</span> <span style=color:#a6e22e>App\Entity\Post</span>;
+<span style=color:#66d9ef>use</span> <span style=color:#a6e22e>Symfony\Component\Form\AbstractType</span>;
+<span style=color:#66d9ef>use</span> <span style=color:#a6e22e>Symfony\Component\Form\Extension\Core\Type\SubmitType</span>;
+<span style=color:#66d9ef>use</span> <span style=color:#a6e22e>Symfony\Component\Form\FormBuilderInterface</span>;
+<span style=color:#66d9ef>use</span> <span style=color:#a6e22e>Symfony\Component\OptionsResolver\OptionsResolver</span>;
+
+<span style=color:#66d9ef>class</span> <span style=color:#a6e22e>PostType</span> <span style=color:#66d9ef>extends</span> <span style=color:#a6e22e>AbstractType</span>
+{
+    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>buildForm</span>(<span style=color:#a6e22e>FormBuilderInterface</span> $builder, <span style=color:#66d9ef>array</span> $options)<span style=color:#f92672>:</span> <span style=color:#a6e22e>void</span>
+    {
+        $builder
+            <span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>add</span>(<span style=color:#e6db74>&#39;title&#39;</span>)
+            <span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>add</span>(<span style=color:#e6db74>&#39;save&#39;</span>, <span style=color:#a6e22e>SubmitType</span><span style=color:#f92672>::</span><span style=color:#a6e22e>class</span>, [
+                <span style=color:#e6db74>&#39;attr&#39;</span> <span style=color:#f92672>=&gt;</span> [
+                    <span style=color:#e6db74>&#39;class&#39;</span> <span style=color:#f92672>=&gt;</span> <span style=color:#e6db74>&#39;btn btn-primary float-end&#39;</span>
+                ]
+            ]);
+    }
+
+    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>configureOptions</span>(<span style=color:#a6e22e>OptionsResolver</span> $resolver)<span style=color:#f92672>:</span> <span style=color:#a6e22e>void</span>
+    {
+        $resolver<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>setDefaults</span>([
+            <span style=color:#e6db74>&#39;data_class&#39;</span> <span style=color:#f92672>=&gt;</span> <span style=color:#a6e22e>Post</span><span style=color:#f92672>::</span><span style=color:#a6e22e>class</span>,
+        ]);
+    }
+}
+
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-php data-lang=php><span style=color:#75715e>// src\Controller\PostController.php
+</span><span style=color:#75715e></span>
+<span style=color:#66d9ef>namespace</span> <span style=color:#a6e22e>App\Controller</span>;
+
+<span style=color:#66d9ef>use</span> <span style=color:#a6e22e>App\Entity\Post</span>;
+<span style=color:#66d9ef>use</span> <span style=color:#a6e22e>App\Form\PostType</span>;
+<span style=color:#66d9ef>use</span> <span style=color:#a6e22e>App\Repository\PostRepository</span>;
+<span style=color:#66d9ef>use</span> <span style=color:#a6e22e>Doctrine\Persistence\ManagerRegistry</span>;
+<span style=color:#66d9ef>use</span> <span style=color:#a6e22e>Symfony\Bundle\FrameworkBundle\Controller\AbstractController</span>;
+<span style=color:#66d9ef>use</span> <span style=color:#a6e22e>Symfony\Component\HttpFoundation\Request</span>;
+<span style=color:#66d9ef>use</span> <span style=color:#a6e22e>Symfony\Component\HttpFoundation\Response</span>;
+<span style=color:#66d9ef>use</span> <span style=color:#a6e22e>Symfony\Component\Routing\Annotation\Route</span>;
+
+<span style=color:#e6db74>/**
+</span><span style=color:#e6db74> * @Route(&#34;/post&#34;, name=&#34;post.&#34;)
+</span><span style=color:#e6db74> */</span>
+<span style=color:#66d9ef>class</span> <span style=color:#a6e22e>PostController</span> <span style=color:#66d9ef>extends</span> <span style=color:#a6e22e>AbstractController</span>
+{
+    <span style=color:#e6db74>/**
+</span><span style=color:#e6db74>     * @Route(&#34;/&#34;, name=&#34;index&#34;)
+</span><span style=color:#e6db74>     */</span>
+    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>index</span>(<span style=color:#a6e22e>PostRepository</span> $postRepository)<span style=color:#f92672>:</span> <span style=color:#a6e22e>Response</span>
+    {
+        $posts <span style=color:#f92672>=</span> $postRepository<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>findAll</span>();
+        <span style=color:#66d9ef>return</span> $this<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>render</span>(<span style=color:#e6db74>&#39;post/index.html.twig&#39;</span>, [
+            <span style=color:#e6db74>&#39;posts&#39;</span> <span style=color:#f92672>=&gt;</span> $posts
+        ]);
+    }
+
+
+    <span style=color:#e6db74>/**
+</span><span style=color:#e6db74>     * @Route(&#34;/create&#34;, name=&#34;create&#34;)
+</span><span style=color:#e6db74>     */</span>
+    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>create</span>(<span style=color:#a6e22e>Request</span> $request, <span style=color:#a6e22e>ManagerRegistry</span> $doctrine)<span style=color:#f92672>:</span> <span style=color:#a6e22e>Response</span>
+    {
+        <span style=color:#75715e>// create new post with title
+</span><span style=color:#75715e></span>        $post <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>Post</span>();
+
+        $form <span style=color:#f92672>=</span> $this<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>createForm</span>(<span style=color:#a6e22e>PostType</span><span style=color:#f92672>::</span><span style=color:#a6e22e>class</span>, $post);
+
+        $form<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>handleRequest</span>($request);
+
+        <span style=color:#66d9ef>if</span> ($form<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>isSubmitted</span>()) {
+
+            <span style=color:#75715e>// entity manager to persist data into database
+</span><span style=color:#75715e></span>            $entityManger <span style=color:#f92672>=</span> $doctrine<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>getManager</span>();
+            $entityManger<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>persist</span>($post);
+            $entityManger<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>flush</span>();
+
+            <span style=color:#75715e>// // Set a flash message
+</span><span style=color:#75715e></span>            $this<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>addFlash</span>(
+                <span style=color:#e6db74>&#39;success&#39;</span>,
+                <span style=color:#e6db74>&#34;New post with id =</span><span style=color:#e6db74>{</span>$post<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>getId</span>()<span style=color:#e6db74>}</span><span style=color:#e6db74> created !&#34;</span>
+            );
+            <span style=color:#66d9ef>return</span> $this<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>redirect</span>($this<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>generateUrl</span>(<span style=color:#e6db74>&#39;post.index&#39;</span>));
+        }
+
+        <span style=color:#66d9ef>return</span> $this<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>render</span>(<span style=color:#e6db74>&#39;post/create.html.twig&#39;</span>, [
+            <span style=color:#e6db74>&#39;form&#39;</span> <span style=color:#f92672>=&gt;</span> $form<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>createView</span>()
+        ]);
+    }
+
+    <span style=color:#e6db74>/**
+</span><span style=color:#e6db74>     * @Route(&#34;/show/{id}&#34;, name=&#34;show&#34;)
+</span><span style=color:#e6db74>     */</span>
+    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>show</span>(<span style=color:#a6e22e>Post</span> $post)<span style=color:#f92672>:</span> <span style=color:#a6e22e>Response</span>
+    {
+        <span style=color:#66d9ef>return</span> $this<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>render</span>(<span style=color:#e6db74>&#39;post/show.html.twig&#39;</span>, [
+            <span style=color:#e6db74>&#39;post&#39;</span> <span style=color:#f92672>=&gt;</span> $post
+        ]);
+    }
+
+    <span style=color:#e6db74>/**
+</span><span style=color:#e6db74>     * @Route(&#34;/delete/{id}&#34;, name=&#34;delete&#34;)
+</span><span style=color:#e6db74>     */</span>
+    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>delete</span>(<span style=color:#a6e22e>Post</span> $post, <span style=color:#a6e22e>ManagerRegistry</span> $doctrine)<span style=color:#f92672>:</span> <span style=color:#a6e22e>Response</span>
+    {
+        $entityManger <span style=color:#f92672>=</span> $doctrine<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>getManager</span>();
+        $id <span style=color:#f92672>=</span> $post<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>getId</span>();
+
+        $entityManger<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>remove</span>($post);
+        $entityManger<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>flush</span>();
+
+        <span style=color:#75715e>// Set a flash message
+</span><span style=color:#75715e></span>        $this<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>addFlash</span>(
+            <span style=color:#e6db74>&#39;danger&#39;</span>,
+            <span style=color:#e6db74>&#34;Post with id =</span><span style=color:#e6db74>{</span>$id<span style=color:#e6db74>}</span><span style=color:#e6db74> removed !&#34;</span>
+        );
+
+        <span style=color:#66d9ef>return</span> $this<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>redirect</span>($this<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>generateUrl</span>(<span style=color:#e6db74>&#39;post.index&#39;</span>));
+    }
+}
+
+</code></pre></div><p><strong>templates\post\create.html.twig</strong></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-twig data-lang=twig><span style=color:#75715e>{%</span> <span style=color:#66d9ef>extends</span> <span style=color:#e6db74>&#39;base.html.twig&#39;</span> <span style=color:#75715e>%}</span>
+
+<span style=color:#75715e>{%</span> <span style=color:#66d9ef>block</span> title <span style=color:#75715e>%}</span>Create Post<span style=color:#75715e>{%</span> <span style=color:#66d9ef>endblock</span> <span style=color:#75715e>%}</span>
+
+<span style=color:#75715e>{%</span> <span style=color:#66d9ef>block</span> body <span style=color:#75715e>%}</span>
+
+
+&lt;div class=&#34;container&#34;&gt;
+    &lt;h1&gt;Create Post&lt;/h1&gt;
+    <span style=color:#75715e>{{</span> form<span style=color:#f92672>(</span>form<span style=color:#f92672>)</span> <span style=color:#75715e>}}</span>
+&lt;/div&gt;
+<span style=color:#75715e>{%</span> <span style=color:#66d9ef>endblock</span> <span style=color:#75715e>%}</span>
+
+</code></pre></div><p>Your form may looks not good, don&rsquo;t worry, symfony has it built-in theme for form</p>
+<ul>
+<li><a href=https://symfony.com/doc/5.x/form/bootstrap5.html>Symfony and Bootstrap5</a></li>
+</ul>
+<p>Make sure you add bootstrap5 css and js into your base layout</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html><span style=color:#75715e>&lt;!DOCTYPE html&gt;</span>
+&lt;<span style=color:#f92672>html</span>&gt;
+  &lt;<span style=color:#f92672>head</span>&gt;
+    &lt;<span style=color:#f92672>meta</span> <span style=color:#a6e22e>charset</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;UTF-8&#34;</span> /&gt;
+    &lt;<span style=color:#f92672>title</span>&gt;{% block title %}Welcome!{% endblock %}&lt;/<span style=color:#f92672>title</span>&gt;
+    {# Run `composer require symfony/webpack-encore-bundle` to start using
+    Symfony UX #}
+    &lt;<span style=color:#f92672>link</span>
+      <span style=color:#a6e22e>href</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css&#34;</span>
+      <span style=color:#a6e22e>rel</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;stylesheet&#34;</span>
+      <span style=color:#a6e22e>integrity</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC&#34;</span>
+      <span style=color:#a6e22e>crossorigin</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;anonymous&#34;</span>
+    /&gt;
+    {% block stylesheets %} {{ encore_entry_link_tags(&#39;app&#39;) }} {% endblock %}
+    {% block javascripts %} {{ encore_entry_script_tags(&#39;app&#39;) }} {% endblock %}
+  &lt;/<span style=color:#f92672>head</span>&gt;
+  &lt;<span style=color:#f92672>body</span>&gt;
+    {% block body %}{% endblock %}
+    &lt;<span style=color:#f92672>script</span>
+      <span style=color:#a6e22e>src</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js&#34;</span>
+      <span style=color:#a6e22e>integrity</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM&#34;</span>
+      <span style=color:#a6e22e>crossorigin</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;anonymous&#34;</span>
+    &gt;&lt;/<span style=color:#f92672>script</span>&gt;
+  &lt;/<span style=color:#f92672>body</span>&gt;
+&lt;/<span style=color:#f92672>html</span>&gt;
+</code></pre></div><blockquote>
+<p>form_themes: [&ldquo;bootstrap_5_layout.html.twig&rdquo;]</p>
+</blockquote>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yml data-lang=yml><span style=color:#75715e># config\packages\twig.yaml</span>
+<span style=color:#f92672>twig</span>:
+  <span style=color:#f92672>default_path</span>: <span style=color:#e6db74>&#34;%kernel.project_dir%/templates&#34;</span>
+  <span style=color:#f92672>form_themes</span>: [<span style=color:#e6db74>&#34;bootstrap_5_layout.html.twig&#34;</span>]
+
+<span style=color:#f92672>when@test</span>:
+  <span style=color:#f92672>twig</span>:
+    <span style=color:#f92672>strict_variables</span>: <span style=color:#66d9ef>true</span>
 </code></pre></div>
 <div class="m-1 p-1">
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://blog.phpguru.net/categories/cheatsheet>cheatsheet</a>
