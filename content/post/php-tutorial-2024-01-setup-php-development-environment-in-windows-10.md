@@ -197,3 +197,13 @@ If you wanna change "Cmder" as default profile terminal
 ```json
  "terminal.integrated.defaultProfile.windows": "Cmder",
 ```
+
+If you are fan of PHP Webstorm, no worries
+
+File -> Settings -> Tools -> Termninal
+
+![image](https://gist.github.com/assets/31009750/599240c9-1553-4d5e-b082-8cef65f214c3)
+
+"cmd.exe" /k ""%CMDER_ROOT%\vendor\init.bat""
+
+**CMDER_ROOT** should be "C:\laragon\bin\cmder" where you installed lagon

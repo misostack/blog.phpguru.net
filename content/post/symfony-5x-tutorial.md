@@ -680,3 +680,5 @@ when@test:
   twig:
     strict_variables: true
 ```
+
+### User and Authentication
