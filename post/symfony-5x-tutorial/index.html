@@ -117,7 +117,14 @@
 <ol>
 <li>Install symfony cli</li>
 <li>Create new symfony project</li>
+<li>Getting start with controller</li>
+<li>Generate Entity</li>
+<li>CRUD</li>
+<li>User and Authentication</li>
+<li>Repository</li>
+<li>Service</li>
 </ol>
+<p>Feel free to download full source code at <a href=https://github.com/phpguru-net/symfony54-webapp>PHPGuru Symfony 5 Tutorial</a></p>
 <h2 id=install-symfony-cli>Install symfony cli</h2>
 <ul>
 <li>
@@ -686,6 +693,366 @@ php bin<span style=color:#ae81ff>\c</span>onsole make:form
   <span style=color:#f92672>twig</span>:
     <span style=color:#f92672>strict_variables</span>: <span style=color:#66d9ef>true</span>
 </code></pre></div><h3 id=user-and-authentication>User and Authentication</h3>
+<p><strong>Create user</strong></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>php bin<span style=color:#ae81ff>\c</span>onsole make:user
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-php data-lang=php><span style=color:#f92672>&lt;?</span><span style=color:#a6e22e>php</span>
+
+<span style=color:#66d9ef>namespace</span> <span style=color:#a6e22e>App\Entity</span>;
+
+<span style=color:#66d9ef>use</span> <span style=color:#a6e22e>App\Repository\UserRepository</span>;
+<span style=color:#66d9ef>use</span> <span style=color:#a6e22e>Doctrine\ORM\Mapping</span> <span style=color:#66d9ef>as</span> <span style=color:#a6e22e>ORM</span>;
+<span style=color:#66d9ef>use</span> <span style=color:#a6e22e>Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface</span>;
+<span style=color:#66d9ef>use</span> <span style=color:#a6e22e>Symfony\Component\Security\Core\User\UserInterface</span>;
+
+<span style=color:#e6db74>/**
+</span><span style=color:#e6db74> * @ORM\Entity(repositoryClass=UserRepository::class)
+</span><span style=color:#e6db74> * @ORM\Table(name=&#34;`user`&#34;)
+</span><span style=color:#e6db74> */</span>
+<span style=color:#66d9ef>class</span> <span style=color:#a6e22e>User</span> <span style=color:#66d9ef>implements</span> <span style=color:#a6e22e>UserInterface</span>, <span style=color:#a6e22e>PasswordAuthenticatedUserInterface</span>
+{
+    <span style=color:#e6db74>/**
+</span><span style=color:#e6db74>     * @ORM\Id
+</span><span style=color:#e6db74>     * @ORM\GeneratedValue
+</span><span style=color:#e6db74>     * @ORM\Column(type=&#34;integer&#34;)
+</span><span style=color:#e6db74>     */</span>
+    <span style=color:#66d9ef>private</span> $id;
+
+    <span style=color:#e6db74>/**
+</span><span style=color:#e6db74>     * @ORM\Column(type=&#34;string&#34;, length=180, unique=true)
+</span><span style=color:#e6db74>     */</span>
+    <span style=color:#66d9ef>private</span> $email;
+
+    <span style=color:#e6db74>/**
+</span><span style=color:#e6db74>     * @ORM\Column(type=&#34;json&#34;)
+</span><span style=color:#e6db74>     */</span>
+    <span style=color:#66d9ef>private</span> $roles <span style=color:#f92672>=</span> [];
+
+    <span style=color:#e6db74>/**
+</span><span style=color:#e6db74>     * @var string The hashed password
+</span><span style=color:#e6db74>     * @ORM\Column(type=&#34;string&#34;)
+</span><span style=color:#e6db74>     */</span>
+    <span style=color:#66d9ef>private</span> $password;
+
+    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>getId</span>()<span style=color:#f92672>:</span> <span style=color:#f92672>?</span><span style=color:#a6e22e>int</span>
+    {
+        <span style=color:#66d9ef>return</span> $this<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>id</span>;
+    }
+
+    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>getEmail</span>()<span style=color:#f92672>:</span> <span style=color:#f92672>?</span><span style=color:#a6e22e>string</span>
+    {
+        <span style=color:#66d9ef>return</span> $this<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>email</span>;
+    }
+
+    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>setEmail</span>(<span style=color:#a6e22e>string</span> $email)<span style=color:#f92672>:</span> <span style=color:#a6e22e>self</span>
+    {
+        $this<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>email</span> <span style=color:#f92672>=</span> $email;
+
+        <span style=color:#66d9ef>return</span> $this;
+    }
+
+    <span style=color:#e6db74>/**
+</span><span style=color:#e6db74>     * A visual identifier that represents this user.
+</span><span style=color:#e6db74>     *
+</span><span style=color:#e6db74>     * @see UserInterface
+</span><span style=color:#e6db74>     */</span>
+    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>getUserIdentifier</span>()<span style=color:#f92672>:</span> <span style=color:#a6e22e>string</span>
+    {
+        <span style=color:#66d9ef>return</span> (<span style=color:#a6e22e>string</span>) $this<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>email</span>;
+    }
+
+    <span style=color:#e6db74>/**
+</span><span style=color:#e6db74>     * @deprecated since Symfony 5.3, use getUserIdentifier instead
+</span><span style=color:#e6db74>     */</span>
+    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>getUsername</span>()<span style=color:#f92672>:</span> <span style=color:#a6e22e>string</span>
+    {
+        <span style=color:#66d9ef>return</span> (<span style=color:#a6e22e>string</span>) $this<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>email</span>;
+    }
+
+    <span style=color:#e6db74>/**
+</span><span style=color:#e6db74>     * @see UserInterface
+</span><span style=color:#e6db74>     */</span>
+    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>getRoles</span>()<span style=color:#f92672>:</span> <span style=color:#66d9ef>array</span>
+    {
+        $roles <span style=color:#f92672>=</span> $this<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>roles</span>;
+        <span style=color:#75715e>// guarantee every user at least has ROLE_USER
+</span><span style=color:#75715e></span>        $roles[] <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;ROLE_USER&#39;</span>;
+
+        <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>array_unique</span>($roles);
+    }
+
+    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>setRoles</span>(<span style=color:#66d9ef>array</span> $roles)<span style=color:#f92672>:</span> <span style=color:#a6e22e>self</span>
+    {
+        $this<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>roles</span> <span style=color:#f92672>=</span> $roles;
+
+        <span style=color:#66d9ef>return</span> $this;
+    }
+
+    <span style=color:#e6db74>/**
+</span><span style=color:#e6db74>     * @see PasswordAuthenticatedUserInterface
+</span><span style=color:#e6db74>     */</span>
+    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>getPassword</span>()<span style=color:#f92672>:</span> <span style=color:#a6e22e>string</span>
+    {
+        <span style=color:#66d9ef>return</span> $this<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>password</span>;
+    }
+
+    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>setPassword</span>(<span style=color:#a6e22e>string</span> $password)<span style=color:#f92672>:</span> <span style=color:#a6e22e>self</span>
+    {
+        $this<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>password</span> <span style=color:#f92672>=</span> $password;
+
+        <span style=color:#66d9ef>return</span> $this;
+    }
+
+    <span style=color:#e6db74>/**
+</span><span style=color:#e6db74>     * Returning a salt is only needed, if you are not using a modern
+</span><span style=color:#e6db74>     * hashing algorithm (e.g. bcrypt or sodium) in your security.yaml.
+</span><span style=color:#e6db74>     *
+</span><span style=color:#e6db74>     * @see UserInterface
+</span><span style=color:#e6db74>     */</span>
+    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>getSalt</span>()<span style=color:#f92672>:</span> <span style=color:#f92672>?</span><span style=color:#a6e22e>string</span>
+    {
+        <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>null</span>;
+    }
+
+    <span style=color:#e6db74>/**
+</span><span style=color:#e6db74>     * @see UserInterface
+</span><span style=color:#e6db74>     */</span>
+    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>eraseCredentials</span>()
+    {
+        <span style=color:#75715e>// If you store any temporary, sensitive data on the user, clear it here
+</span><span style=color:#75715e></span>        <span style=color:#75715e>// $this-&gt;plainPassword = null;
+</span><span style=color:#75715e></span>    }
+}
+
+</code></pre></div><p><strong>Create auth</strong></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>php bin<span style=color:#ae81ff>\c</span>onsole make:auth
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-php data-lang=php><span style=color:#75715e>// src/Security/CustomBasicAuthenticator.php
+</span><span style=color:#75715e></span>
+<span style=color:#66d9ef>namespace</span> <span style=color:#a6e22e>App\Security</span>;
+
+<span style=color:#66d9ef>use</span> <span style=color:#a6e22e>Symfony\Component\HttpFoundation\RedirectResponse</span>;
+<span style=color:#66d9ef>use</span> <span style=color:#a6e22e>Symfony\Component\HttpFoundation\Request</span>;
+<span style=color:#66d9ef>use</span> <span style=color:#a6e22e>Symfony\Component\HttpFoundation\Response</span>;
+<span style=color:#66d9ef>use</span> <span style=color:#a6e22e>Symfony\Component\Routing\Generator\UrlGeneratorInterface</span>;
+<span style=color:#66d9ef>use</span> <span style=color:#a6e22e>Symfony\Component\Security\Core\Authentication\Token\TokenInterface</span>;
+<span style=color:#66d9ef>use</span> <span style=color:#a6e22e>Symfony\Component\Security\Core\Security</span>;
+<span style=color:#66d9ef>use</span> <span style=color:#a6e22e>Symfony\Component\Security\Http\Authenticator\AbstractLoginFormAuthenticator</span>;
+<span style=color:#66d9ef>use</span> <span style=color:#a6e22e>Symfony\Component\Security\Http\Authenticator\Passport\Badge\CsrfTokenBadge</span>;
+<span style=color:#66d9ef>use</span> <span style=color:#a6e22e>Symfony\Component\Security\Http\Authenticator\Passport\Badge\UserBadge</span>;
+<span style=color:#66d9ef>use</span> <span style=color:#a6e22e>Symfony\Component\Security\Http\Authenticator\Passport\Credentials\PasswordCredentials</span>;
+<span style=color:#66d9ef>use</span> <span style=color:#a6e22e>Symfony\Component\Security\Http\Authenticator\Passport\Passport</span>;
+<span style=color:#66d9ef>use</span> <span style=color:#a6e22e>Symfony\Component\Security\Http\Util\TargetPathTrait</span>;
+
+<span style=color:#66d9ef>class</span> <span style=color:#a6e22e>CustomBasicAuthenticator</span> <span style=color:#66d9ef>extends</span> <span style=color:#a6e22e>AbstractLoginFormAuthenticator</span>
+{
+    <span style=color:#66d9ef>use</span> <span style=color:#a6e22e>TargetPathTrait</span>;
+
+    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>const</span> <span style=color:#66d9ef>LOGIN_ROUTE</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;app_login&#39;</span>;
+
+    <span style=color:#66d9ef>private</span> <span style=color:#a6e22e>UrlGeneratorInterface</span> $urlGenerator;
+
+    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>function</span> __construct(<span style=color:#a6e22e>UrlGeneratorInterface</span> $urlGenerator)
+    {
+        $this<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>urlGenerator</span> <span style=color:#f92672>=</span> $urlGenerator;
+    }
+
+    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>authenticate</span>(<span style=color:#a6e22e>Request</span> $request)<span style=color:#f92672>:</span> <span style=color:#a6e22e>Passport</span>
+    {
+        $email <span style=color:#f92672>=</span> $request<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>request</span><span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>get</span>(<span style=color:#e6db74>&#39;email&#39;</span>, <span style=color:#e6db74>&#39;&#39;</span>);
+
+        $request<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>getSession</span>()<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>set</span>(<span style=color:#a6e22e>Security</span><span style=color:#f92672>::</span><span style=color:#a6e22e>LAST_USERNAME</span>, $email);
+
+        <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>Passport</span>(
+            <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>UserBadge</span>($email),
+            <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>PasswordCredentials</span>($request<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>request</span><span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>get</span>(<span style=color:#e6db74>&#39;password&#39;</span>, <span style=color:#e6db74>&#39;&#39;</span>)),
+            [
+                <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>CsrfTokenBadge</span>(<span style=color:#e6db74>&#39;authenticate&#39;</span>, $request<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>request</span><span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>get</span>(<span style=color:#e6db74>&#39;_csrf_token&#39;</span>)),
+            ]
+        );
+    }
+
+    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>onAuthenticationSuccess</span>(<span style=color:#a6e22e>Request</span> $request, <span style=color:#a6e22e>TokenInterface</span> $token, <span style=color:#a6e22e>string</span> $firewallName)<span style=color:#f92672>:</span> <span style=color:#f92672>?</span><span style=color:#a6e22e>Response</span>
+    {
+        <span style=color:#66d9ef>if</span> ($targetPath <span style=color:#f92672>=</span> $this<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>getTargetPath</span>($request<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>getSession</span>(), $firewallName)) {
+            <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>RedirectResponse</span>($targetPath);
+        }
+
+        <span style=color:#75715e>// For example:
+</span><span style=color:#75715e></span>        <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>RedirectResponse</span>($this<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>urlGenerator</span><span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>generate</span>(<span style=color:#e6db74>&#39;post.index&#39;</span>));
+    }
+
+    <span style=color:#66d9ef>protected</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>getLoginUrl</span>(<span style=color:#a6e22e>Request</span> $request)<span style=color:#f92672>:</span> <span style=color:#a6e22e>string</span>
+    {
+        <span style=color:#66d9ef>return</span> $this<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>urlGenerator</span><span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>generate</span>(<span style=color:#a6e22e>self</span><span style=color:#f92672>::</span><span style=color:#a6e22e>LOGIN_ROUTE</span>);
+    }
+}
+
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-php data-lang=php>
+<span style=color:#66d9ef>namespace</span> <span style=color:#a6e22e>App\Controller</span>;
+
+<span style=color:#66d9ef>use</span> <span style=color:#a6e22e>App\Entity\User</span>;
+<span style=color:#66d9ef>use</span> <span style=color:#a6e22e>App\Repository\UserRepository</span>;
+<span style=color:#66d9ef>use</span> <span style=color:#a6e22e>Doctrine\Persistence\ManagerRegistry</span>;
+<span style=color:#66d9ef>use</span> <span style=color:#a6e22e>Symfony\Bundle\FrameworkBundle\Controller\AbstractController</span>;
+<span style=color:#66d9ef>use</span> <span style=color:#a6e22e>Symfony\Component\Form\Extension\Core\Type\PasswordType</span>;
+<span style=color:#66d9ef>use</span> <span style=color:#a6e22e>Symfony\Component\Form\Extension\Core\Type\RepeatedType</span>;
+<span style=color:#66d9ef>use</span> <span style=color:#a6e22e>Symfony\Component\Form\Extension\Core\Type\SubmitType</span>;
+<span style=color:#66d9ef>use</span> <span style=color:#a6e22e>Symfony\Component\HttpFoundation\Request</span>;
+<span style=color:#66d9ef>use</span> <span style=color:#a6e22e>Symfony\Component\HttpFoundation\Response</span>;
+<span style=color:#66d9ef>use</span> <span style=color:#a6e22e>Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface</span>;
+<span style=color:#66d9ef>use</span> <span style=color:#a6e22e>Symfony\Component\Routing\Annotation\Route</span>;
+
+
+<span style=color:#66d9ef>class</span> <span style=color:#a6e22e>RegistrationController</span> <span style=color:#66d9ef>extends</span> <span style=color:#a6e22e>AbstractController</span>
+{
+    <span style=color:#e6db74>/**
+</span><span style=color:#e6db74>     * @Route(&#34;/register&#34;, name=&#34;register&#34;)
+</span><span style=color:#e6db74>     */</span>
+    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>index</span>(<span style=color:#a6e22e>Request</span> $request, <span style=color:#a6e22e>ManagerRegistry</span> $doctrine, <span style=color:#a6e22e>UserPasswordHasherInterface</span> $passwordHasherEncoder)<span style=color:#f92672>:</span> <span style=color:#a6e22e>Response</span>
+    {
+
+        $form <span style=color:#f92672>=</span> $this<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>createFormBuilder</span>()
+            <span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>add</span>(<span style=color:#e6db74>&#39;email&#39;</span>)
+            <span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>add</span>(<span style=color:#e6db74>&#39;password&#39;</span>, <span style=color:#a6e22e>RepeatedType</span><span style=color:#f92672>::</span><span style=color:#a6e22e>class</span>, [
+                <span style=color:#e6db74>&#39;type&#39;</span> <span style=color:#f92672>=&gt;</span> <span style=color:#a6e22e>PasswordType</span><span style=color:#f92672>::</span><span style=color:#a6e22e>class</span>,
+                <span style=color:#e6db74>&#39;invalid_message&#39;</span> <span style=color:#f92672>=&gt;</span> <span style=color:#e6db74>&#39;The password fields must match.&#39;</span>,
+                <span style=color:#e6db74>&#39;options&#39;</span> <span style=color:#f92672>=&gt;</span> [<span style=color:#e6db74>&#39;attr&#39;</span> <span style=color:#f92672>=&gt;</span> [<span style=color:#e6db74>&#39;class&#39;</span> <span style=color:#f92672>=&gt;</span> <span style=color:#e6db74>&#39;password-field&#39;</span>]],
+                <span style=color:#e6db74>&#39;required&#39;</span> <span style=color:#f92672>=&gt;</span> <span style=color:#66d9ef>true</span>,
+                <span style=color:#e6db74>&#39;first_options&#39;</span>  <span style=color:#f92672>=&gt;</span> [<span style=color:#e6db74>&#39;label&#39;</span> <span style=color:#f92672>=&gt;</span> <span style=color:#e6db74>&#39;Password&#39;</span>],
+                <span style=color:#e6db74>&#39;second_options&#39;</span> <span style=color:#f92672>=&gt;</span> [<span style=color:#e6db74>&#39;label&#39;</span> <span style=color:#f92672>=&gt;</span> <span style=color:#e6db74>&#39;Repeat Password&#39;</span>],
+            ])
+            <span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>add</span>(<span style=color:#e6db74>&#39;register&#39;</span>, <span style=color:#a6e22e>SubmitType</span><span style=color:#f92672>::</span><span style=color:#a6e22e>class</span>, [
+                <span style=color:#e6db74>&#34;attr&#34;</span> <span style=color:#f92672>=&gt;</span> [
+                    <span style=color:#e6db74>&#39;class&#39;</span> <span style=color:#f92672>=&gt;</span> <span style=color:#e6db74>&#39;btn btn-primary float-end&#39;</span>
+                ]
+            ])
+            <span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>getForm</span>();
+
+        $form<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>handleRequest</span>($request);
+
+        <span style=color:#66d9ef>if</span> ($form<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>isSubmitted</span>()) {
+            $data <span style=color:#f92672>=</span> $form<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>getData</span>();
+            $user <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>User</span>();
+            $user<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>setEmail</span>($data[<span style=color:#e6db74>&#39;email&#39;</span>]);
+            $hashedPassword <span style=color:#f92672>=</span> $passwordHasherEncoder<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>hashPassword</span>($user, $data[<span style=color:#e6db74>&#39;password&#39;</span>]);
+            $user<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>setPassword</span>($hashedPassword);
+
+
+            <span style=color:#a6e22e>dump</span>($user);
+
+            $entityManager <span style=color:#f92672>=</span> $doctrine<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>getManager</span>();
+
+            $entityManager<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>persist</span>($user);
+            $entityManager<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>flush</span>();
+
+            <span style=color:#66d9ef>return</span> $this<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>redirect</span>($this<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>generateUrl</span>(<span style=color:#e6db74>&#39;app_login&#39;</span>));
+        }
+
+        <span style=color:#66d9ef>return</span> $this<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>render</span>(<span style=color:#e6db74>&#39;registration/index.html.twig&#39;</span>, [
+            <span style=color:#e6db74>&#39;form&#39;</span> <span style=color:#f92672>=&gt;</span> $form<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>createView</span>()
+        ]);
+    }
+}
+
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-php data-lang=php>
+<span style=color:#66d9ef>namespace</span> <span style=color:#a6e22e>App\Controller</span>;
+
+<span style=color:#66d9ef>use</span> <span style=color:#a6e22e>Symfony\Bundle\FrameworkBundle\Controller\AbstractController</span>;
+<span style=color:#66d9ef>use</span> <span style=color:#a6e22e>Symfony\Component\HttpFoundation\RedirectResponse</span>;
+<span style=color:#66d9ef>use</span> <span style=color:#a6e22e>Symfony\Component\HttpFoundation\Response</span>;
+<span style=color:#66d9ef>use</span> <span style=color:#a6e22e>Symfony\Component\Routing\Annotation\Route</span>;
+<span style=color:#66d9ef>use</span> <span style=color:#a6e22e>Symfony\Component\Security\Http\Authentication\AuthenticationUtils</span>;
+
+<span style=color:#66d9ef>class</span> <span style=color:#a6e22e>SecurityController</span> <span style=color:#66d9ef>extends</span> <span style=color:#a6e22e>AbstractController</span>
+{
+    <span style=color:#e6db74>/**
+</span><span style=color:#e6db74>     * @Route(&#34;/login&#34;, name=&#34;app_login&#34;)
+</span><span style=color:#e6db74>     */</span>
+    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>login</span>(<span style=color:#a6e22e>AuthenticationUtils</span> $authenticationUtils)<span style=color:#f92672>:</span> <span style=color:#a6e22e>Response</span>
+    {
+        <span style=color:#66d9ef>if</span> ($this<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>getUser</span>()) {
+            <span style=color:#66d9ef>return</span> $this<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>redirectToRoute</span>(<span style=color:#e6db74>&#39;post.index&#39;</span>);
+        }
+
+        <span style=color:#75715e>// get the login error if there is one
+</span><span style=color:#75715e></span>        $error <span style=color:#f92672>=</span> $authenticationUtils<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>getLastAuthenticationError</span>();
+        <span style=color:#75715e>// last username entered by the user
+</span><span style=color:#75715e></span>        $lastUsername <span style=color:#f92672>=</span> $authenticationUtils<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>getLastUsername</span>();
+
+        <span style=color:#66d9ef>return</span> $this<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>render</span>(<span style=color:#e6db74>&#39;security/login.html.twig&#39;</span>, [<span style=color:#e6db74>&#39;last_username&#39;</span> <span style=color:#f92672>=&gt;</span> $lastUsername, <span style=color:#e6db74>&#39;error&#39;</span> <span style=color:#f92672>=&gt;</span> $error]);
+    }
+
+    <span style=color:#e6db74>/**
+</span><span style=color:#e6db74>     * @Route(&#34;/logout&#34;, name=&#34;app_logout&#34;)
+</span><span style=color:#e6db74>     */</span>
+    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>logout</span>()<span style=color:#f92672>:</span> <span style=color:#a6e22e>void</span>
+    {
+    }
+}
+
+</code></pre></div><p>Access Control and Password Hashed Algorithm</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yml data-lang=yml><span style=color:#f92672>security</span>:
+  <span style=color:#f92672>enable_authenticator_manager</span>: <span style=color:#66d9ef>true</span>
+  <span style=color:#75715e># https://symfony.com/doc/current/security.html#registering-the-user-hashing-passwords</span>
+  <span style=color:#f92672>password_hashers</span>:
+    <span style=color:#f92672>Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface</span>: <span style=color:#e6db74>&#34;bcrypt&#34;</span>
+  <span style=color:#75715e># https://symfony.com/doc/current/security.html#loading-the-user-the-user-provider</span>
+  <span style=color:#f92672>providers</span>:
+    <span style=color:#75715e># used to reload user from session &amp; other features (e.g. switch_user)</span>
+    <span style=color:#f92672>app_user_provider</span>:
+      <span style=color:#f92672>entity</span>:
+        <span style=color:#f92672>class</span>: <span style=color:#ae81ff>App\Entity\User</span>
+        <span style=color:#f92672>property</span>: <span style=color:#ae81ff>email</span>
+  <span style=color:#f92672>firewalls</span>:
+    <span style=color:#f92672>dev</span>:
+      <span style=color:#f92672>pattern</span>: <span style=color:#ae81ff>^/(_(profiler|wdt)|css|images|js)/</span>
+      <span style=color:#f92672>security</span>: <span style=color:#66d9ef>false</span>
+    <span style=color:#f92672>main</span>:
+      <span style=color:#f92672>lazy</span>: <span style=color:#66d9ef>true</span>
+      <span style=color:#f92672>provider</span>: <span style=color:#ae81ff>app_user_provider</span>
+      <span style=color:#f92672>custom_authenticator</span>: <span style=color:#ae81ff>App\Security\CustomBasicAuthenticator</span>
+      <span style=color:#f92672>logout</span>:
+        <span style=color:#f92672>path</span>: <span style=color:#ae81ff>app_logout</span>
+        <span style=color:#75715e># where to redirect after logout</span>
+        <span style=color:#f92672>target</span>: <span style=color:#ae81ff>app_login</span>
+
+      <span style=color:#75715e># activate different ways to authenticate</span>
+      <span style=color:#75715e># https://symfony.com/doc/current/security.html#the-firewall</span>
+
+      <span style=color:#75715e># https://symfony.com/doc/current/security/impersonating_user.html</span>
+      <span style=color:#75715e># switch_user: true</span>
+
+  <span style=color:#75715e># Easy way to control access for large sections of your site</span>
+  <span style=color:#75715e># Note: Only the *first* access control that matches will be used</span>
+  <span style=color:#f92672>access_control</span>:
+    <span style=color:#75715e># Restricts access to paths starting with /login to users with the IS_AUTHENTICATED_ANONYMOUSLY role</span>
+    - { <span style=color:#f92672>path: ^/login, roles</span>: <span style=color:#ae81ff>IS_AUTHENTICATED_ANONYMOUSLY }</span>
+    <span style=color:#75715e># Restricts access to all other paths to users with the ROLE_USER role</span>
+    - { <span style=color:#f92672>path: ^/, roles</span>: <span style=color:#ae81ff>ROLE_USER }</span>
+    <span style=color:#75715e># - { path: ^/admin, roles: ROLE_ADMIN }</span>
+    <span style=color:#75715e># - { path: ^/profile, roles: ROLE_USER }</span>
+
+<span style=color:#f92672>when@test</span>:
+  <span style=color:#f92672>security</span>:
+    <span style=color:#f92672>password_hashers</span>:
+      <span style=color:#75715e># By default, password hashers are resource intensive and take time. This is</span>
+      <span style=color:#75715e># important to generate secure password hashes. In tests however, secure hashes</span>
+      <span style=color:#75715e># are not important, waste resources and increase test times. The following</span>
+      <span style=color:#75715e># reduces the work factor to the lowest possible values.</span>
+      <span style=color:#f92672>Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface</span>:
+        <span style=color:#f92672>algorithm</span>: <span style=color:#ae81ff>auto</span>
+        <span style=color:#f92672>cost</span>: <span style=color:#ae81ff>4</span> <span style=color:#75715e># Lowest possible value for bcrypt</span>
+        <span style=color:#f92672>time_cost</span>: <span style=color:#ae81ff>3</span> <span style=color:#75715e># Lowest possible value for argon</span>
+        <span style=color:#f92672>memory_cost</span>: <span style=color:#ae81ff>10</span> <span style=color:#75715e># Lowest possible value for argon</span>
+</code></pre></div><h3 id=but-you-seems-stuck-with-symfonydoctrine-syntax-there-not-much-auto-completion>But you seems stuck with Symfony/Doctrine syntax, there not much auto completion</h3>
+<p>No worries, install the following plugins, will solve your problems</p>
+<h4 id=1php-anotationshttpspluginsjetbrainscomplugin7320-php-annotations>1.<a href=https://plugins.jetbrains.com/plugin/7320-php-annotations>PHP Anotations</a></h4>
+<ul>
+<li>Analyses the classes which can be used as annotations and provides code-completing when writing annotations - e.g. Doctrine ORM mappings.</li>
+</ul>
+<h4 id=2symfony-supporthttpspluginsjetbrainscomplugin7219-symfony-support>2.<a href=https://plugins.jetbrains.com/plugin/7219-symfony-support>Symfony Support</a></h4>
+<ul>
+<li>This plugin provides auto-completion for anything in Symfony you can imagine. It analyses the DI container code.</li>
+</ul>
 <div class="m-1 p-1">
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://blog.phpguru.net/categories/cheatsheet>cheatsheet</a>
 </div>
