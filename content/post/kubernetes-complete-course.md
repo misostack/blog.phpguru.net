@@ -174,3 +174,73 @@ kubeconfig: Configured
 And with docker desktop, you may see this
 
 ![image](https://gist.github.com/assets/31009750/7455b123-c986-4845-b104-6450f24bd30a)
+
+## Kubectl Basic Commands
+
+```sh
+kubectl get nodes
+kubectl get pod
+kubectl get services
+```
+
+You don't create Pod directly, always create a deployment - abstractions over Pods
+
+```sh
+kubctl create deployment --help
+# and you will see this instruction
+kubectl create deployment NAME --image=image -- [COMMAND] [args...] [options]
+```
+
+Let's practice with creating a nginx deployment
+
+```sh
+kubectl create deployment k8s-nginx --image=nginx
+kubectl get deployment
+# and
+NAME        READY   UP-TO-DATE   AVAILABLE   AGE
+k8s-nginx   1/1     1            1           51s
+# then
+kubectl get replicaset
+# and
+NAME                   DESIRED   CURRENT   READY   AGE
+k8s-nginx-6fcb9b44f8   1         1         1       89s
+# then
+kubectl get pod
+# and
+NAME                         READY   STATUS    RESTARTS   AGE
+k8s-nginx-6fcb9b44f8-85rbz   1/1     Running   0          29s
+
+```
+
+Everything under deployment will be created automatically by k8s
+
+![image](https://gist.github.com/assets/31009750/0a1c7a4a-8c5a-4418-a6d2-5e02d8d6ef6c)
+
+Let's change nginx image version
+
+```sh
+kubectl edit deployment k8s-nginx
+# then edit the image from nginx to nginx:stable-alpine3.17
+# just edit like vim editor, press i to edit and save with :wq!
+```
+
+And you will see this
+
+![image](https://gist.github.com/assets/31009750/e1c534ee-2126-4851-91e6-9f0522faff4f)
+
+One Pod is creating while the other one is running, it will be removed soon
+
+What about replicaset
+
+![image](https://gist.github.com/assets/31009750/36452184-881a-4570-83ca-6583ad5403a9)
+
+```sh
+kubectl logs k8s-nginx-f57b78788-4m59z # not found
+kubectl logs k8s-nginx-6fcb9b44f8-766bk # you will see the log output
+```
+
+How about delete
+
+```sh
+kubectl delete deployment k8s-nginx
+```
