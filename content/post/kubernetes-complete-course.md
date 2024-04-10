@@ -244,3 +244,115 @@ How about delete
 ```sh
 kubectl delete deployment k8s-nginx
 ```
+
+### Let's create configuration file for K8s
+
+> nginx-deployment.yaml
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  labels:
+    app: nginx-main
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx-main
+  template:
+    metadata:
+      labels:
+        app: nginx-main
+    spec:
+      containers:
+        - name: nginx-main
+          image: nginx:stable-alpine3.17
+          ports:
+            - containerPort: 8080
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "50m"
+            limits:
+              memory: "512Mi"
+              cpu: "200m"
+```
+
+```sh
+kubectl apply -f nginx-deployment.yaml
+kubectl get pod
+kubectl get replicaset
+kubectl get deployment
+```
+
+With this configuration file, you only need to update this file, and run apply command, k8s will take care the rest for you.
+
+### Connecting Services to Deployments
+
+![image](https://gist.github.com/assets/31009750/c2461820-befb-4c7d-bff9-7673abef62bc)
+![image](https://gist.github.com/assets/31009750/139ea026-f9f8-4bca-9f6f-d4fb86c5da0c)
+
+> nginx-service.yaml
+
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-service
+spec:
+  selector:
+    app: nginx-main
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080 # should match with container port
+      # nodePort: 30007 # Uncomment if you want to specify the NodePort; otherwise, it's dynamically allocated.
+```
+
+```sh
+kubectl apply -f nginx-service.yaml
+# check status
+kubectl describe service nginx-service
+kubectl get pod -o wide
+kubectl get deployment nginx-deployment -o yaml > nginx-deployment-result.yaml
+```
+
+### K8s command cheatsheet
+
+> Deployment CRUD Commands
+
+```sh
+kubeclt create deployment [name]
+kubeclt edit deployment [name]
+kubeclt delte deployment [name]
+```
+
+> Status of different K8s components
+
+```sh
+kubectl get nodes | pod | services | replicaset | deployment
+```
+
+> Debuging pods
+
+```sh
+kubectl logs pod-name
+kubectl exec -it [podname] -- bin/sh
+```
+
+> Use Configuration File
+
+```sh
+kubectl apply -f [filename] # create/update
+kubectl delete -f [filename] # delete
+```
+
+### Reading K8s configuration file
+
+1. Metadata
+2. Specification
+3. Status
+
+![image](https://gist.github.com/assets/31009750/8dba9d69-99e1-499c-9d4d-f36c57129a44)
