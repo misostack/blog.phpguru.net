@@ -57,3 +57,72 @@ Eg: your DB container died, then k8s auto re-create and replace the dead one but
 ![image](https://gist.github.com/assets/31009750/7e00771e-7632-433a-9526-8c2f104fed7d)
 
 ## Advanced Concepts
+
+### Master Node and Worker Node in Kubernetes
+
+Overview
+
+![image](https://gist.github.com/assets/31009750/2b296865-7d7c-411b-bfe5-a67c57b228c7)
+
+#### Worker Node
+
+There are 3 processes in Worker Node
+
+- Container Runtime ( can be docker )
+- KubeProxy : Kind of virtual network
+- Kubelet: connect node and container
+
+#### Master Node
+
+There are 4 processes in Master Node
+
+- Api: cluster's gateway, gate keeper for authentication
+- Scheduler: add/remove pods
+- Controller Manager: detects cluster state changes
+- ETCD: Cluster Brain, Key-Value Store
+
+### Let's dive into practical excercises
+
+#### Minikube
+
+- A K8s Node in your local
+
+![image](https://gist.github.com/assets/31009750/3ee54682-d92e-4e8f-bc03-b8389a7df721)
+
+#### Kubetl
+
+- CLI Tool to interact with K8s API Server
+
+![image](https://gist.github.com/assets/31009750/487edd2d-9908-4b83-a6b9-9784e8597c0f)
+
+You can use kubectl to interact with Cloud K8s Nodes
+
+![image](https://gist.github.com/assets/31009750/3da768a1-314a-4237-8657-17c032373894)
+
+### Let's install them
+
+If in our computer, Docker Desktop had been installed already, just enable K8s
+
+![image](https://gist.github.com/assets/31009750/5b1e06c4-f5e4-4b86-961f-28989330f2ce)
+
+If not, please follow k8s official doc to install on your appropriate os.
+
+- [Install K8s tools](https://kubernetes.io/docs/tasks/tools/)
+
+In this topic, i used MACOS, so here is the details
+
+```sh
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/darwin/arm64/kubectl"
+chmod +x ./kubectl
+sudo mv ./kubectl /usr/local/bin/kubectl
+sudo chown root: /usr/local/bin/kubectl
+kubectl version --client
+```
+
+When it is ready, you can test with this command line
+
+```sh
+kubectl cluster-info
+```
+
+![image](https://gist.github.com/assets/31009750/8fd6095f-7407-4eaa-aae1-7fe862b088b1)
