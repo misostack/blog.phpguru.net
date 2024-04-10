@@ -101,6 +101,8 @@ You can use kubectl to interact with Cloud K8s Nodes
 
 ### Let's install them
 
+#### Install kubectl
+
 If in our computer, Docker Desktop had been installed already, just enable K8s
 
 ![image](https://gist.github.com/assets/31009750/5b1e06c4-f5e4-4b86-961f-28989330f2ce)
@@ -126,3 +128,49 @@ kubectl cluster-info
 ```
 
 ![image](https://gist.github.com/assets/31009750/8fd6095f-7407-4eaa-aae1-7fe862b088b1)
+
+#### Install minikube
+
+- [Minikube](https://minikube.sigs.k8s.io/docs/start/)
+
+The sample will be in MACOS
+
+```sh
+brew install minikube
+# remove if you don't need it anymore
+brew unlink minikube
+brew link minikube
+```
+
+```sh
+minikube start
+```
+
+![image](https://gist.github.com/assets/31009750/46aebadc-060f-45fe-a632-719269040428)
+
+When it's ready
+
+![image](https://gist.github.com/assets/31009750/64331a33-ff26-48f1-a660-2a2faba4c644)
+
+Let's run some check commands
+
+```sh
+kubectl get nodes
+# and you get
+minhson@NBVN-KIENTC blog.phpguru.net % kubectl get nodes
+NAME       STATUS   ROLES           AGE    VERSION
+minikube   Ready    control-plane   3m4s   v1.28.3
+minikube status
+# and
+minhson@NBVN-KIENTC blog.phpguru.net % minikube status
+minikube
+type: Control Plane
+host: Running
+kubelet: Running
+apiserver: Running
+kubeconfig: Configured
+```
+
+And with docker desktop, you may see this
+
+![image](https://gist.github.com/assets/31009750/7455b123-c986-4845-b104-6450f24bd30a)
