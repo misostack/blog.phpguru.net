@@ -185,6 +185,7 @@
 <p>You can use kubectl to interact with Cloud K8s Nodes</p>
 <p><img src=https://gist.github.com/assets/31009750/3da768a1-314a-4237-8657-17c032373894 alt=image></p>
 <h3 id=lets-install-them>Let&rsquo;s install them</h3>
+<h4 id=install-kubectl>Install kubectl</h4>
 <p>If in our computer, Docker Desktop had been installed already, just enable K8s</p>
 <p><img src=https://gist.github.com/assets/31009750/5b1e06c4-f5e4-4b86-961f-28989330f2ce alt=image></p>
 <p>If not, please follow k8s official doc to install on your appropriate os.</p>
@@ -200,6 +201,36 @@ kubectl version --client
 </code></pre></div><p>When it is ready, you can test with this command line</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>kubectl cluster-info
 </code></pre></div><p><img src=https://gist.github.com/assets/31009750/8fd6095f-7407-4eaa-aae1-7fe862b088b1 alt=image></p>
+<h4 id=install-minikube>Install minikube</h4>
+<ul>
+<li><a href=https://minikube.sigs.k8s.io/docs/start/>Minikube</a></li>
+</ul>
+<p>The sample will be in MACOS</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>brew install minikube
+<span style=color:#75715e># remove if you don&#39;t need it anymore</span>
+brew unlink minikube
+brew link minikube
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>minikube start
+</code></pre></div><p><img src=https://gist.github.com/assets/31009750/46aebadc-060f-45fe-a632-719269040428 alt=image></p>
+<p>When it&rsquo;s ready</p>
+<p><img src=https://gist.github.com/assets/31009750/64331a33-ff26-48f1-a660-2a2faba4c644 alt=image></p>
+<p>Let&rsquo;s run some check commands</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>kubectl get nodes
+<span style=color:#75715e># and you get</span>
+minhson@NBVN-KIENTC blog.phpguru.net % kubectl get nodes
+NAME       STATUS   ROLES           AGE    VERSION
+minikube   Ready    control-plane   3m4s   v1.28.3
+minikube status
+<span style=color:#75715e># and</span>
+minhson@NBVN-KIENTC blog.phpguru.net % minikube status
+minikube
+type: Control Plane
+host: Running
+kubelet: Running
+apiserver: Running
+kubeconfig: Configured
+</code></pre></div><p>And with docker desktop, you may see this</p>
+<p><img src=https://gist.github.com/assets/31009750/7455b123-c986-4845-b104-6450f24bd30a alt=image></p>
 <div class="m-1 p-1">
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://blog.phpguru.net/categories/devops>devops</a>
 </div>
