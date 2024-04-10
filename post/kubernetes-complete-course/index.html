@@ -231,6 +231,47 @@ apiserver: Running
 kubeconfig: Configured
 </code></pre></div><p>And with docker desktop, you may see this</p>
 <p><img src=https://gist.github.com/assets/31009750/7455b123-c986-4845-b104-6450f24bd30a alt=image></p>
+<h2 id=kubectl-basic-commands>Kubectl Basic Commands</h2>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>kubectl get nodes
+kubectl get pod
+kubectl get services
+</code></pre></div><p>You don&rsquo;t create Pod directly, always create a deployment - abstractions over Pods</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>kubctl create deployment --help
+<span style=color:#75715e># and you will see this instruction</span>
+kubectl create deployment NAME --image<span style=color:#f92672>=</span>image -- <span style=color:#f92672>[</span>COMMAND<span style=color:#f92672>]</span> <span style=color:#f92672>[</span>args...<span style=color:#f92672>]</span> <span style=color:#f92672>[</span>options<span style=color:#f92672>]</span>
+</code></pre></div><p>Let&rsquo;s practice with creating a nginx deployment</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>kubectl create deployment k8s-nginx --image<span style=color:#f92672>=</span>nginx
+kubectl get deployment
+<span style=color:#75715e># and</span>
+NAME        READY   UP-TO-DATE   AVAILABLE   AGE
+k8s-nginx   1/1     <span style=color:#ae81ff>1</span>            <span style=color:#ae81ff>1</span>           51s
+<span style=color:#75715e># then</span>
+kubectl get replicaset
+<span style=color:#75715e># and</span>
+NAME                   DESIRED   CURRENT   READY   AGE
+k8s-nginx-6fcb9b44f8   <span style=color:#ae81ff>1</span>         <span style=color:#ae81ff>1</span>         <span style=color:#ae81ff>1</span>       89s
+<span style=color:#75715e># then</span>
+kubectl get pod
+<span style=color:#75715e># and</span>
+NAME                         READY   STATUS    RESTARTS   AGE
+k8s-nginx-6fcb9b44f8-85rbz   1/1     Running   <span style=color:#ae81ff>0</span>          29s
+
+</code></pre></div><p>Everything under deployment will be created automatically by k8s</p>
+<p><img src=https://gist.github.com/assets/31009750/0a1c7a4a-8c5a-4418-a6d2-5e02d8d6ef6c alt=image></p>
+<p>Let&rsquo;s change nginx image version</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>kubectl edit deployment k8s-nginx
+<span style=color:#75715e># then edit the image from nginx to nginx:stable-alpine3.17</span>
+<span style=color:#75715e># just edit like vim editor, press i to edit and save with :wq!</span>
+</code></pre></div><p>And you will see this</p>
+<p><img src=https://gist.github.com/assets/31009750/e1c534ee-2126-4851-91e6-9f0522faff4f alt=image></p>
+<p>One Pod is creating while the other one is running, it will be removed soon</p>
+<p>What about replicaset</p>
+<p><img src=https://gist.github.com/assets/31009750/36452184-881a-4570-83ca-6583ad5403a9 alt=image></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>kubectl logs k8s-nginx-f57b78788-4m59z <span style=color:#75715e># not found</span>
+kubectl logs k8s-nginx-6fcb9b44f8-766bk <span style=color:#75715e># you will see the log output</span>
+</code></pre></div><p>How about delete</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>kubectl delete deployment k8s-nginx
+</code></pre></div>
 <div class="m-1 p-1">
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://blog.phpguru.net/categories/devops>devops</a>
 </div>
