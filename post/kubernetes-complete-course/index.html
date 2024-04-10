@@ -153,6 +153,53 @@
 <h3 id=replication>Replication</h3>
 <p><img src=https://gist.github.com/assets/31009750/7e00771e-7632-433a-9526-8c2f104fed7d alt=image></p>
 <h2 id=advanced-concepts>Advanced Concepts</h2>
+<h3 id=master-node-and-worker-node-in-kubernetes>Master Node and Worker Node in Kubernetes</h3>
+<p>Overview</p>
+<p><img src=https://gist.github.com/assets/31009750/2b296865-7d7c-411b-bfe5-a67c57b228c7 alt=image></p>
+<h4 id=worker-node>Worker Node</h4>
+<p>There are 3 processes in Worker Node</p>
+<ul>
+<li>Container Runtime ( can be docker )</li>
+<li>KubeProxy : Kind of virtual network</li>
+<li>Kubelet: connect node and container</li>
+</ul>
+<h4 id=master-node>Master Node</h4>
+<p>There are 4 processes in Master Node</p>
+<ul>
+<li>Api: cluster&rsquo;s gateway, gate keeper for authentication</li>
+<li>Scheduler: add/remove pods</li>
+<li>Controller Manager: detects cluster state changes</li>
+<li>ETCD: Cluster Brain, Key-Value Store</li>
+</ul>
+<h3 id=lets-dive-into-practical-excercises>Let&rsquo;s dive into practical excercises</h3>
+<h4 id=minikube>Minikube</h4>
+<ul>
+<li>A K8s Node in your local</li>
+</ul>
+<p><img src=https://gist.github.com/assets/31009750/3ee54682-d92e-4e8f-bc03-b8389a7df721 alt=image></p>
+<h4 id=kubetl>Kubetl</h4>
+<ul>
+<li>CLI Tool to interact with K8s API Server</li>
+</ul>
+<p><img src=https://gist.github.com/assets/31009750/487edd2d-9908-4b83-a6b9-9784e8597c0f alt=image></p>
+<p>You can use kubectl to interact with Cloud K8s Nodes</p>
+<p><img src=https://gist.github.com/assets/31009750/3da768a1-314a-4237-8657-17c032373894 alt=image></p>
+<h3 id=lets-install-them>Let&rsquo;s install them</h3>
+<p>If in our computer, Docker Desktop had been installed already, just enable K8s</p>
+<p><img src=https://gist.github.com/assets/31009750/5b1e06c4-f5e4-4b86-961f-28989330f2ce alt=image></p>
+<p>If not, please follow k8s official doc to install on your appropriate os.</p>
+<ul>
+<li><a href=https://kubernetes.io/docs/tasks/tools/>Install K8s tools</a></li>
+</ul>
+<p>In this topic, i used MACOS, so here is the details</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>curl -LO <span style=color:#e6db74>&#34;https://dl.k8s.io/release/</span><span style=color:#66d9ef>$(</span>curl -L -s https://dl.k8s.io/release/stable.txt<span style=color:#66d9ef>)</span><span style=color:#e6db74>/bin/darwin/arm64/kubectl&#34;</span>
+chmod +x ./kubectl
+sudo mv ./kubectl /usr/local/bin/kubectl
+sudo chown root: /usr/local/bin/kubectl
+kubectl version --client
+</code></pre></div><p>When it is ready, you can test with this command line</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>kubectl cluster-info
+</code></pre></div><p><img src=https://gist.github.com/assets/31009750/8fd6095f-7407-4eaa-aae1-7fe862b088b1 alt=image></p>
 <div class="m-1 p-1">
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://blog.phpguru.net/categories/devops>devops</a>
 </div>
