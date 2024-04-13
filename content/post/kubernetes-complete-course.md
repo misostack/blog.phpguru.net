@@ -678,6 +678,111 @@ kubens your-target-namespace
 
 ![image](https://gist.github.com/assets/31009750/d850f2fc-1334-46af-80c2-d468310ab31d)
 
+![image](https://gist.github.com/assets/31009750/e77623d2-116c-4f03-8e43-3e6957622846)
+
+![image](https://gist.github.com/assets/31009750/d0b7fedf-a5a8-41ff-b743-732188b94fa8)
+
+### Architecture
+
+![image](https://gist.github.com/assets/31009750/8aa34cb7-ad28-447d-9a60-b16243bd3ee1)
+
+In cloud
+
+![image](https://gist.github.com/assets/31009750/eee8f701-4515-4abb-a1e1-0ff10a3747af)
+
+In bare metal server
+
+![image](https://gist.github.com/assets/31009750/71f508a3-a749-4d10-a54e-797e198b6521)
+
+### Practice
+
+Steps
+
+- Install ingress controller
+- Setup ingress rules
+
+- [ingress-minikube](https://kubernetes.io/docs/tasks/access-application-cluster/ingress-minikube/)
+
+```sh
+minikube addons enable ingress
+```
+
+![image](https://gist.github.com/assets/31009750/6a7278da-b335-40d1-8c9d-252752c8cea1)
+
+```sh
+kubectl get pods -n ingress-nginx
+```
+
+![image](https://gist.github.com/assets/31009750/b0e10a8c-0214-4390-b3f2-237bb8e50356)
+
+Let's start with assign a domain to dashboard addons
+
+Dashboard
+
+```sh
+minikube addons list | grep dashboard
+# | dashboard                   | minikube | disabled     | Kubernetes                     |
+minikube addons enable dashboard
+kubectl get ns
+kubectl get all -n kubernetes-dashboard
+```
+
+Dashboard Ingress
+
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: k8s-dashboard-ingress
+  namespace: kubernetes-dashboard
+  labels:
+    name: k8s-dashboard-ingress
+spec:
+  rules:
+    - host: dashboard.k8s-phpguru.local
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: kubernetes-dashboard
+                port:
+                  number: 80
+```
+
+```sh
+kubectl apply -f dashboard-ingress.yaml
+kubectl get ingress -n kubernetes-dashboard --watch
+# then use the ipaddress, assign it with your dns to resolve the domain
+# in local we'll modify /etc/hosts
+sudo nano /etc/hosts
+# then tunnel to keep accessible
+minikube tunnel
+# then open http://dashboard.k8s-phpguru.local in your browser
+```
+
+```sh
+## k8s tutorial: because of using Docker Driver -> we must use this local ip address
+127.0.0.1 dashboard.k8s-phpguru.local
+```
+
+And you will see this
+
+![image](https://gist.github.com/assets/31009750/7c88d3e5-6967-4ef0-9029-0f4958c337d0)
+
+If you have to create ssl
+
+![image](https://gist.github.com/assets/31009750/82fbff77-406e-401d-b7f0-ff16c458e766)
+
+### Quick test ingress and ingress-dns addons
+
+```sh
+kubectl create deployment web --image=gcr.io/google-samples/hello-app:1.0
+kubectl expose deployment web --port=8080
+kubectl apply -f example-ingress.yaml
+```
+
 ## Terminology
 
 ### Ports
