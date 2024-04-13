@@ -677,7 +677,37 @@ minikube tunnel
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>kubectl create deployment web --image<span style=color:#f92672>=</span>gcr.io/google-samples/hello-app:1.0
 kubectl expose deployment web --port<span style=color:#f92672>=</span><span style=color:#ae81ff>8080</span>
 kubectl apply -f example-ingress.yaml
-</code></pre></div><h2 id=terminology>Terminology</h2>
+</code></pre></div><h2 id=helm>Helm</h2>
+<p><img src=https://gist.github.com/assets/31009750/d56d1796-e650-4e0a-8576-fbcdd9377e9a alt=image>
+<img src=https://gist.github.com/assets/31009750/0c6b95bf-d06f-4307-8f30-ce56fdc17ab3 alt=image></p>
+<ul>
+<li><a href=https://helm.sh/>Helm</a></li>
+</ul>
+<h3 id=helm-charts---sharing-reusing-configuration>Helm Charts - Sharing, Reusing Configuration</h3>
+<ul>
+<li>You may consider it is a package manager for k8s, so you can reuse/share your configuration.</li>
+</ul>
+<p><img src=https://gist.github.com/assets/31009750/d56d1796-e650-4e0a-8576-fbcdd9377e9a alt=image>
+<img src=https://gist.github.com/assets/31009750/0c6b95bf-d06f-4307-8f30-ce56fdc17ab3 alt=image></p>
+<h3 id=templating-engine>Templating Engine</h3>
+<p>So instead of having multiple configuration files for similar services, you only need to define a template file and a variable file.</p>
+<p><img src=https://gist.github.com/assets/31009750/4f78779b-bb14-4f8a-b7ee-a0f50a513564 alt=image>
+<img src=https://gist.github.com/assets/31009750/874caf23-afa7-4673-85a7-2a280cac0d57 alt=image></p>
+<p>Very useful for CI/CD, the main usecase is deployment your application on different env</p>
+<p><img src=https://gist.github.com/assets/31009750/78303bbe-ded3-46e9-b150-2053d2b50c94 alt=image></p>
+<h3 id=helm-charts-structure>Helm Charts Structure</h3>
+<p><img src=https://gist.github.com/assets/31009750/b2ba5731-b946-4a3e-a93d-013cabbd7f14 alt=image></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>helm install <span style=color:#f92672>[</span>chart-name<span style=color:#f92672>]</span>
+<span style=color:#75715e># template files will be filled with values from values.yaml</span>
+</code></pre></div><h4 id=helm-v2>Helm v2</h4>
+<blockquote>
+<p>Tiller</p>
+</blockquote>
+<p><img src=https://gist.github.com/assets/31009750/48f52759-efc6-4be7-b978-4e43bc821b6a alt=image>
+<img src=https://gist.github.com/assets/31009750/e4a05537-dd3e-4ac8-b207-bbcd87b3fcda alt=image></p>
+<p>But in v3, it had been removed!!!</p>
+<p><img src=https://gist.github.com/assets/31009750/866b583e-16c4-4d49-95c0-57c71050df7d alt=image></p>
+<h2 id=terminology>Terminology</h2>
 <h3 id=ports>Ports</h3>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=color:#f92672>apiVersion</span>: <span style=color:#ae81ff>v1</span>
 <span style=color:#f92672>kind</span>: <span style=color:#ae81ff>Service</span>
