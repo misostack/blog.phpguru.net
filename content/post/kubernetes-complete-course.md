@@ -783,6 +783,51 @@ kubectl expose deployment web --port=8080
 kubectl apply -f example-ingress.yaml
 ```
 
+## Helm
+
+![image](https://gist.github.com/assets/31009750/d56d1796-e650-4e0a-8576-fbcdd9377e9a)
+![image](https://gist.github.com/assets/31009750/0c6b95bf-d06f-4307-8f30-ce56fdc17ab3)
+
+- [Helm](https://helm.sh/)
+
+### Helm Charts - Sharing, Reusing Configuration
+
+- You may consider it is a package manager for k8s, so you can reuse/share your configuration.
+
+![image](https://gist.github.com/assets/31009750/d56d1796-e650-4e0a-8576-fbcdd9377e9a)
+![image](https://gist.github.com/assets/31009750/0c6b95bf-d06f-4307-8f30-ce56fdc17ab3)
+
+### Templating Engine
+
+So instead of having multiple configuration files for similar services, you only need to define a template file and a variable file.
+
+![image](https://gist.github.com/assets/31009750/4f78779b-bb14-4f8a-b7ee-a0f50a513564)
+![image](https://gist.github.com/assets/31009750/874caf23-afa7-4673-85a7-2a280cac0d57)
+
+Very useful for CI/CD, the main usecase is deployment your application on different env
+
+![image](https://gist.github.com/assets/31009750/78303bbe-ded3-46e9-b150-2053d2b50c94)
+
+### Helm Charts Structure
+
+![image](https://gist.github.com/assets/31009750/b2ba5731-b946-4a3e-a93d-013cabbd7f14)
+
+```sh
+helm install [chart-name]
+# template files will be filled with values from values.yaml
+```
+
+#### Helm v2
+
+> Tiller
+
+![image](https://gist.github.com/assets/31009750/48f52759-efc6-4be7-b978-4e43bc821b6a)
+![image](https://gist.github.com/assets/31009750/e4a05537-dd3e-4ac8-b207-bbcd87b3fcda)
+
+But in v3, it had been removed!!!
+
+![image](https://gist.github.com/assets/31009750/866b583e-16c4-4d49-95c0-57c71050df7d)
+
 ## Terminology
 
 ### Ports
