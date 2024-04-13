@@ -607,7 +607,77 @@ kubens
 kubens your-target-namespace
 </code></pre></div><h2 id=real-world-service-deployment-with-ingress>Real world service deployment with Ingress</h2>
 <p><img src=https://gist.github.com/assets/31009750/d850f2fc-1334-46af-80c2-d468310ab31d alt=image></p>
-<h2 id=terminology>Terminology</h2>
+<p><img src=https://gist.github.com/assets/31009750/e77623d2-116c-4f03-8e43-3e6957622846 alt=image></p>
+<p><img src=https://gist.github.com/assets/31009750/d0b7fedf-a5a8-41ff-b743-732188b94fa8 alt=image></p>
+<h3 id=architecture>Architecture</h3>
+<p><img src=https://gist.github.com/assets/31009750/8aa34cb7-ad28-447d-9a60-b16243bd3ee1 alt=image></p>
+<p>In cloud</p>
+<p><img src=https://gist.github.com/assets/31009750/eee8f701-4515-4abb-a1e1-0ff10a3747af alt=image></p>
+<p>In bare metal server</p>
+<p><img src=https://gist.github.com/assets/31009750/71f508a3-a749-4d10-a54e-797e198b6521 alt=image></p>
+<h3 id=practice-1>Practice</h3>
+<p>Steps</p>
+<ul>
+<li>
+<p>Install ingress controller</p>
+</li>
+<li>
+<p>Setup ingress rules</p>
+</li>
+<li>
+<p><a href=https://kubernetes.io/docs/tasks/access-application-cluster/ingress-minikube/>ingress-minikube</a></p>
+</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>minikube addons enable ingress
+</code></pre></div><p><img src=https://gist.github.com/assets/31009750/6a7278da-b335-40d1-8c9d-252752c8cea1 alt=image></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>kubectl get pods -n ingress-nginx
+</code></pre></div><p><img src=https://gist.github.com/assets/31009750/b0e10a8c-0214-4390-b3f2-237bb8e50356 alt=image></p>
+<p>Let&rsquo;s start with assign a domain to dashboard addons</p>
+<p>Dashboard</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>minikube addons list | grep dashboard
+<span style=color:#75715e># | dashboard                   | minikube | disabled     | Kubernetes                     |</span>
+minikube addons enable dashboard
+kubectl get ns
+kubectl get all -n kubernetes-dashboard
+</code></pre></div><p>Dashboard Ingress</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=color:#f92672>apiVersion</span>: <span style=color:#ae81ff>networking.k8s.io/v1</span>
+<span style=color:#f92672>kind</span>: <span style=color:#ae81ff>Ingress</span>
+<span style=color:#f92672>metadata</span>:
+  <span style=color:#f92672>name</span>: <span style=color:#ae81ff>k8s-dashboard-ingress</span>
+  <span style=color:#f92672>namespace</span>: <span style=color:#ae81ff>kubernetes-dashboard</span>
+  <span style=color:#f92672>labels</span>:
+    <span style=color:#f92672>name</span>: <span style=color:#ae81ff>k8s-dashboard-ingress</span>
+<span style=color:#f92672>spec</span>:
+  <span style=color:#f92672>rules</span>:
+    - <span style=color:#f92672>host</span>: <span style=color:#ae81ff>dashboard.k8s-phpguru.local</span>
+      <span style=color:#f92672>http</span>:
+        <span style=color:#f92672>paths</span>:
+          - <span style=color:#f92672>pathType</span>: <span style=color:#ae81ff>Prefix</span>
+            <span style=color:#f92672>path</span>: <span style=color:#e6db74>&#34;/&#34;</span>
+            <span style=color:#f92672>backend</span>:
+              <span style=color:#f92672>service</span>:
+                <span style=color:#f92672>name</span>: <span style=color:#ae81ff>kubernetes-dashboard</span>
+                <span style=color:#f92672>port</span>:
+                  <span style=color:#f92672>number</span>: <span style=color:#ae81ff>80</span>
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>kubectl apply -f dashboard-ingress.yaml
+kubectl get ingress -n kubernetes-dashboard --watch
+<span style=color:#75715e># then use the ipaddress, assign it with your dns to resolve the domain</span>
+<span style=color:#75715e># in local we&#39;ll modify /etc/hosts</span>
+sudo nano /etc/hosts
+<span style=color:#75715e># then tunnel to keep accessible</span>
+minikube tunnel
+<span style=color:#75715e># then open http://dashboard.k8s-phpguru.local in your browser</span>
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=color:#75715e>## k8s tutorial: because of using Docker Driver -&gt; we must use this local ip address</span>
+127.0.0.1 dashboard.k8s-phpguru.local
+</code></pre></div><p>And you will see this</p>
+<p><img src=https://gist.github.com/assets/31009750/7c88d3e5-6967-4ef0-9029-0f4958c337d0 alt=image></p>
+<p>If you have to create ssl</p>
+<p><img src=https://gist.github.com/assets/31009750/82fbff77-406e-401d-b7f0-ff16c458e766 alt=image></p>
+<h3 id=quick-test-ingress-and-ingress-dns-addons>Quick test ingress and ingress-dns addons</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>kubectl create deployment web --image<span style=color:#f92672>=</span>gcr.io/google-samples/hello-app:1.0
+kubectl expose deployment web --port<span style=color:#f92672>=</span><span style=color:#ae81ff>8080</span>
+kubectl apply -f example-ingress.yaml
+</code></pre></div><h2 id=terminology>Terminology</h2>
 <h3 id=ports>Ports</h3>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=color:#f92672>apiVersion</span>: <span style=color:#ae81ff>v1</span>
 <span style=color:#f92672>kind</span>: <span style=color:#ae81ff>Service</span>
