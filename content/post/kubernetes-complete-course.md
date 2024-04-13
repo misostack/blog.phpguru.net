@@ -356,3 +356,347 @@ kubectl delete -f [filename] # delete
 3. Status
 
 ![image](https://gist.github.com/assets/31009750/8dba9d69-99e1-499c-9d4d-f36c57129a44)
+
+## Secret
+
+- Create secret with command line
+
+```sh
+kubectl create secret generic mysql-root-password-secret --from-literal=mysql_root_password='yourpassword'
+
+# from text file
+kubectl create secret generic mysql-root-password-secret --from-file=mysql_root_password=mysql_root_password.txt
+# verify
+kubectl get secret mysql-root-password-secret
+```
+
+- If you wanna define secret in your config file, the value must be base64
+
+```sh
+# sample
+echo -n '123456' | base64
+```
+
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: mysql-root-password-secret
+  namespace: my-namespace
+type: Opaque
+data:
+  mysql_root_password: MTIzNDU2
+```
+
+Usage
+
+```yaml
+env:
+  - name: MYSQL_ROOT_PASSWORD
+    valueFrom:
+      secretKeyRef:
+        name: mysql-root-password-secret
+        key: mysql_root_password
+```
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql-deployment
+  labels:
+    app: mysql-main
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql-main
+  template:
+    metadata:
+      labels:
+        app: mysql-main
+    spec:
+      containers:
+        - name: mysql-main
+          image: mysql:8.3.0
+          ports:
+            - containerPort: 3306
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-root-password-secret
+                  key: mysql_root_password
+          resources:
+            requests:
+              memory: "1024Mi"
+              cpu: "1000m"
+            limits:
+              memory: "1024Mi"
+              cpu: "1000m"
+```
+
+## Service
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql-deployment
+  labels:
+    app: mysql-main
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql-main
+  template:
+    metadata:
+      labels:
+        app: mysql-main
+    spec:
+      containers:
+        - name: mysql-main
+          image: mysql:8.3.0
+          ports:
+            - containerPort: 3306
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-root-password-secret
+                  key: mysql_root_password
+          resources:
+            requests:
+              memory: "1024Mi"
+              cpu: "1000m"
+            limits:
+              memory: "1024Mi"
+              cpu: "1000m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-service
+spec:
+  selector:
+    app: mysql-main
+  ports:
+    - protocol: TCP
+      port: 3306
+      targetPort: 3306
+```
+
+You can define your service with seperated config file, but k8s support us to define it in the same file with your deployment config.
+Service is something like a proxy between your pod with other service in your cluster
+
+## Config Map
+
+How do we connect two services? Eg: your phpmyadmin-service with your mysql-service.
+Don't worry ConfigMap live for this reason
+
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mysql-configmap
+data:
+  mysql-database-url: mysql-service
+```
+
+Usage, same as secret, but instead of getting value from secret, just get them from configmap
+
+```yaml
+env:
+  - name: PMA_HOST
+    valueFrom:
+      configMapKeyRef:
+        name: mysql-configmap
+        key: mysql-database-url
+```
+
+**mysql-database-url** <==> **mysql-service**
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: phpmyadmin
+spec:
+  selector:
+    matchLabels:
+      app: phpmyadmin
+  template:
+    metadata:
+      labels:
+        app: phpmyadmin
+    spec:
+      containers:
+        - name: phpmyadmin
+          image: phpmyadmin:latest
+          resources:
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 80
+          env:
+            - name: PMA_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: mysql-configmap
+                  key: mysql-database-url
+            - name: PMA_USER
+              value: root
+            - name: PMA_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-root-password-secret
+                  key: mysql_root_password
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: phpmyadmin-service
+spec:
+  selector:
+    app: phpmyadmin
+  type: LoadBalancer
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+      # must be between 30,000-32,767
+      nodePort: 30000
+```
+
+## Namespaces
+
+### Default namespace
+
+![image](https://gist.github.com/assets/31009750/81b2537d-6159-42ae-a61e-27df3a89ab08)
+
+### Group resources with namespace
+
+![image](https://gist.github.com/assets/31009750/fb6392b4-8c7d-4f25-87e6-b7f7615f565f)
+
+### Resolve conflicts: many teams, same application, different services
+
+![image](https://gist.github.com/assets/31009750/7148c0d3-38d5-45c9-991c-ddc6cf6d591e)
+
+### Resource Sharing: Blue/Green Deployment
+
+![image](https://gist.github.com/assets/31009750/e3ff0e54-25f4-40d8-ab32-62398a308b08)
+
+### Access Resource Limits on Namespace
+
+You can limit:
+
+- Access
+- CPU
+- RAM
+- Storage
+
+> Resource Quota
+
+![image](https://gist.github.com/assets/31009750/5333da2b-8b3b-4791-a7bd-63d065a342dc)
+
+#### What you can't access between namespace
+
+- Config Map
+- Secret
+
+#### What you can access between namespace
+
+- Service: {service}.{namespace}
+
+#### Some components which can't be created in a namespace
+
+- Volume
+- Node
+
+```sh
+kubectl api-resources --namespaced=false
+```
+
+#### Practice
+
+```sh
+kubectl create namespace my-namespace
+kubectl get configmap -n=default
+kubectl get configmap -n=my-namespace
+kubectl apply -f mysql-configmap.yaml -n=my-namespace
+kubectl get configmap -n=my-namespace
+kubectl get all -n=my-namespace
+kubectl delete -f mysql-configmap.yaml -n=my-namespace
+kubectl delete namespace my-namespace
+```
+
+You can create a component inside a namespace with this syntax, but it is not covenient, and you can't keep track on it.
+
+```sh
+kubectl apply -f mysql-configmap.yaml -n=my-namespace
+```
+
+So it's better to determine the namespace inside config file like this.
+
+```sh
+apiVersion: v1
+kind: Secret
+metadata:
+  name: mysql-root-password-secret
+  namespace: my-namespace
+type: Opaque
+data:
+  mysql_root_password: MTIzNDU2
+```
+
+Everytime your wanna get information about your components, you must specify your namespace.
+
+```sh
+kubectl get configmap -n=my-namespace
+```
+
+There is another tool that support you to change your active namespace called "[kubectx](https://github.com/ahmetb/kubectx/)"
+
+On MAC
+
+```sh
+brew install kubectx
+```
+
+And then you will be provided this command "**kubens**"
+
+```sh
+# list all namespace
+kubens
+# change active namespace
+kubens your-target-namespace
+```
+
+## Real world service deployment with Ingress
+
+![image](https://gist.github.com/assets/31009750/d850f2fc-1334-46af-80c2-d468310ab31d)
+
+## Terminology
+
+### Ports
+
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: example-service
+spec:
+  type: NodePort
+  selector:
+    app: example-app
+  ports:
+    - port: 80
+      targetPort: 8080
+      nodePort: 30000
+```
+
+- **Port** (80): Other Pods within the cluster can reach the Service at example-service.<namespace>.svc.cluster.local:80.
+- **TargetPort** (8080): The Service routes this internal traffic to port 8080 on the selected Pods.
+- **NodePort** (30000): External traffic can access the Service by targeting http://<node-ip>:30000, which routes to port 8080 on the Pods.
