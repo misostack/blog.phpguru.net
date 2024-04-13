@@ -359,6 +359,273 @@ kubectl delete -f <span style=color:#f92672>[</span>filename<span style=color:#f
 <li>Status</li>
 </ol>
 <p><img src=https://gist.github.com/assets/31009750/8dba9d69-99e1-499c-9d4d-f36c57129a44 alt=image></p>
+<h2 id=secret>Secret</h2>
+<ul>
+<li>Create secret with command line</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>kubectl create secret generic mysql-root-password-secret --from-literal<span style=color:#f92672>=</span>mysql_root_password<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;yourpassword&#39;</span>
+
+<span style=color:#75715e># from text file</span>
+kubectl create secret generic mysql-root-password-secret --from-file<span style=color:#f92672>=</span>mysql_root_password<span style=color:#f92672>=</span>mysql_root_password.txt
+<span style=color:#75715e># verify</span>
+kubectl get secret mysql-root-password-secret
+</code></pre></div><ul>
+<li>If you wanna define secret in your config file, the value must be base64</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=color:#75715e># sample</span>
+echo -n <span style=color:#e6db74>&#39;123456&#39;</span> | base64
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=color:#f92672>apiVersion</span>: <span style=color:#ae81ff>v1</span>
+<span style=color:#f92672>kind</span>: <span style=color:#ae81ff>Secret</span>
+<span style=color:#f92672>metadata</span>:
+  <span style=color:#f92672>name</span>: <span style=color:#ae81ff>mysql-root-password-secret</span>
+  <span style=color:#f92672>namespace</span>: <span style=color:#ae81ff>my-namespace</span>
+<span style=color:#f92672>type</span>: <span style=color:#ae81ff>Opaque</span>
+<span style=color:#f92672>data</span>:
+  <span style=color:#f92672>mysql_root_password</span>: <span style=color:#ae81ff>MTIzNDU2</span>
+</code></pre></div><p>Usage</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=color:#f92672>env</span>:
+  - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>MYSQL_ROOT_PASSWORD</span>
+    <span style=color:#f92672>valueFrom</span>:
+      <span style=color:#f92672>secretKeyRef</span>:
+        <span style=color:#f92672>name</span>: <span style=color:#ae81ff>mysql-root-password-secret</span>
+        <span style=color:#f92672>key</span>: <span style=color:#ae81ff>mysql_root_password</span>
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=color:#f92672>apiVersion</span>: <span style=color:#ae81ff>apps/v1</span>
+<span style=color:#f92672>kind</span>: <span style=color:#ae81ff>Deployment</span>
+<span style=color:#f92672>metadata</span>:
+  <span style=color:#f92672>name</span>: <span style=color:#ae81ff>mysql-deployment</span>
+  <span style=color:#f92672>labels</span>:
+    <span style=color:#f92672>app</span>: <span style=color:#ae81ff>mysql-main</span>
+<span style=color:#f92672>spec</span>:
+  <span style=color:#f92672>replicas</span>: <span style=color:#ae81ff>1</span>
+  <span style=color:#f92672>selector</span>:
+    <span style=color:#f92672>matchLabels</span>:
+      <span style=color:#f92672>app</span>: <span style=color:#ae81ff>mysql-main</span>
+  <span style=color:#f92672>template</span>:
+    <span style=color:#f92672>metadata</span>:
+      <span style=color:#f92672>labels</span>:
+        <span style=color:#f92672>app</span>: <span style=color:#ae81ff>mysql-main</span>
+    <span style=color:#f92672>spec</span>:
+      <span style=color:#f92672>containers</span>:
+        - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>mysql-main</span>
+          <span style=color:#f92672>image</span>: <span style=color:#ae81ff>mysql:8.3.0</span>
+          <span style=color:#f92672>ports</span>:
+            - <span style=color:#f92672>containerPort</span>: <span style=color:#ae81ff>3306</span>
+          <span style=color:#f92672>env</span>:
+            - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>MYSQL_ROOT_PASSWORD</span>
+              <span style=color:#f92672>valueFrom</span>:
+                <span style=color:#f92672>secretKeyRef</span>:
+                  <span style=color:#f92672>name</span>: <span style=color:#ae81ff>mysql-root-password-secret</span>
+                  <span style=color:#f92672>key</span>: <span style=color:#ae81ff>mysql_root_password</span>
+          <span style=color:#f92672>resources</span>:
+            <span style=color:#f92672>requests</span>:
+              <span style=color:#f92672>memory</span>: <span style=color:#e6db74>&#34;1024Mi&#34;</span>
+              <span style=color:#f92672>cpu</span>: <span style=color:#e6db74>&#34;1000m&#34;</span>
+            <span style=color:#f92672>limits</span>:
+              <span style=color:#f92672>memory</span>: <span style=color:#e6db74>&#34;1024Mi&#34;</span>
+              <span style=color:#f92672>cpu</span>: <span style=color:#e6db74>&#34;1000m&#34;</span>
+</code></pre></div><h2 id=service>Service</h2>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=color:#f92672>apiVersion</span>: <span style=color:#ae81ff>apps/v1</span>
+<span style=color:#f92672>kind</span>: <span style=color:#ae81ff>Deployment</span>
+<span style=color:#f92672>metadata</span>:
+  <span style=color:#f92672>name</span>: <span style=color:#ae81ff>mysql-deployment</span>
+  <span style=color:#f92672>labels</span>:
+    <span style=color:#f92672>app</span>: <span style=color:#ae81ff>mysql-main</span>
+<span style=color:#f92672>spec</span>:
+  <span style=color:#f92672>replicas</span>: <span style=color:#ae81ff>1</span>
+  <span style=color:#f92672>selector</span>:
+    <span style=color:#f92672>matchLabels</span>:
+      <span style=color:#f92672>app</span>: <span style=color:#ae81ff>mysql-main</span>
+  <span style=color:#f92672>template</span>:
+    <span style=color:#f92672>metadata</span>:
+      <span style=color:#f92672>labels</span>:
+        <span style=color:#f92672>app</span>: <span style=color:#ae81ff>mysql-main</span>
+    <span style=color:#f92672>spec</span>:
+      <span style=color:#f92672>containers</span>:
+        - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>mysql-main</span>
+          <span style=color:#f92672>image</span>: <span style=color:#ae81ff>mysql:8.3.0</span>
+          <span style=color:#f92672>ports</span>:
+            - <span style=color:#f92672>containerPort</span>: <span style=color:#ae81ff>3306</span>
+          <span style=color:#f92672>env</span>:
+            - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>MYSQL_ROOT_PASSWORD</span>
+              <span style=color:#f92672>valueFrom</span>:
+                <span style=color:#f92672>secretKeyRef</span>:
+                  <span style=color:#f92672>name</span>: <span style=color:#ae81ff>mysql-root-password-secret</span>
+                  <span style=color:#f92672>key</span>: <span style=color:#ae81ff>mysql_root_password</span>
+          <span style=color:#f92672>resources</span>:
+            <span style=color:#f92672>requests</span>:
+              <span style=color:#f92672>memory</span>: <span style=color:#e6db74>&#34;1024Mi&#34;</span>
+              <span style=color:#f92672>cpu</span>: <span style=color:#e6db74>&#34;1000m&#34;</span>
+            <span style=color:#f92672>limits</span>:
+              <span style=color:#f92672>memory</span>: <span style=color:#e6db74>&#34;1024Mi&#34;</span>
+              <span style=color:#f92672>cpu</span>: <span style=color:#e6db74>&#34;1000m&#34;</span>
+---
+<span style=color:#f92672>apiVersion</span>: <span style=color:#ae81ff>v1</span>
+<span style=color:#f92672>kind</span>: <span style=color:#ae81ff>Service</span>
+<span style=color:#f92672>metadata</span>:
+  <span style=color:#f92672>name</span>: <span style=color:#ae81ff>mysql-service</span>
+<span style=color:#f92672>spec</span>:
+  <span style=color:#f92672>selector</span>:
+    <span style=color:#f92672>app</span>: <span style=color:#ae81ff>mysql-main</span>
+  <span style=color:#f92672>ports</span>:
+    - <span style=color:#f92672>protocol</span>: <span style=color:#ae81ff>TCP</span>
+      <span style=color:#f92672>port</span>: <span style=color:#ae81ff>3306</span>
+      <span style=color:#f92672>targetPort</span>: <span style=color:#ae81ff>3306</span>
+</code></pre></div><p>You can define your service with seperated config file, but k8s support us to define it in the same file with your deployment config.
+Service is something like a proxy between your pod with other service in your cluster</p>
+<h2 id=config-map>Config Map</h2>
+<p>How do we connect two services? Eg: your phpmyadmin-service with your mysql-service.
+Don&rsquo;t worry ConfigMap live for this reason</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=color:#f92672>apiVersion</span>: <span style=color:#ae81ff>v1</span>
+<span style=color:#f92672>kind</span>: <span style=color:#ae81ff>ConfigMap</span>
+<span style=color:#f92672>metadata</span>:
+  <span style=color:#f92672>name</span>: <span style=color:#ae81ff>mysql-configmap</span>
+<span style=color:#f92672>data</span>:
+  <span style=color:#f92672>mysql-database-url</span>: <span style=color:#ae81ff>mysql-service</span>
+</code></pre></div><p>Usage, same as secret, but instead of getting value from secret, just get them from configmap</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=color:#f92672>env</span>:
+  - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>PMA_HOST</span>
+    <span style=color:#f92672>valueFrom</span>:
+      <span style=color:#f92672>configMapKeyRef</span>:
+        <span style=color:#f92672>name</span>: <span style=color:#ae81ff>mysql-configmap</span>
+        <span style=color:#f92672>key</span>: <span style=color:#ae81ff>mysql-database-url</span>
+</code></pre></div><p><strong>mysql-database-url</strong> &lt;==> <strong>mysql-service</strong></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=color:#f92672>apiVersion</span>: <span style=color:#ae81ff>apps/v1</span>
+<span style=color:#f92672>kind</span>: <span style=color:#ae81ff>Deployment</span>
+<span style=color:#f92672>metadata</span>:
+  <span style=color:#f92672>name</span>: <span style=color:#ae81ff>phpmyadmin</span>
+<span style=color:#f92672>spec</span>:
+  <span style=color:#f92672>selector</span>:
+    <span style=color:#f92672>matchLabels</span>:
+      <span style=color:#f92672>app</span>: <span style=color:#ae81ff>phpmyadmin</span>
+  <span style=color:#f92672>template</span>:
+    <span style=color:#f92672>metadata</span>:
+      <span style=color:#f92672>labels</span>:
+        <span style=color:#f92672>app</span>: <span style=color:#ae81ff>phpmyadmin</span>
+    <span style=color:#f92672>spec</span>:
+      <span style=color:#f92672>containers</span>:
+        - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>phpmyadmin</span>
+          <span style=color:#f92672>image</span>: <span style=color:#ae81ff>phpmyadmin:latest</span>
+          <span style=color:#f92672>resources</span>:
+            <span style=color:#f92672>limits</span>:
+              <span style=color:#f92672>memory</span>: <span style=color:#e6db74>&#34;512Mi&#34;</span>
+              <span style=color:#f92672>cpu</span>: <span style=color:#e6db74>&#34;500m&#34;</span>
+          <span style=color:#f92672>ports</span>:
+            - <span style=color:#f92672>containerPort</span>: <span style=color:#ae81ff>80</span>
+          <span style=color:#f92672>env</span>:
+            - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>PMA_HOST</span>
+              <span style=color:#f92672>valueFrom</span>:
+                <span style=color:#f92672>configMapKeyRef</span>:
+                  <span style=color:#f92672>name</span>: <span style=color:#ae81ff>mysql-configmap</span>
+                  <span style=color:#f92672>key</span>: <span style=color:#ae81ff>mysql-database-url</span>
+            - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>PMA_USER</span>
+              <span style=color:#f92672>value</span>: <span style=color:#ae81ff>root</span>
+            - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>PMA_PASSWORD</span>
+              <span style=color:#f92672>valueFrom</span>:
+                <span style=color:#f92672>secretKeyRef</span>:
+                  <span style=color:#f92672>name</span>: <span style=color:#ae81ff>mysql-root-password-secret</span>
+                  <span style=color:#f92672>key</span>: <span style=color:#ae81ff>mysql_root_password</span>
+---
+<span style=color:#f92672>apiVersion</span>: <span style=color:#ae81ff>v1</span>
+<span style=color:#f92672>kind</span>: <span style=color:#ae81ff>Service</span>
+<span style=color:#f92672>metadata</span>:
+  <span style=color:#f92672>name</span>: <span style=color:#ae81ff>phpmyadmin-service</span>
+<span style=color:#f92672>spec</span>:
+  <span style=color:#f92672>selector</span>:
+    <span style=color:#f92672>app</span>: <span style=color:#ae81ff>phpmyadmin</span>
+  <span style=color:#f92672>type</span>: <span style=color:#ae81ff>LoadBalancer</span>
+  <span style=color:#f92672>ports</span>:
+    - <span style=color:#f92672>protocol</span>: <span style=color:#ae81ff>TCP</span>
+      <span style=color:#f92672>port</span>: <span style=color:#ae81ff>80</span>
+      <span style=color:#f92672>targetPort</span>: <span style=color:#ae81ff>80</span>
+      <span style=color:#75715e># must be between 30,000-32,767</span>
+      <span style=color:#f92672>nodePort</span>: <span style=color:#ae81ff>30000</span>
+</code></pre></div><h2 id=namespaces>Namespaces</h2>
+<h3 id=default-namespace>Default namespace</h3>
+<p><img src=https://gist.github.com/assets/31009750/81b2537d-6159-42ae-a61e-27df3a89ab08 alt=image></p>
+<h3 id=group-resources-with-namespace>Group resources with namespace</h3>
+<p><img src=https://gist.github.com/assets/31009750/fb6392b4-8c7d-4f25-87e6-b7f7615f565f alt=image></p>
+<h3 id=resolve-conflicts-many-teams-same-application-different-services>Resolve conflicts: many teams, same application, different services</h3>
+<p><img src=https://gist.github.com/assets/31009750/7148c0d3-38d5-45c9-991c-ddc6cf6d591e alt=image></p>
+<h3 id=resource-sharing-bluegreen-deployment>Resource Sharing: Blue/Green Deployment</h3>
+<p><img src=https://gist.github.com/assets/31009750/e3ff0e54-25f4-40d8-ab32-62398a308b08 alt=image></p>
+<h3 id=access-resource-limits-on-namespace>Access Resource Limits on Namespace</h3>
+<p>You can limit:</p>
+<ul>
+<li>Access</li>
+<li>CPU</li>
+<li>RAM</li>
+<li>Storage</li>
+</ul>
+<blockquote>
+<p>Resource Quota</p>
+</blockquote>
+<p><img src=https://gist.github.com/assets/31009750/5333da2b-8b3b-4791-a7bd-63d065a342dc alt=image></p>
+<h4 id=what-you-cant-access-between-namespace>What you can&rsquo;t access between namespace</h4>
+<ul>
+<li>Config Map</li>
+<li>Secret</li>
+</ul>
+<h4 id=what-you-can-access-between-namespace>What you can access between namespace</h4>
+<ul>
+<li>Service: {service}.{namespace}</li>
+</ul>
+<h4 id=some-components-which-cant-be-created-in-a-namespace>Some components which can&rsquo;t be created in a namespace</h4>
+<ul>
+<li>Volume</li>
+<li>Node</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>kubectl api-resources --namespaced<span style=color:#f92672>=</span>false
+</code></pre></div><h4 id=practice>Practice</h4>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>kubectl create namespace my-namespace
+kubectl get configmap -n<span style=color:#f92672>=</span>default
+kubectl get configmap -n<span style=color:#f92672>=</span>my-namespace
+kubectl apply -f mysql-configmap.yaml -n<span style=color:#f92672>=</span>my-namespace
+kubectl get configmap -n<span style=color:#f92672>=</span>my-namespace
+kubectl get all -n<span style=color:#f92672>=</span>my-namespace
+kubectl delete -f mysql-configmap.yaml -n<span style=color:#f92672>=</span>my-namespace
+kubectl delete namespace my-namespace
+</code></pre></div><p>You can create a component inside a namespace with this syntax, but it is not covenient, and you can&rsquo;t keep track on it.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>kubectl apply -f mysql-configmap.yaml -n<span style=color:#f92672>=</span>my-namespace
+</code></pre></div><p>So it&rsquo;s better to determine the namespace inside config file like this.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>apiVersion: v1
+kind: Secret
+metadata:
+  name: mysql-root-password-secret
+  namespace: my-namespace
+type: Opaque
+data:
+  mysql_root_password: MTIzNDU2
+</code></pre></div><p>Everytime your wanna get information about your components, you must specify your namespace.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>kubectl get configmap -n<span style=color:#f92672>=</span>my-namespace
+</code></pre></div><p>There is another tool that support you to change your active namespace called &ldquo;<a href=https://github.com/ahmetb/kubectx/>kubectx</a>&rdquo;</p>
+<p>On MAC</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>brew install kubectx
+</code></pre></div><p>And then you will be provided this command &ldquo;<strong>kubens</strong>&rdquo;</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=color:#75715e># list all namespace</span>
+kubens
+<span style=color:#75715e># change active namespace</span>
+kubens your-target-namespace
+</code></pre></div><h2 id=real-world-service-deployment-with-ingress>Real world service deployment with Ingress</h2>
+<p><img src=https://gist.github.com/assets/31009750/d850f2fc-1334-46af-80c2-d468310ab31d alt=image></p>
+<h2 id=terminology>Terminology</h2>
+<h3 id=ports>Ports</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=color:#f92672>apiVersion</span>: <span style=color:#ae81ff>v1</span>
+<span style=color:#f92672>kind</span>: <span style=color:#ae81ff>Service</span>
+<span style=color:#f92672>metadata</span>:
+  <span style=color:#f92672>name</span>: <span style=color:#ae81ff>example-service</span>
+<span style=color:#f92672>spec</span>:
+  <span style=color:#f92672>type</span>: <span style=color:#ae81ff>NodePort</span>
+  <span style=color:#f92672>selector</span>:
+    <span style=color:#f92672>app</span>: <span style=color:#ae81ff>example-app</span>
+  <span style=color:#f92672>ports</span>:
+    - <span style=color:#f92672>port</span>: <span style=color:#ae81ff>80</span>
+      <span style=color:#f92672>targetPort</span>: <span style=color:#ae81ff>8080</span>
+      <span style=color:#f92672>nodePort</span>: <span style=color:#ae81ff>30000</span>
+</code></pre></div><ul>
+<li><strong>Port</strong> (80): Other Pods within the cluster can reach the Service at example-service..svc.cluster.local:80.</li>
+<li><strong>TargetPort</strong> (8080): The Service routes this internal traffic to port 8080 on the selected Pods.</li>
+<li><strong>NodePort</strong> (30000): External traffic can access the Service by targeting http://:30000, which routes to port 8080 on the Pods.</li>
+</ul>
 <div class="m-1 p-1">
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://blog.phpguru.net/categories/devops>devops</a>
 </div>
