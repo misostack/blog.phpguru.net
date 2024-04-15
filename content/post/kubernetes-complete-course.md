@@ -142,6 +142,12 @@ brew unlink minikube
 brew link minikube
 ```
 
+This sample is for window
+
+```sh
+winget install minikube
+```
+
 ```sh
 minikube start
 ```
