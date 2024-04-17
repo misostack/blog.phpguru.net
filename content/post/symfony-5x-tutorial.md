@@ -1076,3 +1076,159 @@ No worries, install the following plugins, will solve your problems
 #### 2.[Symfony Support](https://plugins.jetbrains.com/plugin/7219-symfony-support)
 
 - This plugin provides auto-completion for anything in Symfony you can imagine. It analyses the DI container code.
+
+## Testing
+
+Getting started
+
+```sh
+composer require --dev symfony/test-pack
+php bin/phpunit
+```
+
+> Types of tests
+
+1. Unit Tests
+
+> These tests ensure that individual units of source code (e.g. a single class) behave as intended.
+
+2. Integration Tests
+
+> These tests test a combination of classes and commonly interact with Symfony's service container
+
+3. Application Tests
+
+> Application tests test the behavior of a complete application. They make HTTP requests (both real and simulated ones) and test that the response is as expected.
+
+### Unit Test
+
+Let's create a CalculatorService
+
+```php
+
+namespace App\Service;
+
+class CalculatorService
+{
+    public function sum(int ...$args)
+    {
+        $total = 0;
+        foreach ($args as $number) {
+            $total += $number;
+        }
+        return $total;
+    }
+}
+```
+
+Here are some test cases we might consider:
+
+- Testing the sum of positive numbers
+- Testing the sum of negative numbers
+- Testing the sum with a mixture of positive and negative numbers
+- Testing the sum with no arguments (should return 0)
+
+Notes, there are 2 important methods you should remember
+
+- **setUp** : where you init your data
+- **tearDown** : where you clean up your data
+
+```php
+
+namespace App\Tests\Service;
+
+use App\Service\CalculatorService;
+use PHPUnit\Framework\TestCase;
+
+class CalculatorServiceTest extends TestCase
+{
+    private $calculator;
+
+    protected function setUp(): void
+    {
+        $this->calculator = new CalculatorService();
+    }
+
+    public function testSumPositiveNumbers()
+    {
+        $result = $this->calculator->sum(1, 2, 3, 4, 5);
+        $this->assertEquals(15, $result);
+    }
+
+    public function testSumNegativeNumbers()
+    {
+        $result = $this->calculator->sum(-1, -2, -3, -4, -5);
+        $this->assertEquals(-15, $result);
+    }
+
+    public function testSumMixedNumbers()
+    {
+        $result = $this->calculator->sum(-1, 2, -3, 4, -5, 6);
+        $this->assertEquals(3, $result);
+    }
+
+    public function testSumWithNoArguments()
+    {
+        $result = $this->calculator->sum();
+        $this->assertEquals(0, $result);
+    }
+
+    protected function tearDown(): void
+    {
+        $this->calculator = null;
+    }
+}
+
+```
+
+Let's run
+
+```sh
+.\vendor\bin\phpunit tests\Service\CalculatorServiceTest.php
+```
+
+Let's add some reports
+**From PHPUnit 9.x**
+
+```xml
+<!-- phpunit.xml.dist -->
+    <logging>
+        <log type="coverage-html" target="var/log/test-coverage" lowUpperBound="35" highLowerBound="70"/>
+        <log type="coverage-clover" target="var/log/clover.xml"/>
+        <log type="junit" target="var/log/junit.xml" logIncompleteSkipped="false"/>
+    </logging>
+```
+
+**For Lower Version**
+
+```xml
+    <coverage processUncoveredFiles="true">
+        <include>
+            <directory suffix=".php">src</directory>
+        </include>
+        <report>
+            <html outputDirectory="var/log/test-coverage"/>
+        </report>
+    </coverage>
+```
+
+Run Test
+
+```sh
+php -dxdebug.mode=coverage ./vendor/bin/phpunit --coverage-html var/log/test-coverage --coverage-clover var/log/clover.xml --log-junit var/log/junit.xml
+```
+
+Adjust composer.json scripts
+
+```json
+{
+  "scripts": {
+    "test": "SET XDEBUG_MODE=coverage && php ./vendor/bin/phpunit",
+    "test-coverage": "SET XDEBUG_MODE=coverage && php ./vendor/bin/phpunit --coverage-html var/log/test-coverage"
+  }
+}
+```
+
+## References
+
+- [PHPUnit Doc](https://docs.phpunit.de/en/9.6/test-doubles.html)
