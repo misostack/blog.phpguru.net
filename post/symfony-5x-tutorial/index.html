@@ -1053,6 +1053,136 @@ php bin<span style=color:#ae81ff>\c</span>onsole make:form
 <ul>
 <li>This plugin provides auto-completion for anything in Symfony you can imagine. It analyses the DI container code.</li>
 </ul>
+<h2 id=testing>Testing</h2>
+<p>Getting started</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>composer require --dev symfony/test-pack
+php bin/phpunit
+</code></pre></div><blockquote>
+<p>Types of tests</p>
+</blockquote>
+<ol>
+<li>Unit Tests</li>
+</ol>
+<blockquote>
+<p>These tests ensure that individual units of source code (e.g. a single class) behave as intended.</p>
+</blockquote>
+<ol start=2>
+<li>Integration Tests</li>
+</ol>
+<blockquote>
+<p>These tests test a combination of classes and commonly interact with Symfony&rsquo;s service container</p>
+</blockquote>
+<ol start=3>
+<li>Application Tests</li>
+</ol>
+<blockquote>
+<p>Application tests test the behavior of a complete application. They make HTTP requests (both real and simulated ones) and test that the response is as expected.</p>
+</blockquote>
+<h3 id=unit-test>Unit Test</h3>
+<p>Let&rsquo;s create a CalculatorService</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-php data-lang=php>
+<span style=color:#66d9ef>namespace</span> <span style=color:#a6e22e>App\Service</span>;
+
+<span style=color:#66d9ef>class</span> <span style=color:#a6e22e>CalculatorService</span>
+{
+    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>sum</span>(<span style=color:#a6e22e>int</span> <span style=color:#f92672>...</span>$args)
+    {
+        $total <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+        <span style=color:#66d9ef>foreach</span> ($args <span style=color:#66d9ef>as</span> $number) {
+            $total <span style=color:#f92672>+=</span> $number;
+        }
+        <span style=color:#66d9ef>return</span> $total;
+    }
+}
+</code></pre></div><p>Here are some test cases we might consider:</p>
+<ul>
+<li>Testing the sum of positive numbers</li>
+<li>Testing the sum of negative numbers</li>
+<li>Testing the sum with a mixture of positive and negative numbers</li>
+<li>Testing the sum with no arguments (should return 0)</li>
+</ul>
+<p>Notes, there are 2 important methods you should remember</p>
+<ul>
+<li><strong>setUp</strong> : where you init your data</li>
+<li><strong>tearDown</strong> : where you clean up your data</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-php data-lang=php>
+<span style=color:#66d9ef>namespace</span> <span style=color:#a6e22e>App\Tests\Service</span>;
+
+<span style=color:#66d9ef>use</span> <span style=color:#a6e22e>App\Service\CalculatorService</span>;
+<span style=color:#66d9ef>use</span> <span style=color:#a6e22e>PHPUnit\Framework\TestCase</span>;
+
+<span style=color:#66d9ef>class</span> <span style=color:#a6e22e>CalculatorServiceTest</span> <span style=color:#66d9ef>extends</span> <span style=color:#a6e22e>TestCase</span>
+{
+    <span style=color:#66d9ef>private</span> $calculator;
+
+    <span style=color:#66d9ef>protected</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>setUp</span>()<span style=color:#f92672>:</span> <span style=color:#a6e22e>void</span>
+    {
+        $this<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>calculator</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>CalculatorService</span>();
+    }
+
+    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>testSumPositiveNumbers</span>()
+    {
+        $result <span style=color:#f92672>=</span> $this<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>calculator</span><span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>sum</span>(<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>3</span>, <span style=color:#ae81ff>4</span>, <span style=color:#ae81ff>5</span>);
+        $this<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>assertEquals</span>(<span style=color:#ae81ff>15</span>, $result);
+    }
+
+    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>testSumNegativeNumbers</span>()
+    {
+        $result <span style=color:#f92672>=</span> $this<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>calculator</span><span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>sum</span>(<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>2</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>3</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>4</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>5</span>);
+        $this<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>assertEquals</span>(<span style=color:#f92672>-</span><span style=color:#ae81ff>15</span>, $result);
+    }
+
+    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>testSumMixedNumbers</span>()
+    {
+        $result <span style=color:#f92672>=</span> $this<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>calculator</span><span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>sum</span>(<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>2</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>3</span>, <span style=color:#ae81ff>4</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>5</span>, <span style=color:#ae81ff>6</span>);
+        $this<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>assertEquals</span>(<span style=color:#ae81ff>3</span>, $result);
+    }
+
+    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>testSumWithNoArguments</span>()
+    {
+        $result <span style=color:#f92672>=</span> $this<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>calculator</span><span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>sum</span>();
+        $this<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>assertEquals</span>(<span style=color:#ae81ff>0</span>, $result);
+    }
+
+    <span style=color:#66d9ef>protected</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>tearDown</span>()<span style=color:#f92672>:</span> <span style=color:#a6e22e>void</span>
+    {
+        $this<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>calculator</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>null</span>;
+    }
+}
+
+</code></pre></div><p>Let&rsquo;s run</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>.<span style=color:#ae81ff>\v</span>endor<span style=color:#ae81ff>\b</span>in<span style=color:#ae81ff>\p</span>hpunit tests<span style=color:#ae81ff>\S</span>ervice<span style=color:#ae81ff>\C</span>alculatorServiceTest.php
+</code></pre></div><p>Let&rsquo;s add some reports
+<strong>From PHPUnit 9.x</strong></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-xml data-lang=xml><span style=color:#75715e>&lt;!-- phpunit.xml.dist --&gt;</span>
+    <span style=color:#f92672>&lt;logging&gt;</span>
+        <span style=color:#f92672>&lt;log</span> <span style=color:#a6e22e>type=</span><span style=color:#e6db74>&#34;coverage-html&#34;</span> <span style=color:#a6e22e>target=</span><span style=color:#e6db74>&#34;var/log/test-coverage&#34;</span> <span style=color:#a6e22e>lowUpperBound=</span><span style=color:#e6db74>&#34;35&#34;</span> <span style=color:#a6e22e>highLowerBound=</span><span style=color:#e6db74>&#34;70&#34;</span><span style=color:#f92672>/&gt;</span>
+        <span style=color:#f92672>&lt;log</span> <span style=color:#a6e22e>type=</span><span style=color:#e6db74>&#34;coverage-clover&#34;</span> <span style=color:#a6e22e>target=</span><span style=color:#e6db74>&#34;var/log/clover.xml&#34;</span><span style=color:#f92672>/&gt;</span>
+        <span style=color:#f92672>&lt;log</span> <span style=color:#a6e22e>type=</span><span style=color:#e6db74>&#34;junit&#34;</span> <span style=color:#a6e22e>target=</span><span style=color:#e6db74>&#34;var/log/junit.xml&#34;</span> <span style=color:#a6e22e>logIncompleteSkipped=</span><span style=color:#e6db74>&#34;false&#34;</span><span style=color:#f92672>/&gt;</span>
+    <span style=color:#f92672>&lt;/logging&gt;</span>
+</code></pre></div><p><strong>For Lower Version</strong></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-xml data-lang=xml>    <span style=color:#f92672>&lt;coverage</span> <span style=color:#a6e22e>processUncoveredFiles=</span><span style=color:#e6db74>&#34;true&#34;</span><span style=color:#f92672>&gt;</span>
+        <span style=color:#f92672>&lt;include&gt;</span>
+            <span style=color:#f92672>&lt;directory</span> <span style=color:#a6e22e>suffix=</span><span style=color:#e6db74>&#34;.php&#34;</span><span style=color:#f92672>&gt;</span>src<span style=color:#f92672>&lt;/directory&gt;</span>
+        <span style=color:#f92672>&lt;/include&gt;</span>
+        <span style=color:#f92672>&lt;report&gt;</span>
+            <span style=color:#f92672>&lt;html</span> <span style=color:#a6e22e>outputDirectory=</span><span style=color:#e6db74>&#34;var/log/test-coverage&#34;</span><span style=color:#f92672>/&gt;</span>
+        <span style=color:#f92672>&lt;/report&gt;</span>
+    <span style=color:#f92672>&lt;/coverage&gt;</span>
+</code></pre></div><p>Run Test</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>php -dxdebug.mode<span style=color:#f92672>=</span>coverage ./vendor/bin/phpunit --coverage-html var/log/test-coverage --coverage-clover var/log/clover.xml --log-junit var/log/junit.xml
+</code></pre></div><p>Adjust composer.json scripts</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json>{
+  <span style=color:#f92672>&#34;scripts&#34;</span>: {
+    <span style=color:#f92672>&#34;test&#34;</span>: <span style=color:#e6db74>&#34;SET XDEBUG_MODE=coverage &amp;&amp; php ./vendor/bin/phpunit&#34;</span>,
+    <span style=color:#f92672>&#34;test-coverage&#34;</span>: <span style=color:#e6db74>&#34;SET XDEBUG_MODE=coverage &amp;&amp; php ./vendor/bin/phpunit --coverage-html var/log/test-coverage&#34;</span>
+  }
+}
+</code></pre></div><h2 id=references>References</h2>
+<ul>
+<li><a href=https://docs.phpunit.de/en/9.6/test-doubles.html>PHPUnit Doc</a></li>
+</ul>
 <div class="m-1 p-1">
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://blog.phpguru.net/categories/cheatsheet>cheatsheet</a>
 </div>
