@@ -709,6 +709,51 @@ kubectl apply -f example-ingress.yaml
 <img src=https://gist.github.com/assets/31009750/e4a05537-dd3e-4ac8-b207-bbcd87b3fcda alt=image></p>
 <p>But in v3, it had been removed!!!</p>
 <p><img src=https://gist.github.com/assets/31009750/866b583e-16c4-4d49-95c0-57c71050df7d alt=image></p>
+<h3 id=k8s-volumes>K8s Volumes</h3>
+<p>Due to the needs of data persistent, k8s provide several components to persist your data</p>
+<p><strong>Storage requirements</strong></p>
+<ul>
+<li>Doesn&rsquo;t depend on the pod lifecycle</li>
+<li>Must be available on all nodes</li>
+<li>Must survive even if cluster crashes</li>
+</ul>
+<p><img src=https://gist.github.com/assets/31009750/b2a94841-abf6-47e2-8286-5de2fcabb1fa alt=image></p>
+<h4 id=persistent-volume>Persistent Volume</h4>
+<ul>
+<li>The primary component in k8s system to persist your data</li>
+<li>Cluster Resource</li>
+<li>It must be backed by physical storage in local(inside cluster) or in cloud service(network file system).</li>
+<li>Usually created by admin</li>
+<li>For Database must use cloud</li>
+</ul>
+<p><img src=https://gist.github.com/assets/31009750/2c4c941d-7cc0-4ab1-8fb6-b2335c1ece29 alt=image></p>
+<p>NFS Storage</p>
+<p><img src=https://gist.github.com/assets/31009750/ff0965f8-ef79-4e94-953f-63cea2031064 alt=image></p>
+<p>Local Storage</p>
+<p><img src=https://gist.github.com/assets/31009750/299efd58-f881-4d5c-9624-87d6adf052d6 alt=image></p>
+<p><img src=https://gist.github.com/assets/31009750/813dc8b7-72e5-4def-8112-03fb01ee99cf alt=image></p>
+<h4 id=persistent-volume-claim>Persistent Volume Claim</h4>
+<p><img src=https://gist.github.com/assets/31009750/7e71d5f9-940a-4676-ac6c-9511051e9f9a alt=image></p>
+<ul>
+<li>Abstraction of Persistent Volume</li>
+<li>Same namespace with Pod</li>
+<li>Easy to use for users(developers)</li>
+</ul>
+<p><img src=https://gist.github.com/assets/31009750/9d7dd414-cbfe-45d6-84c0-19ecf23824e7 alt=image></p>
+<p>Flow</p>
+<p><img src=https://gist.github.com/assets/31009750/b72f8f6b-0e25-4345-b9dc-0266bdc1b588 alt=image></p>
+<p>Example</p>
+<p><img src=https://gist.github.com/assets/31009750/46b1be5e-12d3-4b78-b5d9-c645dc90795f alt=image></p>
+<h4 id=storage-class>Storage Class</h4>
+<p>Issue: Imagination, you have a big system, a lot of developers claim for a volume with PVC, so as admin you have to create enough PV to fullfil the needs, it can be extremely time consuming and will get messy very fast.</p>
+<p><img src=https://gist.github.com/assets/31009750/44b45b35-c767-4953-b9fa-1d3ef41472ee alt=image></p>
+<p>Fortunately, k8s provide us a solution for it, named &ldquo;Storage Class&rdquo;. What does it do?</p>
+<ul>
+<li>Provisions persistent volumes dynamically when PVC claim it</li>
+<li>It must be backed by a provisioner: internal(k8s)/external(another services)</li>
+</ul>
+<p>Example</p>
+<p><img src=https://gist.github.com/assets/31009750/362fcf18-78b0-4398-82f0-08f90979d9a5 alt=image></p>
 <h2 id=terminology>Terminology</h2>
 <h3 id=ports>Ports</h3>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=color:#f92672>apiVersion</span>: <span style=color:#ae81ff>v1</span>
