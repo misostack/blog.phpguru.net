@@ -834,6 +834,71 @@ But in v3, it had been removed!!!
 
 ![image](https://gist.github.com/assets/31009750/866b583e-16c4-4d49-95c0-57c71050df7d)
 
+### K8s Volumes
+
+Due to the needs of data persistent, k8s provide several components to persist your data
+
+**Storage requirements**
+
+- Doesn't depend on the pod lifecycle
+- Must be available on all nodes
+- Must survive even if cluster crashes
+
+![image](https://gist.github.com/assets/31009750/b2a94841-abf6-47e2-8286-5de2fcabb1fa)
+
+#### Persistent Volume
+
+- The primary component in k8s system to persist your data
+- Cluster Resource
+- It must be backed by physical storage in local(inside cluster) or in cloud service(network file system).
+- Usually created by admin
+- For Database must use cloud
+
+![image](https://gist.github.com/assets/31009750/2c4c941d-7cc0-4ab1-8fb6-b2335c1ece29)
+
+NFS Storage
+
+![image](https://gist.github.com/assets/31009750/ff0965f8-ef79-4e94-953f-63cea2031064)
+
+Local Storage
+
+![image](https://gist.github.com/assets/31009750/299efd58-f881-4d5c-9624-87d6adf052d6)
+
+![image](https://gist.github.com/assets/31009750/813dc8b7-72e5-4def-8112-03fb01ee99cf)
+
+#### Persistent Volume Claim
+
+![image](https://gist.github.com/assets/31009750/7e71d5f9-940a-4676-ac6c-9511051e9f9a)
+
+- Abstraction of Persistent Volume
+- Same namespace with Pod
+- Easy to use for users(developers)
+
+![image](https://gist.github.com/assets/31009750/9d7dd414-cbfe-45d6-84c0-19ecf23824e7)
+
+Flow
+
+![image](https://gist.github.com/assets/31009750/b72f8f6b-0e25-4345-b9dc-0266bdc1b588)
+
+Example
+
+![image](https://gist.github.com/assets/31009750/46b1be5e-12d3-4b78-b5d9-c645dc90795f)
+
+#### Storage Class
+
+Issue: Imagination, you have a big system, a lot of developers claim for a volume with PVC, so as admin you have to create enough PV to fullfil the needs, it can be extremely time consuming and will get messy very fast.
+
+![image](https://gist.github.com/assets/31009750/44b45b35-c767-4953-b9fa-1d3ef41472ee)
+
+Fortunately, k8s provide us a solution for it, named "Storage Class". What does it do?
+
+- Provisions persistent volumes dynamically when PVC claim it
+- It must be backed by a provisioner: internal(k8s)/external(another services)
+
+Example
+
+![image](https://gist.github.com/assets/31009750/362fcf18-78b0-4398-82f0-08f90979d9a5)
+
 ## Terminology
 
 ### Ports
