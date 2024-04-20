@@ -11,7 +11,18 @@
 <link rel=stylesheet href=https://blog.phpguru.net/themes/2022/public/page.css>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-44831C2LM4"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-44831C2LM4')</script>
-<script type=application/ld+json>{"@context":"https://schema.org/","@type":"CreativeWorkSeries","name":"Laravel Tutorial","aggregateRating":{"@type":"AggregateRating","ratingValue":"4.8","bestRating":"5","ratingCount":"100"}}</script>
+<title>K8s Labs 001 Building a Kubernetes Cluster With Kubeadm | This lab will allow you to practice the process of building a new Kubernetes cluster. You will be given a set of Linux servers, and you will have the opportunity to turn these servers into a functioning Kubernetes cluster. This will help you build the skills necessary to create your own Kubernetes clusters in the real world. | Useful PHP Tricks, Laravel Tips, Tricks and Best Practices</title>
+<meta name=robots content="all">
+<meta name=keywords content="Kubernetes Complete Course">
+<meta name=description content="This lab will allow you to practice the process of building a new Kubernetes cluster. You will be given a set of Linux servers, and you will have the opportunity to turn these servers into a functioning Kubernetes cluster. This will help you build the skills necessary to create your own Kubernetes clusters in the real world.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://gist.github.com/assets/31009750/843c3d75-01bd-429c-8a3e-e83fba3c1b54">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="750">
+<meta property="og:image:height" content="300">
+<meta property="article:publisher" content="https://www.facebook.com/nextjsvietnam">
+<meta property="article:published_time" content="2024-04-20T12:08:31+07:00">
+<meta property="article:modified_time" content="2024-04-20T12:08:31+07:00">
 <link rel=apple-touch-icon sizes=57x57 href=/apple-icon-57x57.png>
 <link rel=apple-touch-icon sizes=60x60 href=/apple-icon-60x60.png>
 <link rel=apple-touch-icon sizes=72x72 href=/apple-icon-72x72.png>
@@ -88,29 +99,55 @@
 </div>
 </nav>
 <main>
-<section class="container section hero-section">
-<h1 class=hero-section-heading>
-Laravel Tutorial
-</h1>
-<div style=text-align:left class=page-content>
+<section class="container section">
+<div class="page-content max-w-2xl mx-auto">
+<img src=https://gist.github.com/assets/31009750/843c3d75-01bd-429c-8a3e-e83fba3c1b54 class=img-responsive alt="K8s Labs 001 Building a Kubernetes Cluster With Kubeadm">
+<h1>K8s Labs 001 Building a Kubernetes Cluster With Kubeadm</h1>
+<p><strong>Post Date</strong> : 2024-04-20T12:08:31+07:00</p>
+<p><strong>Modified Date</strong> : 2024-04-20T12:08:31+07:00</p>
+<p>
+<strong>Category:</strong>
+<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://blog.phpguru.net/categories/devops>devops</a>
+</p>
+<p>
+<strong>Tags:</strong>
+<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=/tags/k8s>k8s</a>
+<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=/tags/kubenertes>, kubenertes</a>
+</p>
+<blockquote>
+<p>Forehead</p>
+</blockquote>
+<p>This lab will allow you to practice the process of building a new Kubernetes cluster. You will be given a set of Linux servers, and you will have the opportunity to turn these servers into a functioning Kubernetes cluster. This will help you build the skills necessary to create your own Kubernetes clusters in the real world.</p>
+<p><img src=https://gist.github.com/assets/31009750/4e817cd5-9c0a-4e43-9348-485b36643d9f alt=image></p>
+<h2 id=steps>Steps</h2>
+<p><img src=https://gist.github.com/assets/31009750/72a1fc16-7531-4ef1-a4c3-a0c3828acaa6 alt=image></p>
+<h2 id=details>Details</h2>
+<h2 id=terminologies>Terminologies</h2>
+<ol>
+<li>containerd</li>
+</ol>
+<p><img src=https://gist.github.com/assets/31009750/0989cf90-774c-4056-835d-e76fee6ff6a7 alt=image></p>
+<h2 id=reference>Reference</h2>
+<ul>
+<li><a href=https://learn.acloud.guru/course/82b39fac-b9f7-43d1-8f52-6a89efe5202f/learn/0959d19e-1348-407e-963a-2d9ab44b85bc/00514594-a3ea-404b-9abe-ca8520671e4b/lab/00514594-a3ea-404b-9abe-ca8520671e4b>A CloudGuru Building a Kubernetes 1.27 Cluster with kubeadm Lab</a></li>
+<li><a href=https://www.padok.fr/en/blog/minikube-kubeadm-kind-k3s>Minikube vs kubeadm vs kind vs k3s</a></li>
+</ul>
+<div class="m-1 p-1">
+<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://blog.phpguru.net/categories/devops>devops</a>
+</div>
 </div>
 </section>
-<section class="container section grid md:grid-cols-4 gap-8">
-<div class="card card-post-default">
-<a href=https://blog.phpguru.net/post/laravel-tutorial-001-main-concepts/><img class=card-post-image src=https://gist.github.com/assets/31009750/84d13faa-dd94-43f9-8aef-d4d13b4f64b1 alt="Laravel Tutorial 001 Main Concepts"></a>
-<div class="px-6 py-4">
-<h2 class=card-post-title><a href=https://blog.phpguru.net/post/laravel-tutorial-001-main-concepts/>Laravel Tutorial 001 Main Concepts</a></h2>
-<div>
-<a class="category-tag category-laravel-tutorial" href=https://blog.phpguru.net/categories/laravel-tutorial>laravel-tutorial</a>
-</div>
-<div>
-<span class=card-post-date>01 Mar, 2024</span>
-</div>
-<div class=card-post-description>In this article, we will go through all of main concepts in laravel.</div>
+<section class="container section">
+<div class="max-w-2xl mx-auto">
+<div class="font-heading text-2xl font-semibold">You Might Also Like</div>
+<div class="mt-8 grid gap-8">
+<ul class=sidebar-links>
+<li><a href=/post/kubernetes-hands-on-labs/>Kubernetes Hands on Labs</a></li>
+<li><a href=/post/kubernetes-complete-course/>Kubernetes Complete Course</a></li>
+<li><a href=/post/docker-cheatsheet/>Docker Cheatsheet for PHP Developers</a></li>
+</ul>
 </div>
 </div>
-</section>
-<section class=container>
 </section>
 </main>
 <footer class=footer>
