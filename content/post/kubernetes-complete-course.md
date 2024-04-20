@@ -899,6 +899,105 @@ Example
 
 ![image](https://gist.github.com/assets/31009750/362fcf18-78b0-4398-82f0-08f90979d9a5)
 
+### K8s StatefulSet
+
+#### Stateless application
+
+A stateless process or application, however, does not retain information about the user's previous interactions. There is no stored knowledge of or reference to past transactions. Each transaction is made as if from scratch for the first time
+
+![image](https://gist.github.com/assets/31009750/e8b3b7df-61da-4212-9321-69820e668262)
+
+![image](https://gist.github.com/assets/31009750/6cf09454-b02b-49c6-a0bf-4d4e8f645a47)
+
+#### Stateful Application
+
+Stateful applications save data to persistent disk storage for use by the server, by clients, and by other applications. An example of a stateful application is a database or key-value store to which data is saved and retrieved by other applications.
+
+#### What deployment does?
+
+![image](https://gist.github.com/assets/31009750/eeaee8a3-540e-4486-9d77-2789d0007ab1)
+
+#### Statefulset
+
+![image](https://gist.github.com/assets/31009750/496a59cc-cf8f-4b98-853d-4e3659cc7120)
+
+But why you need to pod identity is not interchangable.
+
+To scale your database, we will use master slave mechanism
+
+![image](https://gist.github.com/assets/31009750/f611a84f-b0e8-4e9e-a8f0-309380ecfdf7)
+
+![image](https://gist.github.com/assets/31009750/66c82493-9502-4e06-b2b3-332dd64c7b94)
+
+![image](https://gist.github.com/assets/31009750/31f681e7-6661-412a-bbbd-5169476c4b50)
+
+So you have to specify which pod is master. So that pod must not be interchangable.
+
+![image](https://gist.github.com/assets/31009750/98e51358-f9cc-407f-8dc0-e7a96cfb6671)
+
+Also, you need to use remote storage, because local storage is usually tied to a specific node
+
+![image](https://gist.github.com/assets/31009750/420e410f-12b1-41b9-b1de-fce7a1899fd2)
+
+#### Conclusion
+
+![image](https://gist.github.com/assets/31009750/898bdae1-6e8b-4fa9-bfdc-ca12cc6f1e2c)
+
+![image](https://gist.github.com/assets/31009750/a1ca4b84-6211-4fb0-9af4-d9edb5550e97)
+![image](https://gist.github.com/assets/31009750/1a34fb6c-be6c-4da2-a899-83c76ea9ce89)
+![image](https://gist.github.com/assets/31009750/4366d05e-7359-4f4f-9892-e9f5d56525ad)
+![image](https://gist.github.com/assets/31009750/1bd7b9bf-0b6d-4d40-91a3-f9d3d3577b3e)
+
+### K8s Service
+
+![image](https://gist.github.com/assets/31009750/958ae790-0a76-4d8b-acc0-85752ad6af7f)
+
+![image](https://gist.github.com/assets/31009750/7ad1abe5-a4c8-495c-b0dd-2ca492a95cd0)
+
+#### ClusterIP Services
+
+![image](https://gist.github.com/assets/31009750/b707016f-62af-42bc-aeec-8eb9a907802f)
+
+Service will select all pods that has the matched selector attribute
+
+![image](https://gist.github.com/assets/31009750/5604649e-2c36-45d7-9e36-54ab844b4802)
+![image](https://gist.github.com/assets/31009750/e61df315-5ec2-4868-9fc3-638a8c2ead5f)
+
+Note: the service port can be arbitrary, but the targerPort must match the port that the container is listening at.
+
+If you have multiple ports in your services, you must name it
+
+![image](https://gist.github.com/assets/31009750/8a98c702-49e5-44d3-883e-c9f7b9856ff1)
+
+#### Headless Services
+
+![image](https://gist.github.com/assets/31009750/19d2222e-a194-4db1-938a-a061048b8adf)
+
+![image](https://gist.github.com/assets/31009750/234d8351-207a-4c6f-bb48-f834b8ac7d77)
+
+![image](https://gist.github.com/assets/31009750/bb05e2b3-f4d5-4502-8e6a-4c53090abf25)
+
+#### NodePort Services
+
+> For testing purpose
+
+![image](https://gist.github.com/assets/31009750/ab9168b6-a95f-4d37-b6cc-b8e6ea655b1f)
+
+> For external traffic, but it is secured!!!
+
+![image](https://gist.github.com/assets/31009750/0f99175f-40f4-494f-9329-b31481ff07be)
+
+#### LoadBalancer Services
+
+> For Production
+
+![image](https://gist.github.com/assets/31009750/c544e9e8-4d02-4789-9ff9-ac853c65db0d)
+![image](https://gist.github.com/assets/31009750/f3216957-b937-480a-93a5-4fe777054ff9)
+
+#### Summary Configuration
+
+![image](https://gist.github.com/assets/31009750/5b0217c3-009c-476e-8766-abcc913f07a6)
+
 ## Terminology
 
 ### Ports
