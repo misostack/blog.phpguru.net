@@ -122,7 +122,32 @@
 <h2 id=steps>Steps</h2>
 <p><img src=https://gist.github.com/assets/31009750/72a1fc16-7531-4ef1-a4c3-a0c3828acaa6 alt=image></p>
 <h2 id=details>Details</h2>
-<h2 id=terminologies>Terminologies</h2>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>cloud_user@k8s-control:~$ cat <span style=color:#e6db74>&lt;&lt;EOF | sudo tee /etc/modules-load.d/containerd.conf
+</span><span style=color:#e6db74>&gt; overlay
+</span><span style=color:#e6db74>&gt; br_netfilter
+</span><span style=color:#e6db74>&gt; EOF</span>
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>cloud_user@k8s-control:~$ sudo modprobe overlay
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>cloud_user@k8s-control:~$ cat <span style=color:#e6db74>&lt;&lt;EOF | sudo tee /etc/sysctl.d/99-kubernetes-cri.conf
+</span><span style=color:#e6db74>&gt; net.bridge.bridge-nf-call-iptables = 1
+</span><span style=color:#e6db74>&gt; net.ipv4.ip_forward = 1
+</span><span style=color:#e6db74>&gt; net.bridge.bridge-nf-call-ip6tables = 1
+</span><span style=color:#e6db74>&gt; EOF</span>
+net.bridge.bridge-nf-call-iptables <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>
+net.ipv4.ip_forward <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>
+net.bridge.bridge-nf-call-ip6tables <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>
+</code></pre></div><p><strong>apply system setting immediately</strong></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>sudo sysctl --system
+</code></pre></div><p><strong>install containerd</strong></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>sudo apt-get update <span style=color:#f92672>&amp;&amp;</span> sudo apt-get install -y containerd
+</code></pre></div><p><strong>create container d config</strong></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>sudo mkdir -p /etc/containerd
+sudo containerd config default | sudo tee /etc/containerd/config.toml
+sudo systemctl restart containerd
+sudo systemctl status containerd
+</code></pre></div><p><img src=https://gist.github.com/assets/31009750/a5eb2c1c-a609-419d-be64-8c640557898f alt=image></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>sudo swapoff -a
+sudo apt-get update <span style=color:#f92672>&amp;&amp;</span> sudo apt-get install -y apt-transport-https curl
+</code></pre></div><h2 id=terminologies>Terminologies</h2>
 <ol>
 <li>containerd</li>
 </ol>
@@ -132,6 +157,19 @@
 <li><a href=https://learn.acloud.guru/course/82b39fac-b9f7-43d1-8f52-6a89efe5202f/learn/0959d19e-1348-407e-963a-2d9ab44b85bc/00514594-a3ea-404b-9abe-ca8520671e4b/lab/00514594-a3ea-404b-9abe-ca8520671e4b>A CloudGuru Building a Kubernetes 1.27 Cluster with kubeadm Lab</a></li>
 <li><a href=https://www.padok.fr/en/blog/minikube-kubeadm-kind-k3s>Minikube vs kubeadm vs kind vs k3s</a></li>
 </ul>
+<h3 id=linux-commands>Linux Commands</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>ls &gt; file <span style=color:#75715e># write stdin to file</span>
+ls | tee file <span style=color:#75715e># write stdin to file and stdout(screen)</span>
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>cloud_user@k8s-control:~$ cat <span style=color:#e6db74>&lt;&lt;EOF
+</span><span style=color:#e6db74>&gt; Hello
+</span><span style=color:#e6db74>&gt; World!
+</span><span style=color:#e6db74>&gt; echo $HOME
+</span><span style=color:#e6db74>&gt; EOF</span>
+Hello
+World!
+echo /home/cloud_user
+cloud_user@k8s-control:~$
+</code></pre></div>
 <div class="m-1 p-1">
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://blog.phpguru.net/categories/devops>devops</a>
 </div>
@@ -142,6 +180,7 @@
 <div class="font-heading text-2xl font-semibold">You Might Also Like</div>
 <div class="mt-8 grid gap-8">
 <ul class=sidebar-links>
+<li><a href=/post/k8s-labs-002-deploy-static-web-application/>K8s Labs 002 Deploy Static Web Application</a></li>
 <li><a href=/post/kubernetes-hands-on-labs/>Kubernetes Hands on Labs</a></li>
 <li><a href=/post/kubernetes-complete-course/>Kubernetes Complete Course</a></li>
 <li><a href=/post/docker-cheatsheet/>Docker Cheatsheet for PHP Developers</a></li>
@@ -171,6 +210,7 @@ PRODUCTION MODE
 <div class="footer-section-navigation-menu md:basis-1/4">
 <h4 class=footer-heading>Devops</h4>
 <ul class=footer-section-navigation-menu-links>
+<li><a href=https://blog.phpguru.net/post/k8s-labs-002-deploy-static-web-application/>K8s Labs 002 Deploy Static Web Application</a></li>
 <li><a href=https://blog.phpguru.net/post/k8s-labs-001-building-a-kubernetes-cluster-with-kubeadm/>K8s Labs 001 Building a Kubernetes Cluster With Kubeadm</a></li>
 <li><a href=https://blog.phpguru.net/post/kubernetes-hands-on-labs/>Kubernetes Hands on Labs</a></li>
 <li><a href=https://blog.phpguru.net/post/kubernetes-complete-course/>Kubernetes Complete Course</a></li>
@@ -197,7 +237,7 @@ Copyright @ PHPGuru 2024
 Powered by <a class="font-bold text-primary" href=https://gohugo.io/>Go Hugo</a> - Made
 with love from <a class="font-bold text-primary" href=https://blog.phpguru.net>PHPGuru</a> -
 Build
-Version 2024-04-20 12:08:31 +0700 +0700
+Version 2024-04-21 16:23:59 +0700 +0700
 </div>
 </div>
 </footer>
