@@ -57,7 +57,7 @@
       </div>
       
       <div data-content="newstrending">
-        {{ $lifestyleCategory := index .Site.Taxonomies.categories "php-tutorial" }}
+        {{ $lifestyleCategory := index .Site.Taxonomies.categories "devops" }}
         {{ range first 5 (sort $lifestyleCategory.Pages "Date" "desc") }}
           <article class="card-post card-post-feature">
             <a href="{{ .Permalink }}">
@@ -72,7 +72,7 @@
     </section>
     <section class="container section clearfix">
       <div class="content md:w-2/3 md:float-left">
-        {{ $frameworkCategory := index .Site.Taxonomies.categories "devops" }}
+        {{ $frameworkCategory := index .Site.Taxonomies.categories "php-tutorial" }}
         {{ range first 12 (sort $frameworkCategory.Pages "Date" "desc") }}
           <article class="card card-post md:flex mb-4">
             <a class="card-post-thumbnail-image" href="{{ .Permalink }}">
