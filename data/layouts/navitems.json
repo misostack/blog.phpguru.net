@@ -27,6 +27,11 @@
         "childrens": []
       },
       {
+        "name": "Symfony Tutorial",
+        "url": "categories/symfony-tutorial",
+        "childrens": []
+      },      
+      {
         "name": "Wordpress Tutorial",
         "url": "categories/wordpress-tutorial",
         "childrens": []

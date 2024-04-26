@@ -1,6 +1,7 @@
 {
   "php-tutorial": "PHP Tutorial",
   "laravel-tutorial": "Laravel Tutorial",
+  "symfony-tutorial": "Symfony Tutorial",
   "wordpress-tutorial": "Wordpress Tutorial",
   "cheatsheet": "All in one cheatsheets for php developers",
   "devops": "Devops cheatsheet",

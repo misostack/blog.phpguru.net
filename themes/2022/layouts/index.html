@@ -57,8 +57,19 @@
       </div>
       
       <div data-content="newstrending">
-        {{ $lifestyleCategory := index .Site.Taxonomies.categories "devops" }}
-        {{ range first 5 (sort $lifestyleCategory.Pages "Date" "desc") }}
+        {{ $newstrending1 := index .Site.Taxonomies.categories "symfony-tutorial" }}
+        {{ range first 4 (sort $newstrending1.Pages "Date" "desc") }}
+          <article class="card-post card-post-feature">
+            <a href="{{ .Permalink }}">
+              <img src="{{.Params.Image | absURL}}" alt="{{.Title}}" />
+            </a>
+            <h3 class="card-post-title">
+              <a href="{{ .Permalink }}">{{.Title}}</a>
+            </h3>
+          </article>
+        {{ end }}        
+        {{ $newstrending2 := index .Site.Taxonomies.categories "devops" }}
+        {{ range first 4 (sort $newstrending2.Pages "Date" "desc") }}
           <article class="card-post card-post-feature">
             <a href="{{ .Permalink }}">
               <img src="{{.Params.Image | absURL}}" alt="{{.Title}}" />

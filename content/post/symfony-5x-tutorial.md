@@ -6,7 +6,7 @@ description: "Symfony 5x Tutorial"
 keywords: ["Symfony 5x Tutorial"]
 categories: ["cheatsheet"]
 tags: ["symfony5x"]
-image: "/common/no-image.png"
+image: "https://gist.github.com/assets/31009750/3131302c-6a0f-429e-9250-91d97f9051e9"
 ---
 
 **Glossary**
