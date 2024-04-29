@@ -235,7 +235,7 @@
 </ul>
 <p>Services are created and managed by the Symfony service container and are instantiated only when they are needed. If a service is configured as lazy, it won’t be instantiated until it&rsquo;s actually used, saving resources.</p>
 <h2 id=learn-symfonys-service-by-examples>Learn Symfony&rsquo;s service by examples</h2>
-<h3 id=fetch-data-from-an-external-api-and-save-data-on-your-server>Fetch data from an external API and save data on your server</h3>
+<h3 id=example-01-fetch-data-from-an-external-api-and-save-data-on-your-server>Example 01: Fetch data from an external API and save data on your server</h3>
 <p>Eg: <a href=https://jsonplaceholder.typicode.com/posts>https://jsonplaceholder.typicode.com/posts</a></p>
 <p><strong>Requirements</strong></p>
 <ul>
@@ -253,6 +253,7 @@
 <li><input checked disabled type=checkbox> Install httpClient</li>
 <li><input checked disabled type=checkbox> Register service dependencies</li>
 <li><input checked disabled type=checkbox> Create JsonPlaceholderService</li>
+<li><input checked disabled type=checkbox> Create DataSaverService</li>
 </ul>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>composer require symfony/http-client
 </code></pre></div><blockquote>
@@ -429,6 +430,106 @@
         $this<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>assertNotEmpty</span>($posts);
         <span style=color:#75715e>// Add more specific assertions here, such as checking the structure of the posts
 </span><span style=color:#75715e></span>    }
+}
+
+</code></pre></div><blockquote>
+<p>DataSaverService</p>
+</blockquote>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=color:#75715e># services.yaml</span>
+<span style=color:#f92672>params</span>:
+  <span style=color:#f92672>data_saver.directory</span>: <span style=color:#e6db74>&#34;%kernel.project_dir%/data&#34;</span>
+<span style=color:#f92672>services</span>:
+  <span style=color:#f92672>Symfony\Component\Filesystem\Filesystem</span>: <span style=color:#ae81ff>~</span>
+
+  <span style=color:#f92672>App\Service\DataSaverService</span>:
+    <span style=color:#f92672>arguments</span>:
+      <span style=color:#f92672>$filesystem</span>: <span style=color:#e6db74>&#39;@Symfony\Component\Filesystem\Filesystem&#39;</span>
+      <span style=color:#f92672>$targetDirectory</span>: <span style=color:#e6db74>&#34;%data_saver.directory%&#34;</span>
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-php data-lang=php><span style=color:#75715e>// service\DataSaverService.php
+</span><span style=color:#75715e></span>
+<span style=color:#66d9ef>namespace</span> <span style=color:#a6e22e>App\Service</span>;
+
+<span style=color:#66d9ef>use</span> <span style=color:#a6e22e>Symfony\Component\Filesystem\Filesystem</span>;
+<span style=color:#66d9ef>use</span> <span style=color:#a6e22e>Symfony\Component\Filesystem\Exception\IOExceptionInterface</span>;
+
+<span style=color:#66d9ef>class</span> <span style=color:#a6e22e>DataSaverService</span>
+{
+    <span style=color:#66d9ef>private</span> $filesystem;
+    <span style=color:#66d9ef>private</span> $targetDirectory;
+
+    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>function</span> __construct(<span style=color:#a6e22e>Filesystem</span> $filesystem, <span style=color:#a6e22e>string</span> $targetDirectory)
+    {
+        $this<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>filesystem</span> <span style=color:#f92672>=</span> $filesystem;
+        $this<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>targetDirectory</span> <span style=color:#f92672>=</span> $targetDirectory;
+    }
+
+    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>saveDataToFile</span>(<span style=color:#66d9ef>array</span> $data, <span style=color:#a6e22e>string</span> $filename)<span style=color:#f92672>:</span> <span style=color:#a6e22e>void</span>
+    {
+        $jsonData <span style=color:#f92672>=</span> <span style=color:#a6e22e>json_encode</span>($data);
+
+        <span style=color:#66d9ef>try</span> {
+            <span style=color:#75715e>// Ensure the target directory exists
+</span><span style=color:#75715e></span>            $this<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>filesystem</span><span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>mkdir</span>($this<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>targetDirectory</span>);
+
+            <span style=color:#75715e>// Save the file
+</span><span style=color:#75715e></span>            $this<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>filesystem</span><span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>dumpFile</span>($this<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>targetDirectory</span> <span style=color:#f92672>.</span> <span style=color:#e6db74>&#39;/&#39;</span> <span style=color:#f92672>.</span> $filename, $jsonData);
+        } <span style=color:#66d9ef>catch</span> (<span style=color:#a6e22e>IOExceptionInterface</span> $exception) {
+            <span style=color:#66d9ef>throw</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>\Exception</span>(<span style=color:#e6db74>&#34;An error occurred while writing to the file at &#34;</span> <span style=color:#f92672>.</span> $exception<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>getPath</span>());
+        }
+    }
+}
+
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-php data-lang=php><span style=color:#75715e>// tests\service\DataSaverServiceTest.php
+</span><span style=color:#75715e></span>
+<span style=color:#66d9ef>namespace</span> <span style=color:#a6e22e>App\Tests\Service</span>;
+
+<span style=color:#66d9ef>use</span> <span style=color:#a6e22e>App\Service\DataSaverService</span>;
+<span style=color:#66d9ef>use</span> <span style=color:#a6e22e>PHPUnit\Framework\TestCase</span>;
+<span style=color:#66d9ef>use</span> <span style=color:#a6e22e>Symfony\Component\Filesystem\Filesystem</span>;
+
+<span style=color:#66d9ef>class</span> <span style=color:#a6e22e>DataSaverServiceTest</span> <span style=color:#66d9ef>extends</span> <span style=color:#a6e22e>TestCase</span>
+{
+    <span style=color:#66d9ef>private</span> $targetDirectory;
+
+    <span style=color:#66d9ef>protected</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>setUp</span>()<span style=color:#f92672>:</span> <span style=color:#a6e22e>void</span>
+    {
+        <span style=color:#66d9ef>parent</span><span style=color:#f92672>::</span><span style=color:#a6e22e>setUp</span>();
+        $this<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>targetDirectory</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>sys_get_temp_dir</span>(); <span style=color:#75715e>// Use system temp directory for testing
+</span><span style=color:#75715e></span>        $this<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>service</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>DataSaverService</span>(<span style=color:#66d9ef>new</span> <span style=color:#a6e22e>Filesystem</span>(), $this<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>targetDirectory</span>);
+    }
+
+    <span style=color:#66d9ef>protected</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>tearDown</span>()<span style=color:#f92672>:</span> <span style=color:#a6e22e>void</span>
+    {
+        <span style=color:#75715e>// Cleanup: Remove any files created during tests
+</span><span style=color:#75715e></span>        $filesystem <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>Filesystem</span>();
+        $filesystem<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>remove</span>($this<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>targetDirectory</span> <span style=color:#f92672>.</span> <span style=color:#e6db74>&#39;/test_posts.json&#39;</span>);
+    }
+
+    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>testSaveDataToFile</span>()
+    {
+        $data <span style=color:#f92672>=</span> [
+            [<span style=color:#e6db74>&#39;id&#39;</span> <span style=color:#f92672>=&gt;</span> <span style=color:#ae81ff>1</span>, <span style=color:#e6db74>&#39;title&#39;</span> <span style=color:#f92672>=&gt;</span> <span style=color:#e6db74>&#39;Test Post&#39;</span>, <span style=color:#e6db74>&#39;content&#39;</span> <span style=color:#f92672>=&gt;</span> <span style=color:#e6db74>&#39;This is a test post&#39;</span>]
+        ];
+        $filename <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;test_posts.json&#39;</span>;
+        $this<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>service</span><span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>saveDataToFile</span>($data, $filename);
+
+        $expectedPath <span style=color:#f92672>=</span> $this<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>targetDirectory</span> <span style=color:#f92672>.</span> <span style=color:#e6db74>&#39;/&#39;</span> <span style=color:#f92672>.</span> $filename;
+        $this<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>assertFileExists</span>($expectedPath);
+        $content <span style=color:#f92672>=</span> <span style=color:#a6e22e>file_get_contents</span>($expectedPath);
+        $this<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>assertEquals</span>(<span style=color:#a6e22e>json_encode</span>($data), $content);
+    }
+
+    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>testWriteFailure</span>()
+    {
+        $filesystemMock <span style=color:#f92672>=</span> $this<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>createMock</span>(<span style=color:#a6e22e>Filesystem</span><span style=color:#f92672>::</span><span style=color:#a6e22e>class</span>);
+        $filesystemMock<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>method</span>(<span style=color:#e6db74>&#39;dumpFile&#39;</span>)
+            <span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>will</span>($this<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>throwException</span>(<span style=color:#66d9ef>new</span> <span style=color:#a6e22e>\Exception</span>(<span style=color:#e6db74>&#34;Failed to write file&#34;</span>)));
+
+        $service <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>DataSaverService</span>($filesystemMock, $this<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>targetDirectory</span>);
+        $this<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>expectException</span>(<span style=color:#a6e22e>\Exception</span><span style=color:#f92672>::</span><span style=color:#a6e22e>class</span>);
+        $service<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>saveDataToFile</span>([], <span style=color:#e6db74>&#39;test_fail.json&#39;</span>);
+    }
+
 }
 
 </code></pre></div>
