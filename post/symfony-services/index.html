@@ -532,6 +532,74 @@
 
 }
 
+</code></pre></div><blockquote>
+<p>Create command and config crontab</p>
+</blockquote>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-php data-lang=php><span style=color:#75715e>// src/Command/FetchJsonPlaceholderPostsCommand.php
+</span><span style=color:#75715e></span>
+<span style=color:#66d9ef>namespace</span> <span style=color:#a6e22e>App\Command</span>;
+
+<span style=color:#66d9ef>use</span> <span style=color:#a6e22e>App\Service\JsonPlaceholderService</span>;
+<span style=color:#66d9ef>use</span> <span style=color:#a6e22e>App\Service\DataSaverService</span>;
+<span style=color:#66d9ef>use</span> <span style=color:#a6e22e>Symfony\Component\Console\Command\Command</span>;
+<span style=color:#66d9ef>use</span> <span style=color:#a6e22e>Symfony\Component\Console\Input\InputInterface</span>;
+<span style=color:#66d9ef>use</span> <span style=color:#a6e22e>Symfony\Component\Console\Output\OutputInterface</span>;
+
+<span style=color:#66d9ef>class</span> <span style=color:#a6e22e>FetchJsonPlaceholderPostsCommand</span> <span style=color:#66d9ef>extends</span> <span style=color:#a6e22e>Command</span>
+{
+    <span style=color:#66d9ef>protected</span> <span style=color:#66d9ef>static</span> $defaultName <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;app:fetch-json-placeholder-posts&#39;</span>;
+
+    <span style=color:#66d9ef>private</span> $jsonPlaceholderService;
+    <span style=color:#66d9ef>private</span> $dataSaverService;
+
+    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>function</span> __construct(<span style=color:#a6e22e>JsonPlaceholderService</span> $jsonPlaceholderService, <span style=color:#a6e22e>DataSaverService</span> $dataSaverService)
+    {
+        <span style=color:#66d9ef>parent</span><span style=color:#f92672>::</span><span style=color:#a6e22e>__construct</span>();
+        $this<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>jsonPlaceholderService</span> <span style=color:#f92672>=</span> $jsonPlaceholderService;
+        $this<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>dataSaverService</span> <span style=color:#f92672>=</span> $dataSaverService;
+    }
+
+    <span style=color:#66d9ef>protected</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>configure</span>()
+    {
+        $this
+            <span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>setDescription</span>(<span style=color:#e6db74>&#39;Fetches data from JsonPlaceholder and saves it locally.&#39;</span>)
+            <span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>setHelp</span>(<span style=color:#e6db74>&#39;This command allows you to fetch posts from JsonPlaceholder API and save them to a local file&#39;</span>);
+    }
+
+    <span style=color:#e6db74>/**
+</span><span style=color:#e6db74>     * @throws \Exception
+</span><span style=color:#e6db74>     */</span>
+    <span style=color:#66d9ef>protected</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>execute</span>(<span style=color:#a6e22e>InputInterface</span> $input, <span style=color:#a6e22e>OutputInterface</span> $output)
+    {
+        $output<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>writeln</span>(<span style=color:#e6db74>&#39;Starting data fetch...&#39;</span>);
+        $data <span style=color:#f92672>=</span> $this<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>jsonPlaceholderService</span><span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>getPosts</span>(); <span style=color:#75715e>// Assuming fetchData returns an array of data
+</span><span style=color:#75715e></span>
+        $output<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>writeln</span>(<span style=color:#e6db74>&#39;Saving data...&#39;</span>);
+        <span style=color:#66d9ef>try</span> {
+            $this<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>dataSaverService</span><span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>saveDataToFile</span>($data, <span style=color:#e6db74>&#39;posts.json&#39;</span>);
+        } <span style=color:#66d9ef>catch</span> (<span style=color:#a6e22e>\Exception</span> $e) {
+            <span style=color:#66d9ef>throw</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>\Exception</span>($e<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>getMessage</span>());
+        }
+
+        $output<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>writeln</span>(<span style=color:#e6db74>&#39;Data fetched and saved successfully.&#39;</span>);
+
+        <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>Command</span><span style=color:#f92672>::</span><span style=color:#a6e22e>SUCCESS</span>;
+    }
+}
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=color:#f92672>services</span>:
+  <span style=color:#75715e># commands</span>
+  <span style=color:#f92672>App\Command\FetchJsonPlaceholderPostsCommand</span>:
+    <span style=color:#f92672>arguments</span>:
+      <span style=color:#f92672>$jsonPlaceholderService</span>: <span style=color:#e6db74>&#39;@App\Service\JsonPlaceholderService&#39;</span>
+      <span style=color:#f92672>$dataSaverService</span>: <span style=color:#e6db74>&#39;@App\Service\DataSaverService&#39;</span>
+    <span style=color:#f92672>tags</span>:
+      - { <span style=color:#f92672>name</span>: <span style=color:#e6db74>&#34;console.command&#34;</span> }
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>php bin/console list app
+php bin/console app:fetch-json-placeholder-posts
+php bin/console help app:fetch-json-placeholder-posts <span style=color:#75715e># run</span>
+</code></pre></div><p>Create crontab</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>crontab -e
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=color:#ae81ff>0</span> <span style=color:#ae81ff>0</span> * * * /usr/bin/php /path/to/your/symfony/app/bin/console app:fetch-json-placeholder-posts
 </code></pre></div>
 <div class="m-1 p-1">
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://blog.phpguru.net/categories/symfony-tutorial>symfony-tutorial</a>
