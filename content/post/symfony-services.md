@@ -162,7 +162,7 @@ Services are created and managed by the Symfony service container and are instan
 
 ## Learn Symfony's service by examples
 
-### Fetch data from an external API and save data on your server
+### Example 01: Fetch data from an external API and save data on your server
 
 Eg: https://jsonplaceholder.typicode.com/posts
 
@@ -182,6 +182,7 @@ Eg: https://jsonplaceholder.typicode.com/posts
 - [x] Install httpClient
 - [x] Register service dependencies
 - [x] Create JsonPlaceholderService
+- [x] Create DataSaverService
 
 ```sh
 composer require symfony/http-client
@@ -371,6 +372,114 @@ class JsonPlaceholderServiceIntegrationTest extends WebTestCase
         $this->assertNotEmpty($posts);
         // Add more specific assertions here, such as checking the structure of the posts
     }
+}
+
+```
+
+> DataSaverService
+
+```yaml
+# services.yaml
+params:
+  data_saver.directory: "%kernel.project_dir%/data"
+services:
+  Symfony\Component\Filesystem\Filesystem: ~
+
+  App\Service\DataSaverService:
+    arguments:
+      $filesystem: '@Symfony\Component\Filesystem\Filesystem'
+      $targetDirectory: "%data_saver.directory%"
+```
+
+```php
+// service\DataSaverService.php
+
+namespace App\Service;
+
+use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\Filesystem\Exception\IOExceptionInterface;
+
+class DataSaverService
+{
+    private $filesystem;
+    private $targetDirectory;
+
+    public function __construct(Filesystem $filesystem, string $targetDirectory)
+    {
+        $this->filesystem = $filesystem;
+        $this->targetDirectory = $targetDirectory;
+    }
+
+    public function saveDataToFile(array $data, string $filename): void
+    {
+        $jsonData = json_encode($data);
+
+        try {
+            // Ensure the target directory exists
+            $this->filesystem->mkdir($this->targetDirectory);
+
+            // Save the file
+            $this->filesystem->dumpFile($this->targetDirectory . '/' . $filename, $jsonData);
+        } catch (IOExceptionInterface $exception) {
+            throw new \Exception("An error occurred while writing to the file at " . $exception->getPath());
+        }
+    }
+}
+
+```
+
+```php
+// tests\service\DataSaverServiceTest.php
+
+namespace App\Tests\Service;
+
+use App\Service\DataSaverService;
+use PHPUnit\Framework\TestCase;
+use Symfony\Component\Filesystem\Filesystem;
+
+class DataSaverServiceTest extends TestCase
+{
+    private $targetDirectory;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->targetDirectory = sys_get_temp_dir(); // Use system temp directory for testing
+        $this->service = new DataSaverService(new Filesystem(), $this->targetDirectory);
+    }
+
+    protected function tearDown(): void
+    {
+        // Cleanup: Remove any files created during tests
+        $filesystem = new Filesystem();
+        $filesystem->remove($this->targetDirectory . '/test_posts.json');
+    }
+
+    public function testSaveDataToFile()
+    {
+        $data = [
+            ['id' => 1, 'title' => 'Test Post', 'content' => 'This is a test post']
+        ];
+        $filename = 'test_posts.json';
+        $this->service->saveDataToFile($data, $filename);
+
+        $expectedPath = $this->targetDirectory . '/' . $filename;
+        $this->assertFileExists($expectedPath);
+        $content = file_get_contents($expectedPath);
+        $this->assertEquals(json_encode($data), $content);
+    }
+
+    public function testWriteFailure()
+    {
+        $filesystemMock = $this->createMock(Filesystem::class);
+        $filesystemMock->method('dumpFile')
+            ->will($this->throwException(new \Exception("Failed to write file")));
+
+        $service = new DataSaverService($filesystemMock, $this->targetDirectory);
+        $this->expectException(\Exception::class);
+        $service->saveDataToFile([], 'test_fail.json');
+    }
+
 }
 
 ```
