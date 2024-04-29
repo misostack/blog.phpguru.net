@@ -9,6 +9,10 @@ tags: ["symfony"]
 image: "https://gist.github.com/assets/31009750/3131302c-6a0f-429e-9250-91d97f9051e9"
 ---
 
+## References
+
+- [All in one Symfony Tutorial Source Code](https://github.com/phpguru-net/symfony54-webapp)
+
 ## Understanding Services and Service Container in Symfony
 
 Services in Symfony are central to the framework's architecture and revolve around the service container, which is responsible for managing service objects. Services are PHP objects that perform specific tasks, such as sending emails, handling database interactions, or processing form data.
