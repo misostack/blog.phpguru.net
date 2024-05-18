@@ -196,6 +196,45 @@ source ~/.zshrc  <span style=color:#75715e># or source ~/.bash_profile</span>
 </span><span style=color:#75715e></span>
 	<span style=color:#75715e>// composites
 </span><span style=color:#75715e></span>}
+</code></pre></div><blockquote>
+<p>Compound interest application</p>
+</blockquote>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#75715e>// A = P*(1+r/n)^n*t
+</span><span style=color:#75715e>// A : compound interest
+</span><span style=color:#75715e>// P : investment value
+</span><span style=color:#75715e>// r : interest rate
+</span><span style=color:#75715e>// n : compound (continuously, monthly,quarterly,annually)
+</span><span style=color:#75715e>// t : investment times in years
+</span><span style=color:#75715e></span><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>calculateCompoundInterest</span>() {
+	<span style=color:#66d9ef>var</span> <span style=color:#a6e22e>investmentValueP</span> <span style=color:#66d9ef>int64</span>
+	<span style=color:#66d9ef>var</span> <span style=color:#a6e22e>interestRateR</span> <span style=color:#66d9ef>float64</span>
+	<span style=color:#66d9ef>var</span> <span style=color:#a6e22e>compound</span> <span style=color:#66d9ef>int8</span>
+	<span style=color:#66d9ef>var</span> <span style=color:#a6e22e>compoundN</span> <span style=color:#66d9ef>int8</span>
+	<span style=color:#66d9ef>var</span> <span style=color:#a6e22e>investmentTimesT</span> <span style=color:#66d9ef>int8</span>
+	<span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Print</span>(<span style=color:#e6db74>&#34;Please enter your investment value: &#34;</span>)
+	<span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Scan</span>(<span style=color:#f92672>&amp;</span><span style=color:#a6e22e>investmentValueP</span>)
+	<span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Print</span>(<span style=color:#e6db74>&#34;Please enter your interest rate: &#34;</span>)
+	<span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Scan</span>(<span style=color:#f92672>&amp;</span><span style=color:#a6e22e>interestRateR</span>)
+	<span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Print</span>(<span style=color:#e6db74>&#34;Please enter your compound terms \n1. Monthly\n2. Quarterly\n3.Annually\nYour selection is : &#34;</span>)
+	<span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Scan</span>(<span style=color:#f92672>&amp;</span><span style=color:#a6e22e>compound</span>)
+	<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>MONTHLY</span> = <span style=color:#ae81ff>1</span>
+	<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>QUARTERLY</span> = <span style=color:#ae81ff>2</span>
+	<span style=color:#66d9ef>switch</span> <span style=color:#a6e22e>compound</span> {
+	<span style=color:#75715e>// monthly
+</span><span style=color:#75715e></span>	<span style=color:#66d9ef>case</span> <span style=color:#a6e22e>MONTHLY</span>:
+		<span style=color:#a6e22e>compoundN</span> = <span style=color:#ae81ff>12</span>
+	<span style=color:#66d9ef>case</span> <span style=color:#a6e22e>QUARTERLY</span>:
+		<span style=color:#a6e22e>compoundN</span> = <span style=color:#ae81ff>4</span>
+	<span style=color:#66d9ef>default</span>: <span style=color:#75715e>// yearly or other type
+</span><span style=color:#75715e></span>		<span style=color:#a6e22e>compoundN</span> = <span style=color:#ae81ff>1</span>
+	}
+	<span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Print</span>(<span style=color:#e6db74>&#34;How many years are you planning to invest: &#34;</span>)
+	<span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Scan</span>(<span style=color:#f92672>&amp;</span><span style=color:#a6e22e>investmentTimesT</span>)
+	<span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Println</span>(<span style=color:#e6db74>&#34;Please wait while system is calculating ...&#34;</span>)
+	<span style=color:#66d9ef>var</span> <span style=color:#a6e22e>compoundInterestA</span> = float64(<span style=color:#a6e22e>investmentValueP</span>) <span style=color:#f92672>*</span> <span style=color:#a6e22e>math</span>.<span style=color:#a6e22e>Pow</span>((<span style=color:#ae81ff>1</span><span style=color:#f92672>+</span><span style=color:#a6e22e>interestRateR</span><span style=color:#f92672>/</span><span style=color:#ae81ff>100</span><span style=color:#f92672>/</span>float64(<span style=color:#a6e22e>compoundN</span>)), float64(<span style=color:#a6e22e>compoundN</span><span style=color:#f92672>*</span><span style=color:#a6e22e>investmentTimesT</span>))
+	<span style=color:#66d9ef>var</span> <span style=color:#a6e22e>interestValueI</span> = <span style=color:#a6e22e>compoundInterestA</span> <span style=color:#f92672>-</span> float64(<span style=color:#a6e22e>investmentValueP</span>)
+	<span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Printf</span>(<span style=color:#e6db74>&#34;After %v %v of investing.\nYour principle amount go from %v to %v.\nYour interest value is %v&#34;</span>, <span style=color:#a6e22e>investmentTimesT</span>, <span style=color:#a6e22e>compoundN</span>, <span style=color:#a6e22e>investmentValueP</span>, <span style=color:#a6e22e>compoundInterestA</span>, <span style=color:#a6e22e>interestValueI</span>)
+}
 </code></pre></div>
 <div class="m-1 p-1">
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://blog.phpguru.net/categories/golang-tutorial>golang-tutorial</a>
