@@ -97,3 +97,44 @@ func main() {
 	// composites
 }
 ```
+
+> Compound interest application
+
+```go
+// A = P*(1+r/n)^n*t
+// A : compound interest
+// P : investment value
+// r : interest rate
+// n : compound (continuously, monthly,quarterly,annually)
+// t : investment times in years
+func calculateCompoundInterest() {
+	var investmentValueP int64
+	var interestRateR float64
+	var compound int8
+	var compoundN int8
+	var investmentTimesT int8
+	fmt.Print("Please enter your investment value: ")
+	fmt.Scan(&investmentValueP)
+	fmt.Print("Please enter your interest rate: ")
+	fmt.Scan(&interestRateR)
+	fmt.Print("Please enter your compound terms \n1. Monthly\n2. Quarterly\n3.Annually\nYour selection is : ")
+	fmt.Scan(&compound)
+	const MONTHLY = 1
+	const QUARTERLY = 2
+	switch compound {
+	// monthly
+	case MONTHLY:
+		compoundN = 12
+	case QUARTERLY:
+		compoundN = 4
+	default: // yearly or other type
+		compoundN = 1
+	}
+	fmt.Print("How many years are you planning to invest: ")
+	fmt.Scan(&investmentTimesT)
+	fmt.Println("Please wait while system is calculating ...")
+	var compoundInterestA = float64(investmentValueP) * math.Pow((1+interestRateR/100/float64(compoundN)), float64(compoundN*investmentTimesT))
+	var interestValueI = compoundInterestA - float64(investmentValueP)
+	fmt.Printf("After %v %v of investing.\nYour principle amount go from %v to %v.\nYour interest value is %v", investmentTimesT, compoundN, investmentValueP, compoundInterestA, interestValueI)
+}
+```
