@@ -235,6 +235,89 @@ source ~/.zshrc  <span style=color:#75715e># or source ~/.bash_profile</span>
 	<span style=color:#66d9ef>var</span> <span style=color:#a6e22e>interestValueI</span> = <span style=color:#a6e22e>compoundInterestA</span> <span style=color:#f92672>-</span> float64(<span style=color:#a6e22e>investmentValueP</span>)
 	<span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Printf</span>(<span style=color:#e6db74>&#34;After %v %v of investing.\nYour principle amount go from %v to %v.\nYour interest value is %v&#34;</span>, <span style=color:#a6e22e>investmentTimesT</span>, <span style=color:#a6e22e>compoundN</span>, <span style=color:#a6e22e>investmentValueP</span>, <span style=color:#a6e22e>compoundInterestA</span>, <span style=color:#a6e22e>interestValueI</span>)
 }
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#75715e>// explicit return
+</span><span style=color:#75715e></span><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>sum</span>(<span style=color:#a6e22e>a</span> <span style=color:#66d9ef>int</span>, <span style=color:#a6e22e>b</span> <span style=color:#66d9ef>int</span>) <span style=color:#66d9ef>int</span> {
+	<span style=color:#66d9ef>return</span> <span style=color:#a6e22e>a</span> <span style=color:#f92672>+</span> <span style=color:#a6e22e>b</span>
+}
+
+<span style=color:#75715e>// implicit return
+</span><span style=color:#75715e></span><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>multiple</span>(<span style=color:#a6e22e>a</span> <span style=color:#66d9ef>int</span>, <span style=color:#a6e22e>b</span> <span style=color:#66d9ef>int</span>) (<span style=color:#a6e22e>z</span> <span style=color:#66d9ef>int</span>) {
+	<span style=color:#a6e22e>z</span> = <span style=color:#a6e22e>a</span> <span style=color:#f92672>*</span> <span style=color:#a6e22e>b</span>
+	<span style=color:#66d9ef>return</span>
+}
+</code></pre></div><blockquote>
+<p>Loop and control structures</p>
+</blockquote>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>theATMApplication</span>() {
+	<span style=color:#66d9ef>var</span> <span style=color:#a6e22e>balance</span> <span style=color:#66d9ef>uint64</span> = <span style=color:#ae81ff>10000</span>
+	<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>pinCode</span> <span style=color:#66d9ef>uint64</span> = <span style=color:#ae81ff>123456</span>
+	<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>ACT_CHECK_BALANCE</span> = <span style=color:#ae81ff>1</span>
+	<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>ACT_WITHDRAW</span> = <span style=color:#ae81ff>2</span>
+	<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>ACT_TRANFERS</span> = <span style=color:#ae81ff>3</span>
+	<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>ACT_EXIT</span> = <span style=color:#ae81ff>4</span>
+	<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>WRONG_PIN_LIMIT</span> = <span style=color:#ae81ff>5</span>
+	<span style=color:#66d9ef>var</span> <span style=color:#a6e22e>numberOfTries</span> <span style=color:#66d9ef>int8</span> = <span style=color:#ae81ff>0</span>
+	<span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Println</span>(<span style=color:#e6db74>&#34;Welcome to our ATM&#34;</span>)
+
+	<span style=color:#75715e>// check pinCode, if user enter pinCode wrong 5 times, block their card
+</span><span style=color:#75715e></span>	<span style=color:#66d9ef>for</span> {
+		<span style=color:#66d9ef>var</span> <span style=color:#a6e22e>inputPinCode</span> <span style=color:#66d9ef>uint64</span>
+		<span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Print</span>(<span style=color:#e6db74>&#34;Please enter your pin: &#34;</span>)
+		<span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Scan</span>(<span style=color:#f92672>&amp;</span><span style=color:#a6e22e>inputPinCode</span>)
+		<span style=color:#66d9ef>if</span> <span style=color:#a6e22e>inputPinCode</span> <span style=color:#f92672>!=</span> <span style=color:#a6e22e>pinCode</span> {
+			<span style=color:#a6e22e>numberOfTries</span> <span style=color:#f92672>+=</span> <span style=color:#ae81ff>1</span>
+			<span style=color:#66d9ef>if</span> <span style=color:#a6e22e>numberOfTries</span> &lt; <span style=color:#a6e22e>WRONG_PIN_LIMIT</span> {
+				<span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Println</span>(<span style=color:#e6db74>&#34;In correct pin, please try again&#34;</span>)
+				<span style=color:#66d9ef>continue</span>
+			} <span style=color:#66d9ef>else</span> {
+				<span style=color:#75715e>// otherwise, block their card, and stop the program
+</span><span style=color:#75715e></span>				<span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Printf</span>(<span style=color:#e6db74>&#34;You have been enter wrong pin for %v times\n&#34;</span>, <span style=color:#a6e22e>WRONG_PIN_LIMIT</span>)
+				<span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Print</span>(<span style=color:#e6db74>&#34;We will lock your card, please go to your bank branch for support!\n&#34;</span>)
+				<span style=color:#66d9ef>return</span>
+			}
+		}
+		<span style=color:#75715e>// if no error
+</span><span style=color:#75715e></span>		<span style=color:#66d9ef>break</span>
+	}
+	<span style=color:#75715e>// if user already pass the authorization, process next step
+</span><span style=color:#75715e></span>	<span style=color:#66d9ef>for</span> {
+		<span style=color:#a6e22e>options</span> <span style=color:#f92672>:=</span> <span style=color:#e6db74>&#34;&#34;</span>
+		<span style=color:#a6e22e>options</span> <span style=color:#f92672>+=</span> <span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Sprintf</span>(<span style=color:#e6db74>&#34;\n1. Check balance\n&#34;</span>)
+		<span style=color:#a6e22e>options</span> <span style=color:#f92672>+=</span> <span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Sprintf</span>(<span style=color:#e6db74>&#34;2. Withdraw\n&#34;</span>)
+		<span style=color:#a6e22e>options</span> <span style=color:#f92672>+=</span> <span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Sprintf</span>(<span style=color:#e6db74>&#34;3. Transfer\n&#34;</span>)
+		<span style=color:#a6e22e>options</span> <span style=color:#f92672>+=</span> <span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Sprintf</span>(<span style=color:#e6db74>&#34;4. Exit\n&#34;</span>)
+		<span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Println</span>(<span style=color:#a6e22e>options</span>)
+		<span style=color:#66d9ef>var</span> <span style=color:#a6e22e>choice</span> <span style=color:#66d9ef>int8</span>
+		<span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Print</span>(<span style=color:#e6db74>&#34;Please select your choice: &#34;</span>)
+		<span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Scan</span>(<span style=color:#f92672>&amp;</span><span style=color:#a6e22e>choice</span>)
+		<span style=color:#66d9ef>if</span> <span style=color:#a6e22e>choice</span> <span style=color:#f92672>==</span> <span style=color:#a6e22e>ACT_EXIT</span> {
+			<span style=color:#66d9ef>break</span>
+		}
+		<span style=color:#66d9ef>if</span> <span style=color:#a6e22e>choice</span> <span style=color:#f92672>==</span> <span style=color:#a6e22e>ACT_CHECK_BALANCE</span> {
+			<span style=color:#a6e22e>checkBalance</span>(<span style=color:#a6e22e>balance</span>)
+			<span style=color:#66d9ef>continue</span>
+		}
+		<span style=color:#66d9ef>if</span> <span style=color:#a6e22e>choice</span> <span style=color:#f92672>==</span> <span style=color:#a6e22e>ACT_WITHDRAW</span> {
+			<span style=color:#66d9ef>var</span> <span style=color:#a6e22e>withdrawNumber</span> <span style=color:#66d9ef>uint64</span>
+			<span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Print</span>(<span style=color:#e6db74>&#34;Please enter your withdraw amount: &#34;</span>)
+			<span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Scan</span>(<span style=color:#f92672>&amp;</span><span style=color:#a6e22e>withdrawNumber</span>)
+			<span style=color:#66d9ef>if</span> <span style=color:#a6e22e>withdrawNumber</span> &gt; <span style=color:#a6e22e>balance</span> {
+				<span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Println</span>(<span style=color:#e6db74>&#34;Invalid amount, you can not withdraw more than you have!&#34;</span>)
+				<span style=color:#66d9ef>continue</span>
+			}
+			<span style=color:#75715e>// if it is okie
+</span><span style=color:#75715e></span>			<span style=color:#a6e22e>balance</span> = <span style=color:#a6e22e>balance</span> <span style=color:#f92672>-</span> <span style=color:#a6e22e>withdrawNumber</span>
+			<span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Printf</span>(<span style=color:#e6db74>&#34;Balance updated! New amount: %v\n&#34;</span>, <span style=color:#a6e22e>balance</span>)
+			<span style=color:#66d9ef>continue</span>
+		}
+		<span style=color:#66d9ef>break</span>
+	}
+	<span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Println</span>(<span style=color:#e6db74>&#34;Thank you for using our service!&#34;</span>)
+}
+
+<span style=color:#66d9ef>func</span> <span style=color:#a6e22e>checkBalance</span>(<span style=color:#a6e22e>balance</span> <span style=color:#66d9ef>uint64</span>) {
+	<span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Printf</span>(<span style=color:#e6db74>&#34;Your balance is %v\n&#34;</span>, <span style=color:#a6e22e>balance</span>)
+}
 </code></pre></div>
 <div class="m-1 p-1">
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://blog.phpguru.net/categories/golang-tutorial>golang-tutorial</a>
