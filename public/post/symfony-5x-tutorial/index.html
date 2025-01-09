@@ -1,0 +1,1427 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="home" href="https://blog.phpguru.net" />
+    <meta name="generator" content="jsguru cms" />
+
+    
+    
+
+    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    
+    
+      
+              
+        
+        <link rel="stylesheet" href="https://blog.phpguru.net/themes/2022/public/main.css" />
+             
+    
+      
+              
+        
+        <link rel="stylesheet" href="https://blog.phpguru.net/themes/2022/public/home.css" />
+             
+    
+      
+              
+        
+        <link rel="stylesheet" href="https://blog.phpguru.net/themes/2022/public/page.css" />
+             
+        
+    
+    
+    
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-44831C2LM4"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-44831C2LM4');    
+    </script>
+    
+    
+    
+<title>Symfony 5x Tutorial | Symfony 5x Tutorial | Useful PHP Tricks, Laravel Tips, Tricks and Best Practices</title>
+<meta name="robots" content="all" />
+<meta name="keywords" content="Symfony 5x Tutorial" />
+<meta name="description" content="Symfony 5x Tutorial" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="https://gist.github.com/assets/31009750/3131302c-6a0f-429e-9250-91d97f9051e9" />
+<meta property="og:image:type" content="image/jpeg" />
+<meta property="og:image:width" content="750" />
+<meta property="og:image:height" content="300" />
+<meta
+  property="article:publisher"
+  content="https://www.facebook.com/nextjsvietnam"
+/>
+
+<meta property="article:published_time" content="2024-04-02T02:37:35+07:00" />
+<meta property="article:modified_time" content="2024-04-02T02:37:35+07:00" />
+
+    
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png" />
+<link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png" />
+<link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png" />
+<link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png" />
+<link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png" />
+<link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png" />
+<link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png" />
+<link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png" />
+<link
+  rel="icon"
+  type="image/png"
+  sizes="192x192"
+  href="/android-icon-192x192.png"
+/>
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+<link rel="manifest" href="/manifest.json" />
+<meta name="msapplication-TileColor" content="#ffffff" />
+<meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
+<meta name="theme-color" content="#ffffff" />
+
+  </head>
+  <body class="body-nav-fixed">
+    <nav class="nav-fixed nav-default z-50">
+    <div class="container">
+      <div class="nav-container flex flex-wrap justify-between items-center">
+        <a href="https://blog.phpguru.net" class="nav-brand inline-block">
+          
+          <img class="h-12" src="https://blog.phpguru.net/themes/2022/src/assets/images/logo.png" 
+          alt="Stunning" />
+        </a>
+        <a href="javascript:void(0);" data-menu="#menu-main_menu" class="nav-menu-toggle"><span
+          class="material-icons">menu</span></a>
+        <ul id="menu-main_menu" class="nav-menu h-0 md:h-auto">
+          <form class="nav-menu-search-bar md:hidden relative">
+            <button class="nav-menu-search-bar-search-btn absolute h-full">
+              <svg class="w-3 h-3 text-gray-600" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24">
+                <path
+                  d="M16.32 14.9l5.39 5.4a1 1 0 0 1-1.42 1.4l-5.38-5.38a8 8 0 1 1 1.41-1.41zM10 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12z">
+                </path>
+              </svg>
+            </button>
+            <input name="s" type="text" class="w-full" />
+          </form>
+          
+          
+            <li class="nav-menu-item">
+            <a class="nav-menu-link" href="https://blog.phpguru.net/categories/cheatsheet">Cheatsheet
+                
+            </a>
+            
+            </li>
+          
+            <li class="nav-menu-item">
+            <a class="nav-menu-link" href="https://blog.phpguru.net/categories/php-tutorial">PHP
+                
+            </a>
+            
+            </li>
+          
+            <li class="nav-menu-item">
+            <a class="nav-menu-link" href="https://blog.phpguru.net/categories/devops">Devops
+                
+            </a>
+            
+            </li>
+          
+            <li class="nav-menu-item">
+            <a class="nav-menu-link" href="https://blog.phpguru.net">Tutorials
+                
+                    <span class="material-icons">keyboard_arrow_down</span>
+                
+            </a>
+            
+                <ul class="sub-menu">                                    
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="https://blog.phpguru.net/categories/laravel-tutorial">Laravel Tutorial</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="https://blog.phpguru.net/categories/symfony-tutorial">Symfony Tutorial</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="https://blog.phpguru.net/categories/wordpress-tutorial">Wordpress Tutorial</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="https://blog.phpguru.net/categories/golang-tutorial">Golang Tutorial</a></li>
+                
+                </ul>
+            
+            </li>
+          
+            <li class="nav-menu-item">
+            <a class="nav-menu-link" href="https://blog.phpguru.net">Tools
+                
+                    <span class="material-icons">keyboard_arrow_down</span>
+                
+            </a>
+            
+                <ul class="sub-menu">                                    
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="https://regex101.com/">Online Regex</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://www.bashoneliners.com/">Bash Online</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="https://www.epochconverter.com/">Unix Timestamp Conversion</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="https://ryanstutorials.net/bash-scripting-tutorial/">Bash Scripting</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="https://explainshell.com/">Explain Shell</a></li>
+                
+                </ul>
+            
+            </li>
+          
+          <form class="nav-menu-search-bar hidden md:flex relative">
+            <button class="nav-menu-search-bar-search-btn absolute h-full">
+              <svg class="w-3 h-3 text-gray-600" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24">
+                <path
+                  d="M16.32 14.9l5.39 5.4a1 1 0 0 1-1.42 1.4l-5.38-5.38a8 8 0 1 1 1.41-1.41zM10 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12z">
+                </path>
+              </svg>
+            </button>
+            <input name="s" type="text" class="w-full" />
+          </form>
+        </ul>
+      </div>
+    </div>
+</nav>
+
+    <main>
+    
+  <section class="container section">
+    <div class="page-content max-w-2xl mx-auto">
+        <img src="https://gist.github.com/assets/31009750/3131302c-6a0f-429e-9250-91d97f9051e9" class="img-responsive" alt="Symfony 5x Tutorial" />
+        <h1>Symfony 5x Tutorial</h1>
+        
+          
+          
+          <p><strong>Post Date</strong> : 2024-04-02T02:37:35+07:00</p>
+          <p><strong>Modified Date</strong> : 2024-04-02T02:37:35+07:00</p>
+        <p>
+            <strong>Category:</strong>
+            
+            <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href="https://blog.phpguru.net/categories/cheatsheet">cheatsheet</a>
+            
+        </p>
+        <p>
+          <strong>Tags:</strong>
+          
+             <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white"
+             href="/tags/symfony5x">symfony5x</a>
+          
+        </p>                
+        <h2 id="references">References</h2>
+<ul>
+<li><a href="https://github.com/phpguru-net/symfony54-webapp">All in one Symfony Tutorial Source Code</a></li>
+</ul>
+<p><strong>Glossary</strong></p>
+<ol>
+<li>Install symfony cli</li>
+<li>Create new symfony project</li>
+<li>Getting start with controller</li>
+<li>Generate Entity</li>
+<li>CRUD</li>
+<li>User and Authentication</li>
+<li>Repository</li>
+<li>Service</li>
+</ol>
+<p>Feel free to download full source code at <a href="https://github.com/phpguru-net/symfony54-webapp">PHPGuru Symfony 5 Tutorial</a></p>
+<h2 id="install-symfony-cli">Install symfony cli</h2>
+<ul>
+<li>
+<p>Follow <a href="https://symfony.com/download">instruction</a> from symfony official doc to install symfony cli in your local.</p>
+</li>
+<li>
+<p><a href="https://scoop.sh/">Install scoop for window users</a></p>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#75715e"># ubuntu/mac</span>
+</span></span><span style="display:flex;"><span>curl -sS https://get.symfony.com/cli/installer | bash
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># window</span>
+</span></span><span style="display:flex;"><span>scoop install symfony-cli
+</span></span></code></pre></div><h2 id="create-new-symfony-project">Create new Symfony project</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>symfony new symfony54-webapp --version<span style="color:#f92672">=</span>5.4 --webapp
+</span></span></code></pre></div><p>For instance your webapp can be placed at <strong>C:\laragon\www\symfony54-webapp</strong></p>
+<p>If you&rsquo;re using Laragon that we already introduce on the last article, you can access the website on this url : symfony54-webapp.test. Why? Because laragon already add create this config for you in apache site config</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>&lt;VirtualHost *:80&gt;
+</span></span><span style="display:flex;"><span>    DocumentRoot <span style="color:#e6db74">&#34;C:/laragon/www/symfony54-webapp/public&#34;</span>
+</span></span><span style="display:flex;"><span>    ServerName symfony54-webapp.test
+</span></span><span style="display:flex;"><span>    ServerAlias *.symfony54-webapp.test
+</span></span><span style="display:flex;"><span>    &lt;Directory <span style="color:#e6db74">&#34;C:/laragon/www/symfony54-webapp/public&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>        AllowOverride All
+</span></span><span style="display:flex;"><span>        Require all granted
+</span></span><span style="display:flex;"><span>    &lt;/Directory&gt;
+</span></span><span style="display:flex;"><span>&lt;/VirtualHost&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># If you want to use SSL, enable it by going to Menu &gt; Apache &gt; SSL &gt; Enabled</span>
+</span></span></code></pre></div><p>Let&rsquo;s write some code, but what should we start. Let&rsquo;s take a first glance at the source code structure</p>
+<p><img src="https://gist.github.com/assets/31009750/e95d36c2-49c6-4677-9f18-09d76761ebd9" alt="image"></p>
+<p>So with the first glance, you can see that the request flow should be like this</p>
+<blockquote>
+<p>Browser -&gt; Router -&gt; Controller -&gt; Repository -&gt; Entity -&gt; Templates -&gt; Controller -&gt; Browser</p>
+</blockquote>
+<p>Let&rsquo;s create a controller first, but how?
+Don&rsquo;t worry Symfony has <a href="https://symfony.com/doc/5.x/console.html">built-in cli</a> that support you to generate common bricks to build your app.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>php bin/console list
+</span></span></code></pre></div><p>So let&rsquo;s <strong>make</strong> something</p>
+<p><img src="https://gist.github.com/assets/31009750/d8f7c599-eaec-483c-b244-5f72cc8b63a6" alt="image"></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>php bin<span style="color:#ae81ff">\c</span>onsole make:controller --help
+</span></span><span style="display:flex;"><span>php bin<span style="color:#ae81ff">\c</span>onsole make:controller HomeController
+</span></span></code></pre></div><p>And then you can access your page with this URL <a href="http://symfony54-webapp.test/index.php/home">http://symfony54-webapp.test/index.php/home</a></p>
+<p><img src="https://gist.github.com/assets/31009750/3aad32b0-3829-4ec6-a28e-c7afb56dda24" alt="image"></p>
+<p>LOL, sound strange</p>
+<p>Basically, you can debug your app with same configuration in last article. But sometime you wanna <a href="https://symfony.com/doc/5.x/components/var_dumper.html#var-dumper-dump-server">dump</a> like a PHP Developer.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>composer require --dev symfony/var-dumper
+</span></span></code></pre></div><p>Then add the following line into .env file</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#75715e">###&gt; symfony/var-dumper ###</span>
+</span></span><span style="display:flex;"><span>VAR_DUMPER_FORMAT<span style="color:#f92672">=</span>html
+</span></span><span style="display:flex;"><span><span style="color:#75715e">###&gt; symfony/var-dumper ###</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">namespace</span> <span style="color:#a6e22e">App\Controller</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Symfony\Bundle\FrameworkBundle\Controller\AbstractController</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Symfony\Component\HttpFoundation\Request</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Symfony\Component\HttpFoundation\Response</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Symfony\Component\Routing\Annotation\Route</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">HomeController</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">AbstractController</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">     * @Route(&#34;/home&#34;, name=&#34;app_home&#34;)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">     */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">index</span>()<span style="color:#f92672">:</span> <span style="color:#a6e22e">Response</span>
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        $var <span style="color:#f92672">=</span> [
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#39;a simple string&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;in an array of 5 elements&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#39;a float&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1.0</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#39;an integer&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#39;a boolean&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#39;an empty array&#39;</span> <span style="color:#f92672">=&gt;</span> [],
+</span></span><span style="display:flex;"><span>        ];
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">dump</span>($var);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">render</span>(<span style="color:#e6db74">&#39;home/index.html.twig&#39;</span>, [
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#39;controller_name&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;HomeController&#39;</span>,
+</span></span><span style="display:flex;"><span>        ]);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">     * @Route(&#34;/home/sidebar/{username?}&#34;, name=&#34;app_home_sidebar&#34;)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">     */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">sidebar</span>(<span style="color:#a6e22e">Request</span> $request)<span style="color:#f92672">:</span> <span style="color:#a6e22e">Response</span>
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        $var <span style="color:#f92672">=</span> [
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#39;a simple string&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;in an array of 5 elements&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#39;a float&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1.0</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#39;an integer&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#39;a boolean&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#39;an empty array&#39;</span> <span style="color:#f92672">=&gt;</span> [],
+</span></span><span style="display:flex;"><span>        ];
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">dump</span>($var);
+</span></span><span style="display:flex;"><span>        $username <span style="color:#f92672">=</span> $request<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">get</span>(<span style="color:#e6db74">&#39;username&#39;</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Response</span>(<span style="color:#e6db74">&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        &lt;aside&gt;Sidebar </span><span style="color:#e6db74">{</span>$username<span style="color:#e6db74">}</span><span style="color:#e6db74">&lt;/aside&gt;&#34;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><img src="https://gist.github.com/assets/31009750/f3c5b63a-12cb-44a2-a78e-e4c48a3c868c" alt="image"></p>
+<h2 id="symfony-console-cheatsheet">Symfony console cheatsheet</h2>
+<h3 id="make">Make</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span> make
+</span></span><span style="display:flex;"><span>  make:auth                                  Creates a Guard authenticator of different flavors
+</span></span><span style="display:flex;"><span>  make:command                               Creates a new console command class
+</span></span><span style="display:flex;"><span>  make:controller                            Creates a new controller class
+</span></span><span style="display:flex;"><span>  make:crud                                  Creates CRUD <span style="color:#66d9ef">for</span> Doctrine entity class
+</span></span><span style="display:flex;"><span>  make:docker:database                       Adds a database container to your docker-compose.yaml file
+</span></span><span style="display:flex;"><span>  make:entity                                Creates or updates a Doctrine entity class, and optionally an API Platform resource
+</span></span><span style="display:flex;"><span>  make:fixtures                              Creates a new class to load Doctrine fixtures
+</span></span><span style="display:flex;"><span>  make:form                                  Creates a new form class
+</span></span><span style="display:flex;"><span>  make:message                               Creates a new message and handler
+</span></span><span style="display:flex;"><span>  make:messenger-middleware                  Creates a new messenger middleware
+</span></span><span style="display:flex;"><span>  make:migration                             Creates a new migration based on database changes
+</span></span><span style="display:flex;"><span>  make:registration-form                     Creates a new registration form system
+</span></span><span style="display:flex;"><span>  make:reset-password                        Create controller, entity, and repositories <span style="color:#66d9ef">for</span> use with symfonycasts/reset-password-bundle
+</span></span><span style="display:flex;"><span>  make:serializer:encoder                    Creates a new serializer encoder class
+</span></span><span style="display:flex;"><span>  make:serializer:normalizer                 Creates a new serializer normalizer class
+</span></span><span style="display:flex;"><span>  make:stimulus-controller                   Creates a new Stimulus controller
+</span></span><span style="display:flex;"><span>  make:subscriber                            Creates a new event subscriber class
+</span></span><span style="display:flex;"><span>  make:test                                  <span style="color:#f92672">[</span>make:unit-test|make:functional-test<span style="color:#f92672">]</span> Creates a new test class
+</span></span><span style="display:flex;"><span>  make:twig-extension                        Creates a new Twig extension class
+</span></span><span style="display:flex;"><span>  make:user                                  Creates a new security user class
+</span></span><span style="display:flex;"><span>  make:validator                             Creates a new validator and constraint class
+</span></span><span style="display:flex;"><span>  make:voter                                 Creates a new security voter class
+</span></span></code></pre></div><h2 id="lets-run-your-symfony-server-for-development-purpose">Let&rsquo;s run your symfony server for development purpose</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>symfony server:start
+</span></span></code></pre></div><h2 id="working-with-persistent-layer">Working with Persistent Layer</h2>
+<ul>
+<li>Database</li>
+<li>ORM</li>
+<li>Install/Enable PHP extensions: pdo_mysql(MySQL), pdo_pgsql(PostgreSQL)</li>
+</ul>
+<h3 id="connect-database">Connect Database</h3>
+<blockquote>
+<p>Symfony provide tools for you to work with Database via Doctrine ORM</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#75715e"># install Doctrine via orm Symfony pack</span>
+</span></span><span style="display:flex;"><span>composer require symfony/orm-pack
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># maker bundle help you to generate some code</span>
+</span></span><span style="display:flex;"><span>composer require --dev symfony/maker-bundle
+</span></span></code></pre></div><p><strong>Configuration</strong></p>
+<blockquote>
+<p>doctrine.yaml</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">doctrine</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">dbal</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">url</span>: <span style="color:#e6db74">&#34;%env(resolve:DATABASE_URL)%&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># IMPORTANT: You MUST configure your server version,</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># either here or in the DATABASE_URL env var (see .env file)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">#server_version: &#39;16&#39;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">driver</span>: <span style="color:#e6db74">&#34;pdo_pgsql&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">use_savepoints</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">orm</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">auto_generate_proxy_classes</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">naming_strategy</span>: <span style="color:#ae81ff">doctrine.orm.naming_strategy.underscore_number_aware</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">auto_mapping</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">mappings</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">App</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">is_bundle</span>: <span style="color:#66d9ef">false</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">dir</span>: <span style="color:#e6db74">&#34;%kernel.project_dir%/src/Entity&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">prefix</span>: <span style="color:#e6db74">&#39;App\Entity&#39;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">alias</span>: <span style="color:#ae81ff">App</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">when@test</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">doctrine</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">dbal</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e"># &#34;TEST_TOKEN&#34; is typically set by ParaTest</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">dbname_suffix</span>: <span style="color:#e6db74">&#34;_test%env(default::TEST_TOKEN)%&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">when@prod</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">doctrine</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">orm</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">auto_generate_proxy_classes</span>: <span style="color:#66d9ef">false</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">proxy_dir</span>: <span style="color:#e6db74">&#34;%kernel.build_dir%/doctrine/orm/Proxies&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">query_cache_driver</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">type</span>: <span style="color:#ae81ff">pool</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">pool</span>: <span style="color:#ae81ff">doctrine.system_cache_pool</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">result_cache_driver</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">type</span>: <span style="color:#ae81ff">pool</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">pool</span>: <span style="color:#ae81ff">doctrine.result_cache_pool</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">framework</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">cache</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">pools</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">doctrine.result_cache_pool</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">adapter</span>: <span style="color:#ae81ff">cache.app</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">doctrine.system_cache_pool</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">adapter</span>: <span style="color:#ae81ff">cache.system</span>
+</span></span></code></pre></div><blockquote>
+<p>.env</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>DATABASE_URL<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;postgresql://sf_54_webapp:123456@127.0.0.1:5432/sf_54_webapp?serverVersion=16&amp;charset=utf8&#34;</span>
+</span></span></code></pre></div><p><strong>Migration</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#75715e"># just check what changes</span>
+</span></span><span style="display:flex;"><span>php bin<span style="color:#ae81ff">\c</span>onsole doctrine:schema:update --dump-sql
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># generate</span>
+</span></span><span style="display:flex;"><span>php bin/console make:migration
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># run migrations</span>
+</span></span><span style="display:flex;"><span>php bin/console doctrine:migrations:migrate
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># crud with doctrine</span>
+</span></span></code></pre></div><p>Entity</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">namespace</span> <span style="color:#a6e22e">App\Entity</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> <span style="color:#a6e22e">App\Repository\PostRepository</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Doctrine\ORM\Mapping</span> <span style="color:#66d9ef">as</span> <span style="color:#a6e22e">ORM</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> * @ORM\Entity(repositoryClass=PostRepository::class)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Post</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">     * @ORM\Id
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">     * @ORM\GeneratedValue
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">     * @ORM\Column(type=&#34;integer&#34;)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">     */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> $id;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">     * @ORM\Column(type=&#34;string&#34;, length=255)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">     */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> $title;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getId</span>()<span style="color:#f92672">:</span> <span style="color:#f92672">?</span><span style="color:#a6e22e">int</span>
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">id</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getTitle</span>()<span style="color:#f92672">:</span> <span style="color:#f92672">?</span><span style="color:#a6e22e">string</span>
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">title</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">setTitle</span>(<span style="color:#a6e22e">string</span> $title)<span style="color:#f92672">:</span> <span style="color:#a6e22e">self</span>
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">title</span> <span style="color:#f92672">=</span> $title;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> $this;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Repository</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">namespace</span> <span style="color:#a6e22e">App\Repository</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> <span style="color:#a6e22e">App\Entity\Post</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Doctrine\Persistence\ManagerRegistry</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> * @extends ServiceEntityRepository&lt;Post&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> *
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> * @method Post|null find($id, $lockMode = null, $lockVersion = null)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> * @method Post|null findOneBy(array $criteria, array $orderBy = null)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> * @method Post[]    findAll()
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> * @method Post[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">PostRepository</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">ServiceEntityRepository</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> __construct(<span style="color:#a6e22e">ManagerRegistry</span> $registry)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">parent</span><span style="color:#f92672">::</span><span style="color:#a6e22e">__construct</span>($registry, <span style="color:#a6e22e">Post</span><span style="color:#f92672">::</span><span style="color:#a6e22e">class</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">add</span>(<span style="color:#a6e22e">Post</span> $entity, <span style="color:#a6e22e">bool</span> $flush <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">void</span>
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">getEntityManager</span>()<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">persist</span>($entity);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> ($flush) {
+</span></span><span style="display:flex;"><span>            $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">getEntityManager</span>()<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">flush</span>();
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">remove</span>(<span style="color:#a6e22e">Post</span> $entity, <span style="color:#a6e22e">bool</span> $flush <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">void</span>
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">getEntityManager</span>()<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">remove</span>($entity);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> ($flush) {
+</span></span><span style="display:flex;"><span>            $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">getEntityManager</span>()<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">flush</span>();
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//    /**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//     * @return Post[] Returns an array of Post objects
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//     */
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//    public function findByExampleField($value): array
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//    {
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//        return $this-&gt;createQueryBuilder(&#39;p&#39;)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//            -&gt;andWhere(&#39;p.exampleField = :val&#39;)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//            -&gt;setParameter(&#39;val&#39;, $value)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//            -&gt;orderBy(&#39;p.id&#39;, &#39;ASC&#39;)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//            -&gt;setMaxResults(10)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//            -&gt;getQuery()
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//            -&gt;getResult()
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//        ;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//    }
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//    public function findOneBySomeField($value): ?Post
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//    {
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//        return $this-&gt;createQueryBuilder(&#39;p&#39;)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//            -&gt;andWhere(&#39;p.exampleField = :val&#39;)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//            -&gt;setParameter(&#39;val&#39;, $value)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//            -&gt;getQuery()
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//            -&gt;getOneOrNullResult()
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//        ;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//    }
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span></code></pre></div><p>Let&rsquo;s create a controller</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">namespace</span> <span style="color:#a6e22e">App\Controller</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> <span style="color:#a6e22e">App\Entity\Post</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> <span style="color:#a6e22e">App\Repository\PostRepository</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Doctrine\Persistence\ManagerRegistry</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Symfony\Bundle\FrameworkBundle\Controller\AbstractController</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Symfony\Component\HttpFoundation\Request</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Symfony\Component\HttpFoundation\Response</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Symfony\Component\Routing\Annotation\Route</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> * @Route(&#34;/post&#34;, name=&#34;post.&#34;)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">PostController</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">AbstractController</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">     * @Route(&#34;/&#34;, name=&#34;index&#34;)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">     */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">index</span>(<span style="color:#a6e22e">PostRepository</span> $postRepository)<span style="color:#f92672">:</span> <span style="color:#a6e22e">Response</span>
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        $posts <span style="color:#f92672">=</span> $postRepository<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">findAll</span>();
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">render</span>(<span style="color:#e6db74">&#39;post/index.html.twig&#39;</span>, [
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#39;posts&#39;</span> <span style="color:#f92672">=&gt;</span> $posts
+</span></span><span style="display:flex;"><span>        ]);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">     * @Route(&#34;/create&#34;, name=&#34;create&#34;)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">     */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">create</span>(<span style="color:#a6e22e">Request</span> $request, <span style="color:#a6e22e">ManagerRegistry</span> $doctrine)<span style="color:#f92672">:</span> <span style="color:#a6e22e">Response</span>
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// create new post with title
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        $post <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Post</span>();
+</span></span><span style="display:flex;"><span>        $post<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">setTitle</span>(<span style="color:#e6db74">&#39;This is going to be title!&#39;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// entity manager to persist data into database
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        $entityManger <span style="color:#f92672">=</span> $doctrine<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">getManager</span>();
+</span></span><span style="display:flex;"><span>        $entityManger<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">persist</span>($post);
+</span></span><span style="display:flex;"><span>        $entityManger<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">flush</span>();
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// return a response
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Response</span>(<span style="color:#e6db74">&#39;Post created!&#39;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">     * @Route(&#34;/show/{id}&#34;, name=&#34;show&#34;)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">     */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">show</span>(<span style="color:#a6e22e">string</span> $id, <span style="color:#a6e22e">PostRepository</span> $postRepository)<span style="color:#f92672">:</span> <span style="color:#a6e22e">Response</span>
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        $post <span style="color:#f92672">=</span> $postRepository<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">find</span>($id);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">render</span>(<span style="color:#e6db74">&#39;post/show.html.twig&#39;</span>, [
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#39;post&#39;</span> <span style="color:#f92672">=&gt;</span> $post
+</span></span><span style="display:flex;"><span>        ]);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>In symfony, you can also do this</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#75715e"># Automatically Fetching Objects (ParamConverter)</span>
+</span></span><span style="display:flex;"><span>composer require sensio/framework-extra-bundle
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span>    <span style="color:#e6db74">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">     * @Route(&#34;/show/{id}&#34;, name=&#34;show&#34;)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">     */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">show</span>(<span style="color:#a6e22e">Post</span> $post)<span style="color:#f92672">:</span> <span style="color:#a6e22e">Response</span>
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">render</span>(<span style="color:#e6db74">&#39;post/show.html.twig&#39;</span>, [
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#39;post&#39;</span> <span style="color:#f92672">=&gt;</span> $post
+</span></span><span style="display:flex;"><span>        ]);
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><h3 id="symfony-display-dump-in-profiler">Symfony Display dump in profiler</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>composer require --dev symfony/var-dumper
+</span></span><span style="display:flex;"><span>composer require --dev symfony/profiler-pack
+</span></span></code></pre></div><h3 id="adding-forms">Adding Forms</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>composer require symfony/form
+</span></span><span style="display:flex;"><span>php bin<span style="color:#ae81ff">\c</span>onsole make:form
+</span></span></code></pre></div><p><img src="https://gist.github.com/assets/31009750/53327146-0bb5-49c4-9191-b1312c4811c6" alt="image"></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#75715e">// src\Form\PostType.php
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">namespace</span> <span style="color:#a6e22e">App\Form</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> <span style="color:#a6e22e">App\Entity\Post</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Symfony\Component\Form\AbstractType</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Symfony\Component\Form\Extension\Core\Type\SubmitType</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Symfony\Component\Form\FormBuilderInterface</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Symfony\Component\OptionsResolver\OptionsResolver</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">PostType</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">AbstractType</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">buildForm</span>(<span style="color:#a6e22e">FormBuilderInterface</span> $builder, <span style="color:#66d9ef">array</span> $options)<span style="color:#f92672">:</span> <span style="color:#a6e22e">void</span>
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        $builder
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">add</span>(<span style="color:#e6db74">&#39;title&#39;</span>)
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">add</span>(<span style="color:#e6db74">&#39;save&#39;</span>, <span style="color:#a6e22e">SubmitType</span><span style="color:#f92672">::</span><span style="color:#a6e22e">class</span>, [
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#39;attr&#39;</span> <span style="color:#f92672">=&gt;</span> [
+</span></span><span style="display:flex;"><span>                    <span style="color:#e6db74">&#39;class&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;btn btn-primary float-end&#39;</span>
+</span></span><span style="display:flex;"><span>                ]
+</span></span><span style="display:flex;"><span>            ]);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">configureOptions</span>(<span style="color:#a6e22e">OptionsResolver</span> $resolver)<span style="color:#f92672">:</span> <span style="color:#a6e22e">void</span>
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        $resolver<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">setDefaults</span>([
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#39;data_class&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">Post</span><span style="color:#f92672">::</span><span style="color:#a6e22e">class</span>,
+</span></span><span style="display:flex;"><span>        ]);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#75715e">// src\Controller\PostController.php
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">namespace</span> <span style="color:#a6e22e">App\Controller</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> <span style="color:#a6e22e">App\Entity\Post</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> <span style="color:#a6e22e">App\Form\PostType</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> <span style="color:#a6e22e">App\Repository\PostRepository</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Doctrine\Persistence\ManagerRegistry</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Symfony\Bundle\FrameworkBundle\Controller\AbstractController</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Symfony\Component\HttpFoundation\Request</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Symfony\Component\HttpFoundation\Response</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Symfony\Component\Routing\Annotation\Route</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> * @Route(&#34;/post&#34;, name=&#34;post.&#34;)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">PostController</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">AbstractController</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">     * @Route(&#34;/&#34;, name=&#34;index&#34;)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">     */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">index</span>(<span style="color:#a6e22e">PostRepository</span> $postRepository)<span style="color:#f92672">:</span> <span style="color:#a6e22e">Response</span>
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        $posts <span style="color:#f92672">=</span> $postRepository<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">findAll</span>();
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">render</span>(<span style="color:#e6db74">&#39;post/index.html.twig&#39;</span>, [
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#39;posts&#39;</span> <span style="color:#f92672">=&gt;</span> $posts
+</span></span><span style="display:flex;"><span>        ]);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">     * @Route(&#34;/create&#34;, name=&#34;create&#34;)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">     */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">create</span>(<span style="color:#a6e22e">Request</span> $request, <span style="color:#a6e22e">ManagerRegistry</span> $doctrine)<span style="color:#f92672">:</span> <span style="color:#a6e22e">Response</span>
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// create new post with title
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        $post <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Post</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        $form <span style="color:#f92672">=</span> $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">createForm</span>(<span style="color:#a6e22e">PostType</span><span style="color:#f92672">::</span><span style="color:#a6e22e">class</span>, $post);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        $form<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">handleRequest</span>($request);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> ($form<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">isSubmitted</span>()) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// entity manager to persist data into database
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            $entityManger <span style="color:#f92672">=</span> $doctrine<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">getManager</span>();
+</span></span><span style="display:flex;"><span>            $entityManger<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">persist</span>($post);
+</span></span><span style="display:flex;"><span>            $entityManger<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">flush</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// // Set a flash message
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">addFlash</span>(
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#39;success&#39;</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;New post with id =</span><span style="color:#e6db74">{</span>$post<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">getId</span>()<span style="color:#e6db74">}</span><span style="color:#e6db74"> created !&#34;</span>
+</span></span><span style="display:flex;"><span>            );
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">redirect</span>($this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">generateUrl</span>(<span style="color:#e6db74">&#39;post.index&#39;</span>));
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">render</span>(<span style="color:#e6db74">&#39;post/create.html.twig&#39;</span>, [
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#39;form&#39;</span> <span style="color:#f92672">=&gt;</span> $form<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">createView</span>()
+</span></span><span style="display:flex;"><span>        ]);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">     * @Route(&#34;/show/{id}&#34;, name=&#34;show&#34;)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">     */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">show</span>(<span style="color:#a6e22e">Post</span> $post)<span style="color:#f92672">:</span> <span style="color:#a6e22e">Response</span>
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">render</span>(<span style="color:#e6db74">&#39;post/show.html.twig&#39;</span>, [
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#39;post&#39;</span> <span style="color:#f92672">=&gt;</span> $post
+</span></span><span style="display:flex;"><span>        ]);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">     * @Route(&#34;/delete/{id}&#34;, name=&#34;delete&#34;)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">     */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">delete</span>(<span style="color:#a6e22e">Post</span> $post, <span style="color:#a6e22e">ManagerRegistry</span> $doctrine)<span style="color:#f92672">:</span> <span style="color:#a6e22e">Response</span>
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        $entityManger <span style="color:#f92672">=</span> $doctrine<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">getManager</span>();
+</span></span><span style="display:flex;"><span>        $id <span style="color:#f92672">=</span> $post<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">getId</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        $entityManger<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">remove</span>($post);
+</span></span><span style="display:flex;"><span>        $entityManger<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">flush</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Set a flash message
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">addFlash</span>(
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#39;danger&#39;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;Post with id =</span><span style="color:#e6db74">{</span>$id<span style="color:#e6db74">}</span><span style="color:#e6db74"> removed !&#34;</span>
+</span></span><span style="display:flex;"><span>        );
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">redirect</span>($this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">generateUrl</span>(<span style="color:#e6db74">&#39;post.index&#39;</span>));
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><strong>templates\post\create.html.twig</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-twig" data-lang="twig"><span style="display:flex;"><span><span style="color:#75715e">{%</span> <span style="color:#66d9ef">extends</span> <span style="color:#e6db74">&#39;base.html.twig&#39;</span> <span style="color:#75715e">%}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">{%</span> <span style="color:#66d9ef">block</span> title <span style="color:#75715e">%}</span>Create Post<span style="color:#75715e">{%</span> <span style="color:#66d9ef">endblock</span> <span style="color:#75715e">%}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">{%</span> <span style="color:#66d9ef">block</span> body <span style="color:#75715e">%}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;div class=&#34;container&#34;&gt;
+</span></span><span style="display:flex;"><span>    &lt;h1&gt;Create Post&lt;/h1&gt;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">{{</span> form<span style="color:#f92672">(</span>form<span style="color:#f92672">)</span> <span style="color:#75715e">}}</span>
+</span></span><span style="display:flex;"><span>&lt;/div&gt;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">{%</span> <span style="color:#66d9ef">endblock</span> <span style="color:#75715e">%}</span>
+</span></span></code></pre></div><p>Your form may looks not good, don&rsquo;t worry, symfony has it built-in theme for form</p>
+<ul>
+<li><a href="https://symfony.com/doc/5.x/form/bootstrap5.html">Symfony and Bootstrap5</a></li>
+</ul>
+<p>Make sure you add bootstrap5 css and js into your base layout</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span><span style="color:#75715e">&lt;!DOCTYPE html&gt;</span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">html</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">head</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">charset</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;UTF-8&#34;</span> /&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">title</span>&gt;{% block title %}Welcome!{% endblock %}&lt;/<span style="color:#f92672">title</span>&gt;
+</span></span><span style="display:flex;"><span>    {# Run `composer require symfony/webpack-encore-bundle` to start using
+</span></span><span style="display:flex;"><span>    Symfony UX #}
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">link</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">rel</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;stylesheet&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">integrity</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">crossorigin</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;anonymous&#34;</span>
+</span></span><span style="display:flex;"><span>    /&gt;
+</span></span><span style="display:flex;"><span>    {% block stylesheets %} {{ encore_entry_link_tags(&#39;app&#39;) }} {% endblock %}
+</span></span><span style="display:flex;"><span>    {% block javascripts %} {{ encore_entry_script_tags(&#39;app&#39;) }} {% endblock %}
+</span></span><span style="display:flex;"><span>  &lt;/<span style="color:#f92672">head</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">body</span>&gt;
+</span></span><span style="display:flex;"><span>    {% block body %}{% endblock %}
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">script</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">integrity</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">crossorigin</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;anonymous&#34;</span>
+</span></span><span style="display:flex;"><span>    &gt;&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;/<span style="color:#f92672">body</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">html</span>&gt;
+</span></span></code></pre></div><blockquote>
+<p>form_themes: [&ldquo;bootstrap_5_layout.html.twig&rdquo;]</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#75715e"># config\packages\twig.yaml</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">twig</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">default_path</span>: <span style="color:#e6db74">&#34;%kernel.project_dir%/templates&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">form_themes</span>: [<span style="color:#e6db74">&#34;bootstrap_5_layout.html.twig&#34;</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">when@test</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">twig</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">strict_variables</span>: <span style="color:#66d9ef">true</span>
+</span></span></code></pre></div><h3 id="user-and-authentication">User and Authentication</h3>
+<p><strong>Create user</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>php bin<span style="color:#ae81ff">\c</span>onsole make:user
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">namespace</span> <span style="color:#a6e22e">App\Entity</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> <span style="color:#a6e22e">App\Repository\UserRepository</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Doctrine\ORM\Mapping</span> <span style="color:#66d9ef">as</span> <span style="color:#a6e22e">ORM</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Symfony\Component\Security\Core\User\UserInterface</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> * @ORM\Entity(repositoryClass=UserRepository::class)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> * @ORM\Table(name=&#34;`user`&#34;)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">User</span> <span style="color:#66d9ef">implements</span> <span style="color:#a6e22e">UserInterface</span>, <span style="color:#a6e22e">PasswordAuthenticatedUserInterface</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">     * @ORM\Id
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">     * @ORM\GeneratedValue
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">     * @ORM\Column(type=&#34;integer&#34;)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">     */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> $id;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">     * @ORM\Column(type=&#34;string&#34;, length=180, unique=true)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">     */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> $email;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">     * @ORM\Column(type=&#34;json&#34;)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">     */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> $roles <span style="color:#f92672">=</span> [];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">     * @var string The hashed password
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">     * @ORM\Column(type=&#34;string&#34;)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">     */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> $password;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getId</span>()<span style="color:#f92672">:</span> <span style="color:#f92672">?</span><span style="color:#a6e22e">int</span>
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">id</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getEmail</span>()<span style="color:#f92672">:</span> <span style="color:#f92672">?</span><span style="color:#a6e22e">string</span>
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">email</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">setEmail</span>(<span style="color:#a6e22e">string</span> $email)<span style="color:#f92672">:</span> <span style="color:#a6e22e">self</span>
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">email</span> <span style="color:#f92672">=</span> $email;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> $this;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">     * A visual identifier that represents this user.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">     *
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">     * @see UserInterface
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">     */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getUserIdentifier</span>()<span style="color:#f92672">:</span> <span style="color:#a6e22e">string</span>
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> (<span style="color:#a6e22e">string</span>) $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">email</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">     * @deprecated since Symfony 5.3, use getUserIdentifier instead
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">     */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getUsername</span>()<span style="color:#f92672">:</span> <span style="color:#a6e22e">string</span>
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> (<span style="color:#a6e22e">string</span>) $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">email</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">     * @see UserInterface
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">     */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getRoles</span>()<span style="color:#f92672">:</span> <span style="color:#66d9ef">array</span>
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        $roles <span style="color:#f92672">=</span> $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">roles</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// guarantee every user at least has ROLE_USER
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        $roles[] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;ROLE_USER&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">array_unique</span>($roles);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">setRoles</span>(<span style="color:#66d9ef">array</span> $roles)<span style="color:#f92672">:</span> <span style="color:#a6e22e">self</span>
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">roles</span> <span style="color:#f92672">=</span> $roles;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> $this;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">     * @see PasswordAuthenticatedUserInterface
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">     */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getPassword</span>()<span style="color:#f92672">:</span> <span style="color:#a6e22e">string</span>
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">password</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">setPassword</span>(<span style="color:#a6e22e">string</span> $password)<span style="color:#f92672">:</span> <span style="color:#a6e22e">self</span>
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">password</span> <span style="color:#f92672">=</span> $password;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> $this;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">     * Returning a salt is only needed, if you are not using a modern
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">     * hashing algorithm (e.g. bcrypt or sodium) in your security.yaml.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">     *
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">     * @see UserInterface
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">     */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getSalt</span>()<span style="color:#f92672">:</span> <span style="color:#f92672">?</span><span style="color:#a6e22e">string</span>
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">null</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">     * @see UserInterface
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">     */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">eraseCredentials</span>()
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// If you store any temporary, sensitive data on the user, clear it here
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#75715e">// $this-&gt;plainPassword = null;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><strong>Create auth</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>php bin<span style="color:#ae81ff">\c</span>onsole make:auth
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#75715e">// src/Security/CustomBasicAuthenticator.php
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">namespace</span> <span style="color:#a6e22e">App\Security</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Symfony\Component\HttpFoundation\RedirectResponse</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Symfony\Component\HttpFoundation\Request</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Symfony\Component\HttpFoundation\Response</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Symfony\Component\Routing\Generator\UrlGeneratorInterface</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Symfony\Component\Security\Core\Authentication\Token\TokenInterface</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Symfony\Component\Security\Core\Security</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Symfony\Component\Security\Http\Authenticator\AbstractLoginFormAuthenticator</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Symfony\Component\Security\Http\Authenticator\Passport\Badge\CsrfTokenBadge</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Symfony\Component\Security\Http\Authenticator\Passport\Badge\UserBadge</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Symfony\Component\Security\Http\Authenticator\Passport\Credentials\PasswordCredentials</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Symfony\Component\Security\Http\Authenticator\Passport\Passport</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Symfony\Component\Security\Http\Util\TargetPathTrait</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CustomBasicAuthenticator</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">AbstractLoginFormAuthenticator</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">use</span> <span style="color:#a6e22e">TargetPathTrait</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">LOGIN_ROUTE</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;app_login&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">UrlGeneratorInterface</span> $urlGenerator;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> __construct(<span style="color:#a6e22e">UrlGeneratorInterface</span> $urlGenerator)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">urlGenerator</span> <span style="color:#f92672">=</span> $urlGenerator;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">authenticate</span>(<span style="color:#a6e22e">Request</span> $request)<span style="color:#f92672">:</span> <span style="color:#a6e22e">Passport</span>
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        $email <span style="color:#f92672">=</span> $request<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">request</span><span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">get</span>(<span style="color:#e6db74">&#39;email&#39;</span>, <span style="color:#e6db74">&#39;&#39;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        $request<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">getSession</span>()<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">set</span>(<span style="color:#a6e22e">Security</span><span style="color:#f92672">::</span><span style="color:#a6e22e">LAST_USERNAME</span>, $email);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Passport</span>(
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">UserBadge</span>($email),
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">PasswordCredentials</span>($request<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">request</span><span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">get</span>(<span style="color:#e6db74">&#39;password&#39;</span>, <span style="color:#e6db74">&#39;&#39;</span>)),
+</span></span><span style="display:flex;"><span>            [
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">CsrfTokenBadge</span>(<span style="color:#e6db74">&#39;authenticate&#39;</span>, $request<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">request</span><span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">get</span>(<span style="color:#e6db74">&#39;_csrf_token&#39;</span>)),
+</span></span><span style="display:flex;"><span>            ]
+</span></span><span style="display:flex;"><span>        );
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">onAuthenticationSuccess</span>(<span style="color:#a6e22e">Request</span> $request, <span style="color:#a6e22e">TokenInterface</span> $token, <span style="color:#a6e22e">string</span> $firewallName)<span style="color:#f92672">:</span> <span style="color:#f92672">?</span><span style="color:#a6e22e">Response</span>
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> ($targetPath <span style="color:#f92672">=</span> $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">getTargetPath</span>($request<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">getSession</span>(), $firewallName)) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">RedirectResponse</span>($targetPath);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// For example:
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">RedirectResponse</span>($this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">urlGenerator</span><span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">generate</span>(<span style="color:#e6db74">&#39;post.index&#39;</span>));
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">protected</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getLoginUrl</span>(<span style="color:#a6e22e">Request</span> $request)<span style="color:#f92672">:</span> <span style="color:#a6e22e">string</span>
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">urlGenerator</span><span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">generate</span>(<span style="color:#a6e22e">self</span><span style="color:#f92672">::</span><span style="color:#a6e22e">LOGIN_ROUTE</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">namespace</span> <span style="color:#a6e22e">App\Controller</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> <span style="color:#a6e22e">App\Entity\User</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> <span style="color:#a6e22e">App\Repository\UserRepository</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Doctrine\Persistence\ManagerRegistry</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Symfony\Bundle\FrameworkBundle\Controller\AbstractController</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Symfony\Component\Form\Extension\Core\Type\PasswordType</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Symfony\Component\Form\Extension\Core\Type\RepeatedType</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Symfony\Component\Form\Extension\Core\Type\SubmitType</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Symfony\Component\HttpFoundation\Request</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Symfony\Component\HttpFoundation\Response</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Symfony\Component\Routing\Annotation\Route</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">RegistrationController</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">AbstractController</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">     * @Route(&#34;/register&#34;, name=&#34;register&#34;)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">     */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">index</span>(<span style="color:#a6e22e">Request</span> $request, <span style="color:#a6e22e">ManagerRegistry</span> $doctrine, <span style="color:#a6e22e">UserPasswordHasherInterface</span> $passwordHasherEncoder)<span style="color:#f92672">:</span> <span style="color:#a6e22e">Response</span>
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        $form <span style="color:#f92672">=</span> $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">createFormBuilder</span>()
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">add</span>(<span style="color:#e6db74">&#39;email&#39;</span>)
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">add</span>(<span style="color:#e6db74">&#39;password&#39;</span>, <span style="color:#a6e22e">RepeatedType</span><span style="color:#f92672">::</span><span style="color:#a6e22e">class</span>, [
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#39;type&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">PasswordType</span><span style="color:#f92672">::</span><span style="color:#a6e22e">class</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#39;invalid_message&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;The password fields must match.&#39;</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#39;options&#39;</span> <span style="color:#f92672">=&gt;</span> [<span style="color:#e6db74">&#39;attr&#39;</span> <span style="color:#f92672">=&gt;</span> [<span style="color:#e6db74">&#39;class&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;password-field&#39;</span>]],
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#39;required&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#39;first_options&#39;</span>  <span style="color:#f92672">=&gt;</span> [<span style="color:#e6db74">&#39;label&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Password&#39;</span>],
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#39;second_options&#39;</span> <span style="color:#f92672">=&gt;</span> [<span style="color:#e6db74">&#39;label&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Repeat Password&#39;</span>],
+</span></span><span style="display:flex;"><span>            ])
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">add</span>(<span style="color:#e6db74">&#39;register&#39;</span>, <span style="color:#a6e22e">SubmitType</span><span style="color:#f92672">::</span><span style="color:#a6e22e">class</span>, [
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;attr&#34;</span> <span style="color:#f92672">=&gt;</span> [
+</span></span><span style="display:flex;"><span>                    <span style="color:#e6db74">&#39;class&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;btn btn-primary float-end&#39;</span>
+</span></span><span style="display:flex;"><span>                ]
+</span></span><span style="display:flex;"><span>            ])
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">getForm</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        $form<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">handleRequest</span>($request);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> ($form<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">isSubmitted</span>()) {
+</span></span><span style="display:flex;"><span>            $data <span style="color:#f92672">=</span> $form<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">getData</span>();
+</span></span><span style="display:flex;"><span>            $user <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">User</span>();
+</span></span><span style="display:flex;"><span>            $user<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">setEmail</span>($data[<span style="color:#e6db74">&#39;email&#39;</span>]);
+</span></span><span style="display:flex;"><span>            $hashedPassword <span style="color:#f92672">=</span> $passwordHasherEncoder<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">hashPassword</span>($user, $data[<span style="color:#e6db74">&#39;password&#39;</span>]);
+</span></span><span style="display:flex;"><span>            $user<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">setPassword</span>($hashedPassword);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">dump</span>($user);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            $entityManager <span style="color:#f92672">=</span> $doctrine<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">getManager</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            $entityManager<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">persist</span>($user);
+</span></span><span style="display:flex;"><span>            $entityManager<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">flush</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">redirect</span>($this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">generateUrl</span>(<span style="color:#e6db74">&#39;app_login&#39;</span>));
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">render</span>(<span style="color:#e6db74">&#39;registration/index.html.twig&#39;</span>, [
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#39;form&#39;</span> <span style="color:#f92672">=&gt;</span> $form<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">createView</span>()
+</span></span><span style="display:flex;"><span>        ]);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">namespace</span> <span style="color:#a6e22e">App\Controller</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Symfony\Bundle\FrameworkBundle\Controller\AbstractController</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Symfony\Component\HttpFoundation\RedirectResponse</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Symfony\Component\HttpFoundation\Response</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Symfony\Component\Routing\Annotation\Route</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Symfony\Component\Security\Http\Authentication\AuthenticationUtils</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SecurityController</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">AbstractController</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">     * @Route(&#34;/login&#34;, name=&#34;app_login&#34;)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">     */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">login</span>(<span style="color:#a6e22e">AuthenticationUtils</span> $authenticationUtils)<span style="color:#f92672">:</span> <span style="color:#a6e22e">Response</span>
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> ($this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">getUser</span>()) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">redirectToRoute</span>(<span style="color:#e6db74">&#39;post.index&#39;</span>);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// get the login error if there is one
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        $error <span style="color:#f92672">=</span> $authenticationUtils<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">getLastAuthenticationError</span>();
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// last username entered by the user
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        $lastUsername <span style="color:#f92672">=</span> $authenticationUtils<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">getLastUsername</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">render</span>(<span style="color:#e6db74">&#39;security/login.html.twig&#39;</span>, [<span style="color:#e6db74">&#39;last_username&#39;</span> <span style="color:#f92672">=&gt;</span> $lastUsername, <span style="color:#e6db74">&#39;error&#39;</span> <span style="color:#f92672">=&gt;</span> $error]);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">     * @Route(&#34;/logout&#34;, name=&#34;app_logout&#34;)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">     */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">logout</span>()<span style="color:#f92672">:</span> <span style="color:#a6e22e">void</span>
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Access Control and Password Hashed Algorithm</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#f92672">security</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">enable_authenticator_manager</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># https://symfony.com/doc/current/security.html#registering-the-user-hashing-passwords</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">password_hashers</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface</span>: <span style="color:#e6db74">&#34;bcrypt&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># https://symfony.com/doc/current/security.html#loading-the-user-the-user-provider</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">providers</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># used to reload user from session &amp; other features (e.g. switch_user)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">app_user_provider</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">entity</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">class</span>: <span style="color:#ae81ff">App\Entity\User</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">property</span>: <span style="color:#ae81ff">email</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">firewalls</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">dev</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">pattern</span>: <span style="color:#ae81ff">^/(_(profiler|wdt)|css|images|js)/</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">security</span>: <span style="color:#66d9ef">false</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">main</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">lazy</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">provider</span>: <span style="color:#ae81ff">app_user_provider</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">custom_authenticator</span>: <span style="color:#ae81ff">App\Security\CustomBasicAuthenticator</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">logout</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">path</span>: <span style="color:#ae81ff">app_logout</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># where to redirect after logout</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">target</span>: <span style="color:#ae81ff">app_login</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e"># activate different ways to authenticate</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e"># https://symfony.com/doc/current/security.html#the-firewall</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e"># https://symfony.com/doc/current/security/impersonating_user.html</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e"># switch_user: true</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># Easy way to control access for large sections of your site</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># Note: Only the *first* access control that matches will be used</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">access_control</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Restricts access to paths starting with /login to users with the IS_AUTHENTICATED_ANONYMOUSLY role</span>
+</span></span><span style="display:flex;"><span>    - { <span style="color:#f92672">path: ^/login, roles</span>: <span style="color:#ae81ff">IS_AUTHENTICATED_ANONYMOUSLY }</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Restricts access to all other paths to users with the ROLE_USER role</span>
+</span></span><span style="display:flex;"><span>    - { <span style="color:#f92672">path: ^/, roles</span>: <span style="color:#ae81ff">ROLE_USER }</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># - { path: ^/admin, roles: ROLE_ADMIN }</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># - { path: ^/profile, roles: ROLE_USER }</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">when@test</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">security</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">password_hashers</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e"># By default, password hashers are resource intensive and take time. This is</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e"># important to generate secure password hashes. In tests however, secure hashes</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e"># are not important, waste resources and increase test times. The following</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e"># reduces the work factor to the lowest possible values.</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">algorithm</span>: <span style="color:#ae81ff">auto</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">cost</span>: <span style="color:#ae81ff">4</span> <span style="color:#75715e"># Lowest possible value for bcrypt</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">time_cost</span>: <span style="color:#ae81ff">3</span> <span style="color:#75715e"># Lowest possible value for argon</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">memory_cost</span>: <span style="color:#ae81ff">10</span> <span style="color:#75715e"># Lowest possible value for argon</span>
+</span></span></code></pre></div><h3 id="but-you-seems-stuck-with-symfonydoctrine-syntax-there-not-much-auto-completion">But you seems stuck with Symfony/Doctrine syntax, there not much auto completion</h3>
+<p>No worries, install the following plugins, will solve your problems</p>
+<h4 id="1php-anotationshttpspluginsjetbrainscomplugin7320-php-annotations">1.<a href="https://plugins.jetbrains.com/plugin/7320-php-annotations">PHP Anotations</a></h4>
+<ul>
+<li>Analyses the classes which can be used as annotations and provides code-completing when writing annotations - e.g. Doctrine ORM mappings.</li>
+</ul>
+<h4 id="2symfony-supporthttpspluginsjetbrainscomplugin7219-symfony-support">2.<a href="https://plugins.jetbrains.com/plugin/7219-symfony-support">Symfony Support</a></h4>
+<ul>
+<li>This plugin provides auto-completion for anything in Symfony you can imagine. It analyses the DI container code.</li>
+</ul>
+<h2 id="testing">Testing</h2>
+<p>Getting started</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>composer require --dev symfony/test-pack
+</span></span><span style="display:flex;"><span>php bin/phpunit
+</span></span></code></pre></div><blockquote>
+<p>Types of tests</p>
+</blockquote>
+<ol>
+<li>Unit Tests</li>
+</ol>
+<blockquote>
+<p>These tests ensure that individual units of source code (e.g. a single class) behave as intended.</p>
+</blockquote>
+<ol start="2">
+<li>Integration Tests</li>
+</ol>
+<blockquote>
+<p>These tests test a combination of classes and commonly interact with Symfony&rsquo;s service container</p>
+</blockquote>
+<ol start="3">
+<li>Application Tests</li>
+</ol>
+<blockquote>
+<p>Application tests test the behavior of a complete application. They make HTTP requests (both real and simulated ones) and test that the response is as expected.</p>
+</blockquote>
+<h3 id="unit-test">Unit Test</h3>
+<p>Let&rsquo;s create a CalculatorService</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">namespace</span> <span style="color:#a6e22e">App\Service</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CalculatorService</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">sum</span>(<span style="color:#a6e22e">int</span> <span style="color:#f92672">...</span>$args)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        $total <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">foreach</span> ($args <span style="color:#66d9ef">as</span> $number) {
+</span></span><span style="display:flex;"><span>            $total <span style="color:#f92672">+=</span> $number;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> $total;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Here are some test cases we might consider:</p>
+<ul>
+<li>Testing the sum of positive numbers</li>
+<li>Testing the sum of negative numbers</li>
+<li>Testing the sum with a mixture of positive and negative numbers</li>
+<li>Testing the sum with no arguments (should return 0)</li>
+</ul>
+<p>Notes, there are 2 important methods you should remember</p>
+<ul>
+<li><strong>setUp</strong> : where you init your data</li>
+<li><strong>tearDown</strong> : where you clean up your data</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">namespace</span> <span style="color:#a6e22e">App\Tests\Service</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> <span style="color:#a6e22e">App\Service\CalculatorService</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> <span style="color:#a6e22e">PHPUnit\Framework\TestCase</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CalculatorServiceTest</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">TestCase</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> $calculator;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">protected</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">setUp</span>()<span style="color:#f92672">:</span> <span style="color:#a6e22e">void</span>
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">calculator</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">CalculatorService</span>();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">testSumPositiveNumbers</span>()
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        $result <span style="color:#f92672">=</span> $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">calculator</span><span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">sum</span>(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>);
+</span></span><span style="display:flex;"><span>        $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">assertEquals</span>(<span style="color:#ae81ff">15</span>, $result);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">testSumNegativeNumbers</span>()
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        $result <span style="color:#f92672">=</span> $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">calculator</span><span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">sum</span>(<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">3</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">4</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">5</span>);
+</span></span><span style="display:flex;"><span>        $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">assertEquals</span>(<span style="color:#f92672">-</span><span style="color:#ae81ff">15</span>, $result);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">testSumMixedNumbers</span>()
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        $result <span style="color:#f92672">=</span> $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">calculator</span><span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">sum</span>(<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">6</span>);
+</span></span><span style="display:flex;"><span>        $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">assertEquals</span>(<span style="color:#ae81ff">3</span>, $result);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">testSumWithNoArguments</span>()
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        $result <span style="color:#f92672">=</span> $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">calculator</span><span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">sum</span>();
+</span></span><span style="display:flex;"><span>        $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">assertEquals</span>(<span style="color:#ae81ff">0</span>, $result);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">protected</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">tearDown</span>()<span style="color:#f92672">:</span> <span style="color:#a6e22e">void</span>
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">calculator</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">null</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Let&rsquo;s run</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>.<span style="color:#ae81ff">\v</span>endor<span style="color:#ae81ff">\b</span>in<span style="color:#ae81ff">\p</span>hpunit tests<span style="color:#ae81ff">\S</span>ervice<span style="color:#ae81ff">\C</span>alculatorServiceTest.php
+</span></span></code></pre></div><p>Let&rsquo;s add some reports
+<strong>From PHPUnit 9.x</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#75715e">&lt;!-- phpunit.xml.dist --&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;logging&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;log</span> <span style="color:#a6e22e">type=</span><span style="color:#e6db74">&#34;coverage-html&#34;</span> <span style="color:#a6e22e">target=</span><span style="color:#e6db74">&#34;var/log/test-coverage&#34;</span> <span style="color:#a6e22e">lowUpperBound=</span><span style="color:#e6db74">&#34;35&#34;</span> <span style="color:#a6e22e">highLowerBound=</span><span style="color:#e6db74">&#34;70&#34;</span><span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;log</span> <span style="color:#a6e22e">type=</span><span style="color:#e6db74">&#34;coverage-clover&#34;</span> <span style="color:#a6e22e">target=</span><span style="color:#e6db74">&#34;var/log/clover.xml&#34;</span><span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;log</span> <span style="color:#a6e22e">type=</span><span style="color:#e6db74">&#34;junit&#34;</span> <span style="color:#a6e22e">target=</span><span style="color:#e6db74">&#34;var/log/junit.xml&#34;</span> <span style="color:#a6e22e">logIncompleteSkipped=</span><span style="color:#e6db74">&#34;false&#34;</span><span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;/logging&gt;</span>
+</span></span></code></pre></div><p><strong>For Lower Version</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span>    <span style="color:#f92672">&lt;coverage</span> <span style="color:#a6e22e">processUncoveredFiles=</span><span style="color:#e6db74">&#34;true&#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;include&gt;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&lt;directory</span> <span style="color:#a6e22e">suffix=</span><span style="color:#e6db74">&#34;.php&#34;</span><span style="color:#f92672">&gt;</span>src<span style="color:#f92672">&lt;/directory&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;/include&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;report&gt;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&lt;html</span> <span style="color:#a6e22e">outputDirectory=</span><span style="color:#e6db74">&#34;var/log/test-coverage&#34;</span><span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;/report&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;/coverage&gt;</span>
+</span></span></code></pre></div><p>Run Test</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>php -dxdebug.mode<span style="color:#f92672">=</span>coverage ./vendor/bin/phpunit --coverage-html var/log/test-coverage --coverage-clover var/log/clover.xml --log-junit var/log/junit.xml
+</span></span></code></pre></div><p>Adjust composer.json scripts</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;scripts&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;test&#34;</span>: <span style="color:#e6db74">&#34;SET XDEBUG_MODE=coverage &amp;&amp; php ./vendor/bin/phpunit&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;test-coverage&#34;</span>: <span style="color:#e6db74">&#34;SET XDEBUG_MODE=coverage &amp;&amp; php ./vendor/bin/phpunit --coverage-html var/log/test-coverage&#34;</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="references-1">References</h2>
+<ul>
+<li><a href="https://docs.phpunit.de/en/9.6/test-doubles.html">PHPUnit Doc</a></li>
+</ul>
+        
+      
+      <div class="m-1 p-1">
+        
+          <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href="https://blog.phpguru.net/categories/cheatsheet">cheatsheet</a>
+        
+      </div>
+    </div>
+  </section>
+  <section class="container section">
+    <div class="max-w-2xl mx-auto">
+      <div class="font-heading text-2xl font-semibold">You Might Also Like</div>
+      <div class="mt-8 grid  gap-8">
+        
+        
+        
+        
+        <ul class="sidebar-links">
+        
+        
+            <li><a href="/post/how-to-write-unit-in-php/">How to Write Unit in Php</a></li>
+        
+        </ul>
+                
+      </div>
+    </div>
+  </section>
+
+    
+    </main>
+    <footer class="footer">
+      <div class="container md:flex">
+        <section class="footer-section-info md:basis-1/4">
+          <div class="address">
+            <a class="logo" href="https://blog.phpguru.net" title="PHPGuru">
+              PHPGuru
+            </a>
+            <h4 class="footer-heading">
+               PRODUCTION MODE  
+            <h4>                
+          </div>
+        </section>
+        <div class="footer-section-navigation-menu md:basis-1/4">
+          <h4 class="footer-heading">Laravel</h4>
+          <ul class="footer-section-navigation-menu-links">
+            
+            
+              <li><a href="https://blog.phpguru.net/post/laravel-tutorial-001-main-concepts/">Laravel Tutorial 001 Main Concepts</a></li>              
+             
+          </ul>
+        </div>
+        <div class="footer-section-navigation-menu md:basis-1/4">
+          <h4 class="footer-heading">Devops</h4>
+          <ul class="footer-section-navigation-menu-links">
+            
+            
+              <li><a href="https://blog.phpguru.net/post/k8s-labs-002-deploy-static-web-application/">K8s Labs 002 Deploy Static Web Application</a></li>              
+            
+              <li><a href="https://blog.phpguru.net/post/k8s-labs-001-building-a-kubernetes-cluster-with-kubeadm/">K8s Labs 001 Building a Kubernetes Cluster With Kubeadm</a></li>              
+            
+              <li><a href="https://blog.phpguru.net/post/kubernetes-hands-on-labs/">Kubernetes Hands on Labs</a></li>              
+            
+              <li><a href="https://blog.phpguru.net/post/kubernetes-complete-course/">Kubernetes Complete Course</a></li>              
+            
+              <li><a href="https://blog.phpguru.net/post/docker-cheatsheet/">Docker Cheatsheet for PHP Developers</a></li>              
+            
+          </ul>
+        </div>
+        <div class="footer-section-navigation-menu md:basis-1/4">
+          <h4 class="footer-heading">Cheatsheet</h4>
+          <ul class="footer-section-navigation-menu-links">
+            
+            
+              <li><a href="https://blog.phpguru.net/post/symfony-5x-tutorial/">Symfony 5x Tutorial</a></li>              
+            
+              <li><a href="https://blog.phpguru.net/post/how-to-write-unit-in-php/">How to Write Unit in Php</a></li>              
+             
+          </ul>
+        </div>
+      </div>
+      <div class="container">
+        <div class="text-center">
+          <a href=""><span class="material-icons text-4xl m-4">facebook</span></a>
+          <a href=""><span class="material-icons text-4xl  m-4">smart_display</span></a>
+        </div>
+        <div class="text-center text-lg py-4">
+          Copyright @ PHPGuru 2025
+        </div>
+        <div class="text-center text-sm">
+          Powered by <a class="font-bold text-primary" href="https://gohugo.io/">Go Hugo</a> - Made
+          with love from <a class="font-bold text-primary" href="https://blog.phpguru.net">PHPGuru</a> -
+          Build
+          Version 2024-04-26 23:39:23 &#43;0700 &#43;07
+        </div>
+      </div>
+    </footer>
+
+    
+    
+      
+        
+        
+        
+          <script type="text/javascript" src="https://blog.phpguru.net/core/jquery-3.6.0.min.js"></script>
+        
+             
+    
+      
+        
+        
+        
+          <script type="text/javascript" src="https://blog.phpguru.net/themes/2022/public/main.js"></script>
+        
+             
+    
+      
+        
+        
+        
+          <script type="text/javascript" src="https://blog.phpguru.net/themes/2022/public/home.js"></script>
+        
+             
+    
+
+  
+  <script async>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=&ev=PageView&noscript=1"
+    /></noscript>
+        
+  </body>
+</html>

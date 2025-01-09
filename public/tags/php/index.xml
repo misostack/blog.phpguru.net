@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>php on Useful PHP Tricks, Laravel Tips, Tricks and Best Practices</title>
+    <link>https://blog.phpguru.net/tags/php/</link>
+    <description>Recent content in php on Useful PHP Tricks, Laravel Tips, Tricks and Best Practices</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 28 Mar 2024 00:24:54 +0700</lastBuildDate><atom:link href="https://blog.phpguru.net/tags/php/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[Php Tutorial 2024] Lession 01 - Setup Php Development Environment in Windows 10</title>
+      <link>https://blog.phpguru.net/post/php-tutorial-2024-01-setup-php-development-environment-in-windows-10/</link>
+      <pubDate>Thu, 28 Mar 2024 00:24:54 +0700</pubDate>
+      
+      <guid>https://blog.phpguru.net/post/php-tutorial-2024-01-setup-php-development-environment-in-windows-10/</guid>
+      <description>A very long story that every body knows is on window XAMPP/WAMP were the most popular choices in the past. But one day i&amp;rsquo;ve figure out Laragon - the all in one and light tool for windows. I never came back! Here is your new story.
+Setup Tools for development Install PHP Environment -&amp;gt; https://laragon.org/index.html Install and Update composer -&amp;gt; https://getcomposer.org/download/ VsCode Extensions for PHP Debug PHP with VSCode and Xdebug Install PHP Environment Install Laragon in Windows</description>
+    </item>
+    
+    <item>
+      <title>Laravel Tutorial 001 Main Concepts</title>
+      <link>https://blog.phpguru.net/post/laravel-tutorial-001-main-concepts/</link>
+      <pubDate>Fri, 01 Mar 2024 22:07:05 +0700</pubDate>
+      
+      <guid>https://blog.phpguru.net/post/laravel-tutorial-001-main-concepts/</guid>
+      <description>The 1st step, create new laravel project with composer
+composer create-project laravel/laravel example-app Topics will be go through Laravel Atoms
+Request Flow Service Containers Service Providers Facades Go through all basic concepts via &amp;ldquo;Todo Application&amp;rdquo;
+Overview Architecture require __DIR__.&amp;#39;/../vendor/autoload.php&amp;#39;; /* |-------------------------------------------------------------------------- | Run The Application |-------------------------------------------------------------------------- | | Once we have the application, we can handle the incoming request using | the application&amp;#39;s HTTP kernel. Then, we will send the response back | to this client&amp;#39;s browser, allowing them to enjoy our application.</description>
+    </item>
+    
+    <item>
+      <title>How to Write Unit in Php</title>
+      <link>https://blog.phpguru.net/post/how-to-write-unit-in-php/</link>
+      <pubDate>Sun, 07 Aug 2022 09:55:08 +0700</pubDate>
+      
+      <guid>https://blog.phpguru.net/post/how-to-write-unit-in-php/</guid>
+      <description>Only ever write code to fix a failing test.
+That’s test-driven development, or TDD, in one sentence.
+When do we write test? Steps Step 1 : Install PHPUnit using composer
+composer require --dev phpunit/phpunit ^9.5 Step 2: Configuration
+bootstrap.php
+require_once &amp;#39;../vendor/autoload.php&amp;#39;; phpunit.xml
+&amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt; &amp;lt;phpunit bootstrap=&amp;#34;./bootstrap.php&amp;#34; colors=&amp;#34;true&amp;#34;&amp;gt; &amp;lt;testsuites&amp;gt; &amp;lt;testsuite name=&amp;#34;UnitTestSuite&amp;#34;&amp;gt; &amp;lt;directory&amp;gt;unit&amp;lt;/directory&amp;gt; &amp;lt;/testsuite&amp;gt; &amp;lt;testsuite name=&amp;#34;IntegrationTestSuite&amp;#34;&amp;gt; &amp;lt;directory&amp;gt;integration&amp;lt;/directory&amp;gt; &amp;lt;/testsuite&amp;gt; &amp;lt;testsuite name=&amp;#34;EdgeToEdgeTestSuite&amp;#34;&amp;gt; &amp;lt;directory&amp;gt;edge-to-edge&amp;lt;/directory&amp;gt; &amp;lt;/testsuite&amp;gt; &amp;lt;/testsuites&amp;gt; &amp;lt;coverage cacheDirectory=&amp;#34;./cached&amp;#34; includeUncoveredFiles=&amp;#34;true&amp;#34; processUncoveredFiles=&amp;#34;true&amp;#34; pathCoverage=&amp;#34;false&amp;#34; ignoreDeprecatedCodeUnits=&amp;#34;true&amp;#34; disableCodeCoverageIgnore=&amp;#34;true&amp;#34;&amp;gt; &amp;lt;include&amp;gt; &amp;lt;directory suffix=&amp;#34;.</description>
+    </item>
+    
+  </channel>
+</rss>

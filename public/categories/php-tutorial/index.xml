@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>php-tutorial on Useful PHP Tricks, Laravel Tips, Tricks and Best Practices</title>
+    <link>https://blog.phpguru.net/categories/php-tutorial/</link>
+    <description>Recent content in php-tutorial on Useful PHP Tricks, Laravel Tips, Tricks and Best Practices</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 28 Mar 2024 00:24:54 +0700</lastBuildDate><atom:link href="https://blog.phpguru.net/categories/php-tutorial/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[Php Tutorial 2024] Lession 01 - Setup Php Development Environment in Windows 10</title>
+      <link>https://blog.phpguru.net/post/php-tutorial-2024-01-setup-php-development-environment-in-windows-10/</link>
+      <pubDate>Thu, 28 Mar 2024 00:24:54 +0700</pubDate>
+      
+      <guid>https://blog.phpguru.net/post/php-tutorial-2024-01-setup-php-development-environment-in-windows-10/</guid>
+      <description>A very long story that every body knows is on window XAMPP/WAMP were the most popular choices in the past. But one day i&amp;rsquo;ve figure out Laragon - the all in one and light tool for windows. I never came back! Here is your new story.
+Setup Tools for development Install PHP Environment -&amp;gt; https://laragon.org/index.html Install and Update composer -&amp;gt; https://getcomposer.org/download/ VsCode Extensions for PHP Debug PHP with VSCode and Xdebug Install PHP Environment Install Laragon in Windows</description>
+    </item>
+    
+    <item>
+      <title>Install Php Enviroment on Windows 10</title>
+      <link>https://blog.phpguru.net/post/install-php-enviroment-on-windows-10/</link>
+      <pubDate>Sat, 06 Aug 2022 09:47:49 +0700</pubDate>
+      
+      <guid>https://blog.phpguru.net/post/install-php-enviroment-on-windows-10/</guid>
+      <description>Todo
+Install XAMPP Add custom configuration for vhost Create PHP Path Variable Install XDebug Debug with PHPStorm 1. Install XAMPP 2. Add custom configuration for vhost C:\xampp\apache\conf\httpd.conf
+Add this line at the end
+Include &amp;ldquo;C:/custom_virtual_host.conf&amp;rdquo;
+Add your first virtual host
+&amp;lt;Directory &amp;#34;C:/www&amp;#34;&amp;gt; AllowOverride All Options None Require all granted &amp;lt;/Directory&amp;gt; # Default &amp;lt;VirtualHost *:80&amp;gt; DocumentRoot &amp;#34;C:/www/localhost&amp;#34; ServerName localhost LogLevel warn ErrorLog &amp;#34;C:/www/localhost_error.log&amp;#34; CustomLog &amp;#34;C:/www/localhost_access.log&amp;#34; combined &amp;lt;/VirtualHost&amp;gt; Create new file C:/www/localhost/index.</description>
+    </item>
+    
+  </channel>
+</rss>

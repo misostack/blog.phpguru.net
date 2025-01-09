@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>symfony on Useful PHP Tricks, Laravel Tips, Tricks and Best Practices</title>
+    <link>https://blog.phpguru.net/tags/symfony/</link>
+    <description>Recent content in symfony on Useful PHP Tricks, Laravel Tips, Tricks and Best Practices</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 26 Apr 2024 23:39:23 +0700</lastBuildDate><atom:link href="https://blog.phpguru.net/tags/symfony/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Symfony Services</title>
+      <link>https://blog.phpguru.net/post/symfony-services/</link>
+      <pubDate>Fri, 26 Apr 2024 23:39:23 +0700</pubDate>
+      
+      <guid>https://blog.phpguru.net/post/symfony-services/</guid>
+      <description>References All in one Symfony Tutorial Source Code Understanding Services and Service Container in Symfony Services in Symfony are central to the framework&amp;rsquo;s architecture and revolve around the service container, which is responsible for managing service objects. Services are PHP objects that perform specific tasks, such as sending emails, handling database interactions, or processing form data.
+Service Container Services help encapsulate reusable business logic. The service container in Symfony standardizes and centralizes the way objects are constructed, which helps manage dependencies effectively through a technique called dependency injection.</description>
+    </item>
+    
+  </channel>
+</rss>

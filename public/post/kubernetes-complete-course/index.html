@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="home" href="https://blog.phpguru.net" />
+    <meta name="generator" content="jsguru cms" />
+
+    
+    
+
+    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    
+    
+      
+              
+        
+        <link rel="stylesheet" href="https://blog.phpguru.net/themes/2022/public/main.css" />
+             
+    
+      
+              
+        
+        <link rel="stylesheet" href="https://blog.phpguru.net/themes/2022/public/home.css" />
+             
+    
+      
+              
+        
+        <link rel="stylesheet" href="https://blog.phpguru.net/themes/2022/public/page.css" />
+             
+        
+    
+    
+    
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-44831C2LM4"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-44831C2LM4');    
+    </script>
+    
+    
+    
+<title>Kubernetes Complete Course | In this tutorial, you will learn about: what kubenertes is, what problems that kubenertes can solve, what features that container orchestration tools offer.s | Useful PHP Tricks, Laravel Tips, Tricks and Best Practices</title>
+<meta name="robots" content="all" />
+<meta name="keywords" content="Kubernetes Complete Course" />
+<meta name="description" content="In this tutorial, you will learn about: what kubenertes is, what problems that kubenertes can solve, what features that container orchestration tools offer.s" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="https://gist.github.com/assets/31009750/1b212337-e0b7-4412-9177-eb9a113fc383" />
+<meta property="og:image:type" content="image/jpeg" />
+<meta property="og:image:width" content="750" />
+<meta property="og:image:height" content="300" />
+<meta
+  property="article:publisher"
+  content="https://www.facebook.com/nextjsvietnam"
+/>
+
+<meta property="article:published_time" content="2024-04-01T09:09:35+07:00" />
+<meta property="article:modified_time" content="2024-04-01T09:09:35+07:00" />
+
+    
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png" />
+<link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png" />
+<link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png" />
+<link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png" />
+<link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png" />
+<link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png" />
+<link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png" />
+<link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png" />
+<link
+  rel="icon"
+  type="image/png"
+  sizes="192x192"
+  href="/android-icon-192x192.png"
+/>
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+<link rel="manifest" href="/manifest.json" />
+<meta name="msapplication-TileColor" content="#ffffff" />
+<meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
+<meta name="theme-color" content="#ffffff" />
+
+  </head>
+  <body class="body-nav-fixed">
+    <nav class="nav-fixed nav-default z-50">
+    <div class="container">
+      <div class="nav-container flex flex-wrap justify-between items-center">
+        <a href="https://blog.phpguru.net" class="nav-brand inline-block">
+          
+          <img class="h-12" src="https://blog.phpguru.net/themes/2022/src/assets/images/logo.png" 
+          alt="Stunning" />
+        </a>
+        <a href="javascript:void(0);" data-menu="#menu-main_menu" class="nav-menu-toggle"><span
+          class="material-icons">menu</span></a>
+        <ul id="menu-main_menu" class="nav-menu h-0 md:h-auto">
+          <form class="nav-menu-search-bar md:hidden relative">
+            <button class="nav-menu-search-bar-search-btn absolute h-full">
+              <svg class="w-3 h-3 text-gray-600" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24">
+                <path
+                  d="M16.32 14.9l5.39 5.4a1 1 0 0 1-1.42 1.4l-5.38-5.38a8 8 0 1 1 1.41-1.41zM10 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12z">
+                </path>
+              </svg>
+            </button>
+            <input name="s" type="text" class="w-full" />
+          </form>
+          
+          
+            <li class="nav-menu-item">
+            <a class="nav-menu-link" href="https://blog.phpguru.net/categories/cheatsheet">Cheatsheet
+                
+            </a>
+            
+            </li>
+          
+            <li class="nav-menu-item">
+            <a class="nav-menu-link" href="https://blog.phpguru.net/categories/php-tutorial">PHP
+                
+            </a>
+            
+            </li>
+          
+            <li class="nav-menu-item">
+            <a class="nav-menu-link" href="https://blog.phpguru.net/categories/devops">Devops
+                
+            </a>
+            
+            </li>
+          
+            <li class="nav-menu-item">
+            <a class="nav-menu-link" href="https://blog.phpguru.net">Tutorials
+                
+                    <span class="material-icons">keyboard_arrow_down</span>
+                
+            </a>
+            
+                <ul class="sub-menu">                                    
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="https://blog.phpguru.net/categories/laravel-tutorial">Laravel Tutorial</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="https://blog.phpguru.net/categories/symfony-tutorial">Symfony Tutorial</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="https://blog.phpguru.net/categories/wordpress-tutorial">Wordpress Tutorial</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="https://blog.phpguru.net/categories/golang-tutorial">Golang Tutorial</a></li>
+                
+                </ul>
+            
+            </li>
+          
+            <li class="nav-menu-item">
+            <a class="nav-menu-link" href="https://blog.phpguru.net">Tools
+                
+                    <span class="material-icons">keyboard_arrow_down</span>
+                
+            </a>
+            
+                <ul class="sub-menu">                                    
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="https://regex101.com/">Online Regex</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://www.bashoneliners.com/">Bash Online</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="https://www.epochconverter.com/">Unix Timestamp Conversion</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="https://ryanstutorials.net/bash-scripting-tutorial/">Bash Scripting</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="https://explainshell.com/">Explain Shell</a></li>
+                
+                </ul>
+            
+            </li>
+          
+          <form class="nav-menu-search-bar hidden md:flex relative">
+            <button class="nav-menu-search-bar-search-btn absolute h-full">
+              <svg class="w-3 h-3 text-gray-600" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24">
+                <path
+                  d="M16.32 14.9l5.39 5.4a1 1 0 0 1-1.42 1.4l-5.38-5.38a8 8 0 1 1 1.41-1.41zM10 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12z">
+                </path>
+              </svg>
+            </button>
+            <input name="s" type="text" class="w-full" />
+          </form>
+        </ul>
+      </div>
+    </div>
+</nav>
+
+    <main>
+    
+  <section class="container section">
+    <div class="page-content max-w-2xl mx-auto">
+        <img src="https://gist.github.com/assets/31009750/1b212337-e0b7-4412-9177-eb9a113fc383" class="img-responsive" alt="Kubernetes Complete Course" />
+        <h1>Kubernetes Complete Course</h1>
+        
+          
+          
+          <p><strong>Post Date</strong> : 2024-04-01T09:09:35+07:00</p>
+          <p><strong>Modified Date</strong> : 2024-04-01T09:09:35+07:00</p>
+        <p>
+            <strong>Category:</strong>
+            
+            <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href="https://blog.phpguru.net/categories/devops">devops</a>
+            
+        </p>
+        <p>
+          <strong>Tags:</strong>
+          
+             <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white"
+             href="/tags/k8s">k8s</a>
+          
+             <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white"
+             href="/tags/kubenertes">, kubenertes</a>
+          
+        </p>                
+        <h2 id="overview">Overview</h2>
+<p>🔥 What is Kubernetes 🔥
+► What problems does Kubernetes solve?
+► What features do container orchestration tools offer?</p>
+<h3 id="what-kubenertes-is">What Kubenertes is?</h3>
+<ul>
+<li>Open source <strong>Container Orchestration</strong> Tool</li>
+<li>Developed by <strong>Google</strong></li>
+<li>Helps you mange <strong>containerized applications</strong> in different <strong>deployment environments</strong>: physical, virtual machine, cloud, hybrid</li>
+</ul>
+<h3 id="what-problem-does-kubenertes-solve">What problem does Kubenertes solve?</h3>
+<p><strong>1st problem: The need for a container orchestration tool</strong></p>
+<ul>
+<li>Trend from <strong>Monolith</strong> to <strong>Microservices</strong></li>
+<li>Increased usage of <strong>containers</strong></li>
+<li>Demand for a <strong>proper way</strong> of <strong>managing</strong> those hundreds of containers</li>
+</ul>
+<h3 id="what-features-do-container-orchestration-tools-offer">What features do container orchestration tools offer?</h3>
+<ul>
+<li><strong>High Availability</strong> or no downtime</li>
+<li><strong>Scalability</strong> or high performance</li>
+<li><strong>Disater recovery</strong> - backup and restore</li>
+</ul>
+<h2 id="introduction-to-k8s">Introduction to K8s</h2>
+<h3 id="kubenertes-components">Kubenertes Components</h3>
+<p><strong>Pod</strong></p>
+<ul>
+<li>Smallest unit of K8s</li>
+<li>Abstraction over container</li>
+<li>Usually 1 application per Pod</li>
+<li>You can run multiple applications per Pod ( bad practice)</li>
+<li>Each pod gets its own IP Address</li>
+<li>New IP Address on re-recreation</li>
+</ul>
+<p>Eg: your DB container died, then k8s auto re-create and replace the dead one but it use another IP Address.</p>
+<p><img src="https://gist.github.com/assets/31009750/63add615-23c5-4c6b-955f-55d996794f6e" alt="image"></p>
+<h3 id="replication">Replication</h3>
+<p><img src="https://gist.github.com/assets/31009750/7e00771e-7632-433a-9526-8c2f104fed7d" alt="image"></p>
+<h2 id="advanced-concepts">Advanced Concepts</h2>
+<h3 id="master-node-and-worker-node-in-kubernetes">Master Node and Worker Node in Kubernetes</h3>
+<p>Overview</p>
+<p><img src="https://gist.github.com/assets/31009750/2b296865-7d7c-411b-bfe5-a67c57b228c7" alt="image"></p>
+<h4 id="worker-node">Worker Node</h4>
+<p>There are 3 processes in Worker Node</p>
+<ul>
+<li>Container Runtime ( can be docker )</li>
+<li>KubeProxy : Kind of virtual network</li>
+<li>Kubelet: connect node and container</li>
+</ul>
+<h4 id="master-node">Master Node</h4>
+<p>There are 4 processes in Master Node</p>
+<ul>
+<li>Api: cluster&rsquo;s gateway, gate keeper for authentication</li>
+<li>Scheduler: add/remove pods</li>
+<li>Controller Manager: detects cluster state changes</li>
+<li>ETCD: Cluster Brain, Key-Value Store</li>
+</ul>
+<h3 id="lets-dive-into-practical-excercises">Let&rsquo;s dive into practical excercises</h3>
+<h4 id="minikube">Minikube</h4>
+<ul>
+<li>A K8s Node in your local</li>
+</ul>
+<p><img src="https://gist.github.com/assets/31009750/3ee54682-d92e-4e8f-bc03-b8389a7df721" alt="image"></p>
+<h4 id="kubetl">Kubetl</h4>
+<ul>
+<li>CLI Tool to interact with K8s API Server</li>
+</ul>
+<p><img src="https://gist.github.com/assets/31009750/487edd2d-9908-4b83-a6b9-9784e8597c0f" alt="image"></p>
+<p>You can use kubectl to interact with Cloud K8s Nodes</p>
+<p><img src="https://gist.github.com/assets/31009750/3da768a1-314a-4237-8657-17c032373894" alt="image"></p>
+<h3 id="lets-install-them">Let&rsquo;s install them</h3>
+<h4 id="install-kubectl">Install kubectl</h4>
+<p>If in our computer, Docker Desktop had been installed already, just enable K8s</p>
+<p><img src="https://gist.github.com/assets/31009750/5b1e06c4-f5e4-4b86-961f-28989330f2ce" alt="image"></p>
+<p>If not, please follow k8s official doc to install on your appropriate os.</p>
+<ul>
+<li><a href="https://kubernetes.io/docs/tasks/tools/">Install K8s tools</a></li>
+</ul>
+<p>In this topic, i used MACOS, so here is the details</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>curl -LO <span style="color:#e6db74">&#34;https://dl.k8s.io/release/</span><span style="color:#66d9ef">$(</span>curl -L -s https://dl.k8s.io/release/stable.txt<span style="color:#66d9ef">)</span><span style="color:#e6db74">/bin/darwin/arm64/kubectl&#34;</span>
+</span></span><span style="display:flex;"><span>chmod +x ./kubectl
+</span></span><span style="display:flex;"><span>sudo mv ./kubectl /usr/local/bin/kubectl
+</span></span><span style="display:flex;"><span>sudo chown root: /usr/local/bin/kubectl
+</span></span><span style="display:flex;"><span>kubectl version --client
+</span></span></code></pre></div><p>When it is ready, you can test with this command line</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>kubectl cluster-info
+</span></span></code></pre></div><p><img src="https://gist.github.com/assets/31009750/8fd6095f-7407-4eaa-aae1-7fe862b088b1" alt="image"></p>
+<h4 id="install-minikube">Install minikube</h4>
+<ul>
+<li><a href="https://minikube.sigs.k8s.io/docs/start/">Minikube</a></li>
+</ul>
+<p>The sample will be in MACOS</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>brew install minikube
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># remove if you don&#39;t need it anymore</span>
+</span></span><span style="display:flex;"><span>brew unlink minikube
+</span></span><span style="display:flex;"><span>brew link minikube
+</span></span></code></pre></div><p>This sample is for window</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>winget install minikube
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>minikube start
+</span></span></code></pre></div><p><img src="https://gist.github.com/assets/31009750/46aebadc-060f-45fe-a632-719269040428" alt="image"></p>
+<p>When it&rsquo;s ready</p>
+<p><img src="https://gist.github.com/assets/31009750/64331a33-ff26-48f1-a660-2a2faba4c644" alt="image"></p>
+<p>Let&rsquo;s run some check commands</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>kubectl get nodes
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># and you get</span>
+</span></span><span style="display:flex;"><span>minhson@NBVN-KIENTC blog.phpguru.net % kubectl get nodes
+</span></span><span style="display:flex;"><span>NAME       STATUS   ROLES           AGE    VERSION
+</span></span><span style="display:flex;"><span>minikube   Ready    control-plane   3m4s   v1.28.3
+</span></span><span style="display:flex;"><span>minikube status
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># and</span>
+</span></span><span style="display:flex;"><span>minhson@NBVN-KIENTC blog.phpguru.net % minikube status
+</span></span><span style="display:flex;"><span>minikube
+</span></span><span style="display:flex;"><span>type: Control Plane
+</span></span><span style="display:flex;"><span>host: Running
+</span></span><span style="display:flex;"><span>kubelet: Running
+</span></span><span style="display:flex;"><span>apiserver: Running
+</span></span><span style="display:flex;"><span>kubeconfig: Configured
+</span></span></code></pre></div><p>And with docker desktop, you may see this</p>
+<p><img src="https://gist.github.com/assets/31009750/7455b123-c986-4845-b104-6450f24bd30a" alt="image"></p>
+<h2 id="kubectl-basic-commands">Kubectl Basic Commands</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>kubectl get nodes
+</span></span><span style="display:flex;"><span>kubectl get pod
+</span></span><span style="display:flex;"><span>kubectl get services
+</span></span></code></pre></div><p>You don&rsquo;t create Pod directly, always create a deployment - abstractions over Pods</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>kubctl create deployment --help
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># and you will see this instruction</span>
+</span></span><span style="display:flex;"><span>kubectl create deployment NAME --image<span style="color:#f92672">=</span>image -- <span style="color:#f92672">[</span>COMMAND<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>args...<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>options<span style="color:#f92672">]</span>
+</span></span></code></pre></div><p>Let&rsquo;s practice with creating a nginx deployment</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>kubectl create deployment k8s-nginx --image<span style="color:#f92672">=</span>nginx
+</span></span><span style="display:flex;"><span>kubectl get deployment
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># and</span>
+</span></span><span style="display:flex;"><span>NAME        READY   UP-TO-DATE   AVAILABLE   AGE
+</span></span><span style="display:flex;"><span>k8s-nginx   1/1     <span style="color:#ae81ff">1</span>            <span style="color:#ae81ff">1</span>           51s
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># then</span>
+</span></span><span style="display:flex;"><span>kubectl get replicaset
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># and</span>
+</span></span><span style="display:flex;"><span>NAME                   DESIRED   CURRENT   READY   AGE
+</span></span><span style="display:flex;"><span>k8s-nginx-6fcb9b44f8   <span style="color:#ae81ff">1</span>         <span style="color:#ae81ff">1</span>         <span style="color:#ae81ff">1</span>       89s
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># then</span>
+</span></span><span style="display:flex;"><span>kubectl get pod
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># and</span>
+</span></span><span style="display:flex;"><span>NAME                         READY   STATUS    RESTARTS   AGE
+</span></span><span style="display:flex;"><span>k8s-nginx-6fcb9b44f8-85rbz   1/1     Running   <span style="color:#ae81ff">0</span>          29s
+</span></span></code></pre></div><p>Everything under deployment will be created automatically by k8s</p>
+<p><img src="https://gist.github.com/assets/31009750/0a1c7a4a-8c5a-4418-a6d2-5e02d8d6ef6c" alt="image"></p>
+<p>Let&rsquo;s change nginx image version</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>kubectl edit deployment k8s-nginx
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># then edit the image from nginx to nginx:stable-alpine3.17</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># just edit like vim editor, press i to edit and save with :wq!</span>
+</span></span></code></pre></div><p>And you will see this</p>
+<p><img src="https://gist.github.com/assets/31009750/e1c534ee-2126-4851-91e6-9f0522faff4f" alt="image"></p>
+<p>One Pod is creating while the other one is running, it will be removed soon</p>
+<p>What about replicaset</p>
+<p><img src="https://gist.github.com/assets/31009750/36452184-881a-4570-83ca-6583ad5403a9" alt="image"></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>kubectl logs k8s-nginx-f57b78788-4m59z <span style="color:#75715e"># not found</span>
+</span></span><span style="display:flex;"><span>kubectl logs k8s-nginx-6fcb9b44f8-766bk <span style="color:#75715e"># you will see the log output</span>
+</span></span></code></pre></div><p>How about delete</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>kubectl delete deployment k8s-nginx
+</span></span></code></pre></div><h3 id="lets-create-configuration-file-for-k8s">Let&rsquo;s create configuration file for K8s</h3>
+<blockquote>
+<p>nginx-deployment.yaml</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">apps/v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Deployment</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">nginx-deployment</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">labels</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">app</span>: <span style="color:#ae81ff">nginx-main</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">replicas</span>: <span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">selector</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">matchLabels</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">app</span>: <span style="color:#ae81ff">nginx-main</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">template</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">labels</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">app</span>: <span style="color:#ae81ff">nginx-main</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">containers</span>:
+</span></span><span style="display:flex;"><span>        - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">nginx-main</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">image</span>: <span style="color:#ae81ff">nginx:stable-alpine3.17</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">ports</span>:
+</span></span><span style="display:flex;"><span>            - <span style="color:#f92672">containerPort</span>: <span style="color:#ae81ff">8080</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">resources</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">requests</span>:
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">memory</span>: <span style="color:#e6db74">&#34;256Mi&#34;</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">cpu</span>: <span style="color:#e6db74">&#34;50m&#34;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">limits</span>:
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">memory</span>: <span style="color:#e6db74">&#34;512Mi&#34;</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">cpu</span>: <span style="color:#e6db74">&#34;200m&#34;</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>kubectl apply -f nginx-deployment.yaml
+</span></span><span style="display:flex;"><span>kubectl get pod
+</span></span><span style="display:flex;"><span>kubectl get replicaset
+</span></span><span style="display:flex;"><span>kubectl get deployment
+</span></span></code></pre></div><p>With this configuration file, you only need to update this file, and run apply command, k8s will take care the rest for you.</p>
+<h3 id="connecting-services-to-deployments">Connecting Services to Deployments</h3>
+<p><img src="https://gist.github.com/assets/31009750/c2461820-befb-4c7d-bff9-7673abef62bc" alt="image">
+<img src="https://gist.github.com/assets/31009750/139ea026-f9f8-4bca-9f6f-d4fb86c5da0c" alt="image"></p>
+<blockquote>
+<p>nginx-service.yaml</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Service</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">nginx-service</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">selector</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">app</span>: <span style="color:#ae81ff">nginx-main</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">ports</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">protocol</span>: <span style="color:#ae81ff">TCP</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">port</span>: <span style="color:#ae81ff">80</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">targetPort</span>: <span style="color:#ae81ff">8080</span> <span style="color:#75715e"># should match with container port</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e"># nodePort: 30007 # Uncomment if you want to specify the NodePort; otherwise, it&#39;s dynamically allocated.</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>kubectl apply -f nginx-service.yaml
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># check status</span>
+</span></span><span style="display:flex;"><span>kubectl describe service nginx-service
+</span></span><span style="display:flex;"><span>kubectl get pod -o wide
+</span></span><span style="display:flex;"><span>kubectl get deployment nginx-deployment -o yaml &gt; nginx-deployment-result.yaml
+</span></span></code></pre></div><h3 id="k8s-command-cheatsheet">K8s command cheatsheet</h3>
+<blockquote>
+<p>Deployment CRUD Commands</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>kubeclt create deployment <span style="color:#f92672">[</span>name<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>kubeclt edit deployment <span style="color:#f92672">[</span>name<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>kubeclt delte deployment <span style="color:#f92672">[</span>name<span style="color:#f92672">]</span>
+</span></span></code></pre></div><blockquote>
+<p>Status of different K8s components</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>kubectl get nodes | pod | services | replicaset | deployment
+</span></span></code></pre></div><blockquote>
+<p>Debuging pods</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>kubectl logs pod-name
+</span></span><span style="display:flex;"><span>kubectl exec -it <span style="color:#f92672">[</span>podname<span style="color:#f92672">]</span> -- bin/sh
+</span></span></code></pre></div><blockquote>
+<p>Use Configuration File</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>kubectl apply -f <span style="color:#f92672">[</span>filename<span style="color:#f92672">]</span> <span style="color:#75715e"># create/update</span>
+</span></span><span style="display:flex;"><span>kubectl delete -f <span style="color:#f92672">[</span>filename<span style="color:#f92672">]</span> <span style="color:#75715e"># delete</span>
+</span></span></code></pre></div><h3 id="reading-k8s-configuration-file">Reading K8s configuration file</h3>
+<ol>
+<li>Metadata</li>
+<li>Specification</li>
+<li>Status</li>
+</ol>
+<p><img src="https://gist.github.com/assets/31009750/8dba9d69-99e1-499c-9d4d-f36c57129a44" alt="image"></p>
+<h2 id="secret">Secret</h2>
+<ul>
+<li>Create secret with command line</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>kubectl create secret generic mysql-root-password-secret --from-literal<span style="color:#f92672">=</span>mysql_root_password<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;yourpassword&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># from text file</span>
+</span></span><span style="display:flex;"><span>kubectl create secret generic mysql-root-password-secret --from-file<span style="color:#f92672">=</span>mysql_root_password<span style="color:#f92672">=</span>mysql_root_password.txt
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># verify</span>
+</span></span><span style="display:flex;"><span>kubectl get secret mysql-root-password-secret
+</span></span></code></pre></div><ul>
+<li>If you wanna define secret in your config file, the value must be base64</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#75715e"># sample</span>
+</span></span><span style="display:flex;"><span>echo -n <span style="color:#e6db74">&#39;123456&#39;</span> | base64
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Secret</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">mysql-root-password-secret</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">namespace</span>: <span style="color:#ae81ff">my-namespace</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">type</span>: <span style="color:#ae81ff">Opaque</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">data</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">mysql_root_password</span>: <span style="color:#ae81ff">MTIzNDU2</span>
+</span></span></code></pre></div><p>Usage</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">env</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">MYSQL_ROOT_PASSWORD</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">valueFrom</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">secretKeyRef</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">name</span>: <span style="color:#ae81ff">mysql-root-password-secret</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">key</span>: <span style="color:#ae81ff">mysql_root_password</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">apps/v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Deployment</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">mysql-deployment</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">labels</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">app</span>: <span style="color:#ae81ff">mysql-main</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">replicas</span>: <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">selector</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">matchLabels</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">app</span>: <span style="color:#ae81ff">mysql-main</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">template</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">labels</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">app</span>: <span style="color:#ae81ff">mysql-main</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">containers</span>:
+</span></span><span style="display:flex;"><span>        - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">mysql-main</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">image</span>: <span style="color:#ae81ff">mysql:8.3.0</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">ports</span>:
+</span></span><span style="display:flex;"><span>            - <span style="color:#f92672">containerPort</span>: <span style="color:#ae81ff">3306</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">env</span>:
+</span></span><span style="display:flex;"><span>            - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">MYSQL_ROOT_PASSWORD</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">valueFrom</span>:
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">secretKeyRef</span>:
+</span></span><span style="display:flex;"><span>                  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">mysql-root-password-secret</span>
+</span></span><span style="display:flex;"><span>                  <span style="color:#f92672">key</span>: <span style="color:#ae81ff">mysql_root_password</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">resources</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">requests</span>:
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">memory</span>: <span style="color:#e6db74">&#34;1024Mi&#34;</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">cpu</span>: <span style="color:#e6db74">&#34;1000m&#34;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">limits</span>:
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">memory</span>: <span style="color:#e6db74">&#34;1024Mi&#34;</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">cpu</span>: <span style="color:#e6db74">&#34;1000m&#34;</span>
+</span></span></code></pre></div><h2 id="service">Service</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">apps/v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Deployment</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">mysql-deployment</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">labels</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">app</span>: <span style="color:#ae81ff">mysql-main</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">replicas</span>: <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">selector</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">matchLabels</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">app</span>: <span style="color:#ae81ff">mysql-main</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">template</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">labels</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">app</span>: <span style="color:#ae81ff">mysql-main</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">containers</span>:
+</span></span><span style="display:flex;"><span>        - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">mysql-main</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">image</span>: <span style="color:#ae81ff">mysql:8.3.0</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">ports</span>:
+</span></span><span style="display:flex;"><span>            - <span style="color:#f92672">containerPort</span>: <span style="color:#ae81ff">3306</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">env</span>:
+</span></span><span style="display:flex;"><span>            - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">MYSQL_ROOT_PASSWORD</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">valueFrom</span>:
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">secretKeyRef</span>:
+</span></span><span style="display:flex;"><span>                  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">mysql-root-password-secret</span>
+</span></span><span style="display:flex;"><span>                  <span style="color:#f92672">key</span>: <span style="color:#ae81ff">mysql_root_password</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">resources</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">requests</span>:
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">memory</span>: <span style="color:#e6db74">&#34;1024Mi&#34;</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">cpu</span>: <span style="color:#e6db74">&#34;1000m&#34;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">limits</span>:
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">memory</span>: <span style="color:#e6db74">&#34;1024Mi&#34;</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">cpu</span>: <span style="color:#e6db74">&#34;1000m&#34;</span>
+</span></span><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Service</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">mysql-service</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">selector</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">app</span>: <span style="color:#ae81ff">mysql-main</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">ports</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">protocol</span>: <span style="color:#ae81ff">TCP</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">port</span>: <span style="color:#ae81ff">3306</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">targetPort</span>: <span style="color:#ae81ff">3306</span>
+</span></span></code></pre></div><p>You can define your service with seperated config file, but k8s support us to define it in the same file with your deployment config.
+Service is something like a proxy between your pod with other service in your cluster</p>
+<h2 id="config-map">Config Map</h2>
+<p>How do we connect two services? Eg: your phpmyadmin-service with your mysql-service.
+Don&rsquo;t worry ConfigMap live for this reason</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">ConfigMap</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">mysql-configmap</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">data</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">mysql-database-url</span>: <span style="color:#ae81ff">mysql-service</span>
+</span></span></code></pre></div><p>Usage, same as secret, but instead of getting value from secret, just get them from configmap</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">env</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">PMA_HOST</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">valueFrom</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">configMapKeyRef</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">name</span>: <span style="color:#ae81ff">mysql-configmap</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">key</span>: <span style="color:#ae81ff">mysql-database-url</span>
+</span></span></code></pre></div><p><strong>mysql-database-url</strong> &lt;==&gt; <strong>mysql-service</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">apps/v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Deployment</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">phpmyadmin</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">selector</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">matchLabels</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">app</span>: <span style="color:#ae81ff">phpmyadmin</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">template</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">labels</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">app</span>: <span style="color:#ae81ff">phpmyadmin</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">containers</span>:
+</span></span><span style="display:flex;"><span>        - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">phpmyadmin</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">image</span>: <span style="color:#ae81ff">phpmyadmin:latest</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">resources</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">limits</span>:
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">memory</span>: <span style="color:#e6db74">&#34;512Mi&#34;</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">cpu</span>: <span style="color:#e6db74">&#34;500m&#34;</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">ports</span>:
+</span></span><span style="display:flex;"><span>            - <span style="color:#f92672">containerPort</span>: <span style="color:#ae81ff">80</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">env</span>:
+</span></span><span style="display:flex;"><span>            - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">PMA_HOST</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">valueFrom</span>:
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">configMapKeyRef</span>:
+</span></span><span style="display:flex;"><span>                  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">mysql-configmap</span>
+</span></span><span style="display:flex;"><span>                  <span style="color:#f92672">key</span>: <span style="color:#ae81ff">mysql-database-url</span>
+</span></span><span style="display:flex;"><span>            - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">PMA_USER</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">value</span>: <span style="color:#ae81ff">root</span>
+</span></span><span style="display:flex;"><span>            - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">PMA_PASSWORD</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">valueFrom</span>:
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">secretKeyRef</span>:
+</span></span><span style="display:flex;"><span>                  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">mysql-root-password-secret</span>
+</span></span><span style="display:flex;"><span>                  <span style="color:#f92672">key</span>: <span style="color:#ae81ff">mysql_root_password</span>
+</span></span><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Service</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">phpmyadmin-service</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">selector</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">app</span>: <span style="color:#ae81ff">phpmyadmin</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">type</span>: <span style="color:#ae81ff">LoadBalancer</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">ports</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">protocol</span>: <span style="color:#ae81ff">TCP</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">port</span>: <span style="color:#ae81ff">80</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">targetPort</span>: <span style="color:#ae81ff">80</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e"># must be between 30,000-32,767</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">nodePort</span>: <span style="color:#ae81ff">30000</span>
+</span></span></code></pre></div><h2 id="namespaces">Namespaces</h2>
+<h3 id="default-namespace">Default namespace</h3>
+<p><img src="https://gist.github.com/assets/31009750/81b2537d-6159-42ae-a61e-27df3a89ab08" alt="image"></p>
+<h3 id="group-resources-with-namespace">Group resources with namespace</h3>
+<p><img src="https://gist.github.com/assets/31009750/fb6392b4-8c7d-4f25-87e6-b7f7615f565f" alt="image"></p>
+<h3 id="resolve-conflicts-many-teams-same-application-different-services">Resolve conflicts: many teams, same application, different services</h3>
+<p><img src="https://gist.github.com/assets/31009750/7148c0d3-38d5-45c9-991c-ddc6cf6d591e" alt="image"></p>
+<h3 id="resource-sharing-bluegreen-deployment">Resource Sharing: Blue/Green Deployment</h3>
+<p><img src="https://gist.github.com/assets/31009750/e3ff0e54-25f4-40d8-ab32-62398a308b08" alt="image"></p>
+<h3 id="access-resource-limits-on-namespace">Access Resource Limits on Namespace</h3>
+<p>You can limit:</p>
+<ul>
+<li>Access</li>
+<li>CPU</li>
+<li>RAM</li>
+<li>Storage</li>
+</ul>
+<blockquote>
+<p>Resource Quota</p>
+</blockquote>
+<p><img src="https://gist.github.com/assets/31009750/5333da2b-8b3b-4791-a7bd-63d065a342dc" alt="image"></p>
+<h4 id="what-you-cant-access-between-namespace">What you can&rsquo;t access between namespace</h4>
+<ul>
+<li>Config Map</li>
+<li>Secret</li>
+</ul>
+<h4 id="what-you-can-access-between-namespace">What you can access between namespace</h4>
+<ul>
+<li>Service: {service}.{namespace}</li>
+</ul>
+<h4 id="some-components-which-cant-be-created-in-a-namespace">Some components which can&rsquo;t be created in a namespace</h4>
+<ul>
+<li>Volume</li>
+<li>Node</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>kubectl api-resources --namespaced<span style="color:#f92672">=</span>false
+</span></span></code></pre></div><h4 id="practice">Practice</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>kubectl create namespace my-namespace
+</span></span><span style="display:flex;"><span>kubectl get configmap -n<span style="color:#f92672">=</span>default
+</span></span><span style="display:flex;"><span>kubectl get configmap -n<span style="color:#f92672">=</span>my-namespace
+</span></span><span style="display:flex;"><span>kubectl apply -f mysql-configmap.yaml -n<span style="color:#f92672">=</span>my-namespace
+</span></span><span style="display:flex;"><span>kubectl get configmap -n<span style="color:#f92672">=</span>my-namespace
+</span></span><span style="display:flex;"><span>kubectl get all -n<span style="color:#f92672">=</span>my-namespace
+</span></span><span style="display:flex;"><span>kubectl delete -f mysql-configmap.yaml -n<span style="color:#f92672">=</span>my-namespace
+</span></span><span style="display:flex;"><span>kubectl delete namespace my-namespace
+</span></span></code></pre></div><p>You can create a component inside a namespace with this syntax, but it is not covenient, and you can&rsquo;t keep track on it.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>kubectl apply -f mysql-configmap.yaml -n<span style="color:#f92672">=</span>my-namespace
+</span></span></code></pre></div><p>So it&rsquo;s better to determine the namespace inside config file like this.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>apiVersion: v1
+</span></span><span style="display:flex;"><span>kind: Secret
+</span></span><span style="display:flex;"><span>metadata:
+</span></span><span style="display:flex;"><span>  name: mysql-root-password-secret
+</span></span><span style="display:flex;"><span>  namespace: my-namespace
+</span></span><span style="display:flex;"><span>type: Opaque
+</span></span><span style="display:flex;"><span>data:
+</span></span><span style="display:flex;"><span>  mysql_root_password: MTIzNDU2
+</span></span></code></pre></div><p>Everytime your wanna get information about your components, you must specify your namespace.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>kubectl get configmap -n<span style="color:#f92672">=</span>my-namespace
+</span></span></code></pre></div><p>There is another tool that support you to change your active namespace called &ldquo;<a href="https://github.com/ahmetb/kubectx/">kubectx</a>&rdquo;</p>
+<p>On MAC</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>brew install kubectx
+</span></span></code></pre></div><p>And then you will be provided this command &ldquo;<strong>kubens</strong>&rdquo;</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#75715e"># list all namespace</span>
+</span></span><span style="display:flex;"><span>kubens
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># change active namespace</span>
+</span></span><span style="display:flex;"><span>kubens your-target-namespace
+</span></span></code></pre></div><h2 id="real-world-service-deployment-with-ingress">Real world service deployment with Ingress</h2>
+<p><img src="https://gist.github.com/assets/31009750/d850f2fc-1334-46af-80c2-d468310ab31d" alt="image"></p>
+<p><img src="https://gist.github.com/assets/31009750/e77623d2-116c-4f03-8e43-3e6957622846" alt="image"></p>
+<p><img src="https://gist.github.com/assets/31009750/d0b7fedf-a5a8-41ff-b743-732188b94fa8" alt="image"></p>
+<h3 id="architecture">Architecture</h3>
+<p><img src="https://gist.github.com/assets/31009750/8aa34cb7-ad28-447d-9a60-b16243bd3ee1" alt="image"></p>
+<p>In cloud</p>
+<p><img src="https://gist.github.com/assets/31009750/eee8f701-4515-4abb-a1e1-0ff10a3747af" alt="image"></p>
+<p>In bare metal server</p>
+<p><img src="https://gist.github.com/assets/31009750/71f508a3-a749-4d10-a54e-797e198b6521" alt="image"></p>
+<h3 id="practice-1">Practice</h3>
+<p>Steps</p>
+<ul>
+<li>
+<p>Install ingress controller</p>
+</li>
+<li>
+<p>Setup ingress rules</p>
+</li>
+<li>
+<p><a href="https://kubernetes.io/docs/tasks/access-application-cluster/ingress-minikube/">ingress-minikube</a></p>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>minikube addons enable ingress
+</span></span></code></pre></div><p><img src="https://gist.github.com/assets/31009750/6a7278da-b335-40d1-8c9d-252752c8cea1" alt="image"></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>kubectl get pods -n ingress-nginx
+</span></span></code></pre></div><p><img src="https://gist.github.com/assets/31009750/b0e10a8c-0214-4390-b3f2-237bb8e50356" alt="image"></p>
+<p>Let&rsquo;s start with assign a domain to dashboard addons</p>
+<p>Dashboard</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>minikube addons list | grep dashboard
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># | dashboard                   | minikube | disabled     | Kubernetes                     |</span>
+</span></span><span style="display:flex;"><span>minikube addons enable dashboard
+</span></span><span style="display:flex;"><span>kubectl get ns
+</span></span><span style="display:flex;"><span>kubectl get all -n kubernetes-dashboard
+</span></span></code></pre></div><p>Dashboard Ingress</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">networking.k8s.io/v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Ingress</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">k8s-dashboard-ingress</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">namespace</span>: <span style="color:#ae81ff">kubernetes-dashboard</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">labels</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">name</span>: <span style="color:#ae81ff">k8s-dashboard-ingress</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">rules</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">host</span>: <span style="color:#ae81ff">dashboard.k8s-phpguru.local</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">http</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">paths</span>:
+</span></span><span style="display:flex;"><span>          - <span style="color:#f92672">pathType</span>: <span style="color:#ae81ff">Prefix</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">path</span>: <span style="color:#e6db74">&#34;/&#34;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">backend</span>:
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">service</span>:
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">name</span>: <span style="color:#ae81ff">kubernetes-dashboard</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">port</span>:
+</span></span><span style="display:flex;"><span>                  <span style="color:#f92672">number</span>: <span style="color:#ae81ff">80</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>kubectl apply -f dashboard-ingress.yaml
+</span></span><span style="display:flex;"><span>kubectl get ingress -n kubernetes-dashboard --watch
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># then use the ipaddress, assign it with your dns to resolve the domain</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># in local we&#39;ll modify /etc/hosts</span>
+</span></span><span style="display:flex;"><span>sudo nano /etc/hosts
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># then tunnel to keep accessible</span>
+</span></span><span style="display:flex;"><span>minikube tunnel
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># then open http://dashboard.k8s-phpguru.local in your browser</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#75715e">## k8s tutorial: because of using Docker Driver -&gt; we must use this local ip address</span>
+</span></span><span style="display:flex;"><span>127.0.0.1 dashboard.k8s-phpguru.local
+</span></span></code></pre></div><p>And you will see this</p>
+<p><img src="https://gist.github.com/assets/31009750/7c88d3e5-6967-4ef0-9029-0f4958c337d0" alt="image"></p>
+<p>If you have to create ssl</p>
+<p><img src="https://gist.github.com/assets/31009750/82fbff77-406e-401d-b7f0-ff16c458e766" alt="image"></p>
+<h3 id="quick-test-ingress-and-ingress-dns-addons">Quick test ingress and ingress-dns addons</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>kubectl create deployment web --image<span style="color:#f92672">=</span>gcr.io/google-samples/hello-app:1.0
+</span></span><span style="display:flex;"><span>kubectl expose deployment web --port<span style="color:#f92672">=</span><span style="color:#ae81ff">8080</span>
+</span></span><span style="display:flex;"><span>kubectl apply -f example-ingress.yaml
+</span></span></code></pre></div><h2 id="helm">Helm</h2>
+<p><img src="https://gist.github.com/assets/31009750/d56d1796-e650-4e0a-8576-fbcdd9377e9a" alt="image">
+<img src="https://gist.github.com/assets/31009750/0c6b95bf-d06f-4307-8f30-ce56fdc17ab3" alt="image"></p>
+<ul>
+<li><a href="https://helm.sh/">Helm</a></li>
+</ul>
+<h3 id="helm-charts---sharing-reusing-configuration">Helm Charts - Sharing, Reusing Configuration</h3>
+<ul>
+<li>You may consider it is a package manager for k8s, so you can reuse/share your configuration.</li>
+</ul>
+<p><img src="https://gist.github.com/assets/31009750/d56d1796-e650-4e0a-8576-fbcdd9377e9a" alt="image">
+<img src="https://gist.github.com/assets/31009750/0c6b95bf-d06f-4307-8f30-ce56fdc17ab3" alt="image"></p>
+<h3 id="templating-engine">Templating Engine</h3>
+<p>So instead of having multiple configuration files for similar services, you only need to define a template file and a variable file.</p>
+<p><img src="https://gist.github.com/assets/31009750/4f78779b-bb14-4f8a-b7ee-a0f50a513564" alt="image">
+<img src="https://gist.github.com/assets/31009750/874caf23-afa7-4673-85a7-2a280cac0d57" alt="image"></p>
+<p>Very useful for CI/CD, the main usecase is deployment your application on different env</p>
+<p><img src="https://gist.github.com/assets/31009750/78303bbe-ded3-46e9-b150-2053d2b50c94" alt="image"></p>
+<h3 id="helm-charts-structure">Helm Charts Structure</h3>
+<p><img src="https://gist.github.com/assets/31009750/b2ba5731-b946-4a3e-a93d-013cabbd7f14" alt="image"></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>helm install <span style="color:#f92672">[</span>chart-name<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># template files will be filled with values from values.yaml</span>
+</span></span></code></pre></div><h4 id="helm-v2">Helm v2</h4>
+<blockquote>
+<p>Tiller</p>
+</blockquote>
+<p><img src="https://gist.github.com/assets/31009750/48f52759-efc6-4be7-b978-4e43bc821b6a" alt="image">
+<img src="https://gist.github.com/assets/31009750/e4a05537-dd3e-4ac8-b207-bbcd87b3fcda" alt="image"></p>
+<p>But in v3, it had been removed!!!</p>
+<p><img src="https://gist.github.com/assets/31009750/866b583e-16c4-4d49-95c0-57c71050df7d" alt="image"></p>
+<h3 id="k8s-volumes">K8s Volumes</h3>
+<p>Due to the needs of data persistent, k8s provide several components to persist your data</p>
+<p><strong>Storage requirements</strong></p>
+<ul>
+<li>Doesn&rsquo;t depend on the pod lifecycle</li>
+<li>Must be available on all nodes</li>
+<li>Must survive even if cluster crashes</li>
+</ul>
+<p><img src="https://gist.github.com/assets/31009750/b2a94841-abf6-47e2-8286-5de2fcabb1fa" alt="image"></p>
+<h4 id="persistent-volume">Persistent Volume</h4>
+<ul>
+<li>The primary component in k8s system to persist your data</li>
+<li>Cluster Resource</li>
+<li>It must be backed by physical storage in local(inside cluster) or in cloud service(network file system).</li>
+<li>Usually created by admin</li>
+<li>For Database must use cloud</li>
+</ul>
+<p><img src="https://gist.github.com/assets/31009750/2c4c941d-7cc0-4ab1-8fb6-b2335c1ece29" alt="image"></p>
+<p>NFS Storage</p>
+<p><img src="https://gist.github.com/assets/31009750/ff0965f8-ef79-4e94-953f-63cea2031064" alt="image"></p>
+<p>Local Storage</p>
+<p><img src="https://gist.github.com/assets/31009750/299efd58-f881-4d5c-9624-87d6adf052d6" alt="image"></p>
+<p><img src="https://gist.github.com/assets/31009750/813dc8b7-72e5-4def-8112-03fb01ee99cf" alt="image"></p>
+<h4 id="persistent-volume-claim">Persistent Volume Claim</h4>
+<p><img src="https://gist.github.com/assets/31009750/7e71d5f9-940a-4676-ac6c-9511051e9f9a" alt="image"></p>
+<ul>
+<li>Abstraction of Persistent Volume</li>
+<li>Same namespace with Pod</li>
+<li>Easy to use for users(developers)</li>
+</ul>
+<p><img src="https://gist.github.com/assets/31009750/9d7dd414-cbfe-45d6-84c0-19ecf23824e7" alt="image"></p>
+<p>Flow</p>
+<p><img src="https://gist.github.com/assets/31009750/b72f8f6b-0e25-4345-b9dc-0266bdc1b588" alt="image"></p>
+<p>Example</p>
+<p><img src="https://gist.github.com/assets/31009750/46b1be5e-12d3-4b78-b5d9-c645dc90795f" alt="image"></p>
+<h4 id="storage-class">Storage Class</h4>
+<p>Issue: Imagination, you have a big system, a lot of developers claim for a volume with PVC, so as admin you have to create enough PV to fullfil the needs, it can be extremely time consuming and will get messy very fast.</p>
+<p><img src="https://gist.github.com/assets/31009750/44b45b35-c767-4953-b9fa-1d3ef41472ee" alt="image"></p>
+<p>Fortunately, k8s provide us a solution for it, named &ldquo;Storage Class&rdquo;. What does it do?</p>
+<ul>
+<li>Provisions persistent volumes dynamically when PVC claim it</li>
+<li>It must be backed by a provisioner: internal(k8s)/external(another services)</li>
+</ul>
+<p>Example</p>
+<p><img src="https://gist.github.com/assets/31009750/362fcf18-78b0-4398-82f0-08f90979d9a5" alt="image"></p>
+<h3 id="k8s-statefulset">K8s StatefulSet</h3>
+<h4 id="stateless-application">Stateless application</h4>
+<p>A stateless process or application, however, does not retain information about the user&rsquo;s previous interactions. There is no stored knowledge of or reference to past transactions. Each transaction is made as if from scratch for the first time</p>
+<p><img src="https://gist.github.com/assets/31009750/e8b3b7df-61da-4212-9321-69820e668262" alt="image"></p>
+<p><img src="https://gist.github.com/assets/31009750/6cf09454-b02b-49c6-a0bf-4d4e8f645a47" alt="image"></p>
+<h4 id="stateful-application">Stateful Application</h4>
+<p>Stateful applications save data to persistent disk storage for use by the server, by clients, and by other applications. An example of a stateful application is a database or key-value store to which data is saved and retrieved by other applications.</p>
+<h4 id="what-deployment-does">What deployment does?</h4>
+<p><img src="https://gist.github.com/assets/31009750/eeaee8a3-540e-4486-9d77-2789d0007ab1" alt="image"></p>
+<h4 id="statefulset">Statefulset</h4>
+<p><img src="https://gist.github.com/assets/31009750/496a59cc-cf8f-4b98-853d-4e3659cc7120" alt="image"></p>
+<p>But why you need to pod identity is not interchangable.</p>
+<p>To scale your database, we will use master slave mechanism</p>
+<p><img src="https://gist.github.com/assets/31009750/f611a84f-b0e8-4e9e-a8f0-309380ecfdf7" alt="image"></p>
+<p><img src="https://gist.github.com/assets/31009750/66c82493-9502-4e06-b2b3-332dd64c7b94" alt="image"></p>
+<p><img src="https://gist.github.com/assets/31009750/31f681e7-6661-412a-bbbd-5169476c4b50" alt="image"></p>
+<p>So you have to specify which pod is master. So that pod must not be interchangable.</p>
+<p><img src="https://gist.github.com/assets/31009750/98e51358-f9cc-407f-8dc0-e7a96cfb6671" alt="image"></p>
+<p>Also, you need to use remote storage, because local storage is usually tied to a specific node</p>
+<p><img src="https://gist.github.com/assets/31009750/420e410f-12b1-41b9-b1de-fce7a1899fd2" alt="image"></p>
+<h4 id="conclusion">Conclusion</h4>
+<p><img src="https://gist.github.com/assets/31009750/898bdae1-6e8b-4fa9-bfdc-ca12cc6f1e2c" alt="image"></p>
+<p><img src="https://gist.github.com/assets/31009750/a1ca4b84-6211-4fb0-9af4-d9edb5550e97" alt="image">
+<img src="https://gist.github.com/assets/31009750/1a34fb6c-be6c-4da2-a899-83c76ea9ce89" alt="image">
+<img src="https://gist.github.com/assets/31009750/4366d05e-7359-4f4f-9892-e9f5d56525ad" alt="image">
+<img src="https://gist.github.com/assets/31009750/1bd7b9bf-0b6d-4d40-91a3-f9d3d3577b3e" alt="image"></p>
+<h3 id="k8s-service">K8s Service</h3>
+<p><img src="https://gist.github.com/assets/31009750/958ae790-0a76-4d8b-acc0-85752ad6af7f" alt="image"></p>
+<p><img src="https://gist.github.com/assets/31009750/7ad1abe5-a4c8-495c-b0dd-2ca492a95cd0" alt="image"></p>
+<h4 id="clusterip-services">ClusterIP Services</h4>
+<p><img src="https://gist.github.com/assets/31009750/b707016f-62af-42bc-aeec-8eb9a907802f" alt="image"></p>
+<p>Service will select all pods that has the matched selector attribute</p>
+<p><img src="https://gist.github.com/assets/31009750/5604649e-2c36-45d7-9e36-54ab844b4802" alt="image">
+<img src="https://gist.github.com/assets/31009750/e61df315-5ec2-4868-9fc3-638a8c2ead5f" alt="image"></p>
+<p>Note: the service port can be arbitrary, but the targerPort must match the port that the container is listening at.</p>
+<p>If you have multiple ports in your services, you must name it</p>
+<p><img src="https://gist.github.com/assets/31009750/8a98c702-49e5-44d3-883e-c9f7b9856ff1" alt="image"></p>
+<h4 id="headless-services">Headless Services</h4>
+<p><img src="https://gist.github.com/assets/31009750/19d2222e-a194-4db1-938a-a061048b8adf" alt="image"></p>
+<p><img src="https://gist.github.com/assets/31009750/234d8351-207a-4c6f-bb48-f834b8ac7d77" alt="image"></p>
+<p><img src="https://gist.github.com/assets/31009750/bb05e2b3-f4d5-4502-8e6a-4c53090abf25" alt="image"></p>
+<h4 id="nodeport-services">NodePort Services</h4>
+<blockquote>
+<p>For testing purpose</p>
+</blockquote>
+<p><img src="https://gist.github.com/assets/31009750/ab9168b6-a95f-4d37-b6cc-b8e6ea655b1f" alt="image"></p>
+<blockquote>
+<p>For external traffic, but it is secured!!!</p>
+</blockquote>
+<p><img src="https://gist.github.com/assets/31009750/0f99175f-40f4-494f-9329-b31481ff07be" alt="image"></p>
+<h4 id="loadbalancer-services">LoadBalancer Services</h4>
+<blockquote>
+<p>For Production</p>
+</blockquote>
+<p><img src="https://gist.github.com/assets/31009750/c544e9e8-4d02-4789-9ff9-ac853c65db0d" alt="image">
+<img src="https://gist.github.com/assets/31009750/f3216957-b937-480a-93a5-4fe777054ff9" alt="image"></p>
+<h4 id="summary-configuration">Summary Configuration</h4>
+<p><img src="https://gist.github.com/assets/31009750/5b0217c3-009c-476e-8766-abcc913f07a6" alt="image"></p>
+<h2 id="terminology">Terminology</h2>
+<h3 id="ports">Ports</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Service</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">example-service</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">type</span>: <span style="color:#ae81ff">NodePort</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">selector</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">app</span>: <span style="color:#ae81ff">example-app</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">ports</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">port</span>: <span style="color:#ae81ff">80</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">targetPort</span>: <span style="color:#ae81ff">8080</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">nodePort</span>: <span style="color:#ae81ff">30000</span>
+</span></span></code></pre></div><ul>
+<li><strong>Port</strong> (80): Other Pods within the cluster can reach the Service at example-service.<!-- raw HTML omitted -->.svc.cluster.local:80.</li>
+<li><strong>TargetPort</strong> (8080): The Service routes this internal traffic to port 8080 on the selected Pods.</li>
+<li><strong>NodePort</strong> (30000): External traffic can access the Service by targeting http://<!-- raw HTML omitted -->:30000, which routes to port 8080 on the Pods.</li>
+</ul>
+        
+      
+      <div class="m-1 p-1">
+        
+          <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href="https://blog.phpguru.net/categories/devops">devops</a>
+        
+      </div>
+    </div>
+  </section>
+  <section class="container section">
+    <div class="max-w-2xl mx-auto">
+      <div class="font-heading text-2xl font-semibold">You Might Also Like</div>
+      <div class="mt-8 grid  gap-8">
+        
+        
+        
+        
+        <ul class="sidebar-links">
+        
+        
+            <li><a href="/post/k8s-labs-002-deploy-static-web-application/">K8s Labs 002 Deploy Static Web Application</a></li>
+        
+            <li><a href="/post/k8s-labs-001-building-a-kubernetes-cluster-with-kubeadm/">K8s Labs 001 Building a Kubernetes Cluster With Kubeadm</a></li>
+        
+            <li><a href="/post/kubernetes-hands-on-labs/">Kubernetes Hands on Labs</a></li>
+        
+            <li><a href="/post/docker-cheatsheet/">Docker Cheatsheet for PHP Developers</a></li>
+        
+        </ul>
+                
+      </div>
+    </div>
+  </section>
+
+    
+    </main>
+    <footer class="footer">
+      <div class="container md:flex">
+        <section class="footer-section-info md:basis-1/4">
+          <div class="address">
+            <a class="logo" href="https://blog.phpguru.net" title="PHPGuru">
+              PHPGuru
+            </a>
+            <h4 class="footer-heading">
+               PRODUCTION MODE  
+            <h4>                
+          </div>
+        </section>
+        <div class="footer-section-navigation-menu md:basis-1/4">
+          <h4 class="footer-heading">Laravel</h4>
+          <ul class="footer-section-navigation-menu-links">
+            
+            
+              <li><a href="https://blog.phpguru.net/post/laravel-tutorial-001-main-concepts/">Laravel Tutorial 001 Main Concepts</a></li>              
+             
+          </ul>
+        </div>
+        <div class="footer-section-navigation-menu md:basis-1/4">
+          <h4 class="footer-heading">Devops</h4>
+          <ul class="footer-section-navigation-menu-links">
+            
+            
+              <li><a href="https://blog.phpguru.net/post/k8s-labs-002-deploy-static-web-application/">K8s Labs 002 Deploy Static Web Application</a></li>              
+            
+              <li><a href="https://blog.phpguru.net/post/k8s-labs-001-building-a-kubernetes-cluster-with-kubeadm/">K8s Labs 001 Building a Kubernetes Cluster With Kubeadm</a></li>              
+            
+              <li><a href="https://blog.phpguru.net/post/kubernetes-hands-on-labs/">Kubernetes Hands on Labs</a></li>              
+            
+              <li><a href="https://blog.phpguru.net/post/kubernetes-complete-course/">Kubernetes Complete Course</a></li>              
+            
+              <li><a href="https://blog.phpguru.net/post/docker-cheatsheet/">Docker Cheatsheet for PHP Developers</a></li>              
+            
+          </ul>
+        </div>
+        <div class="footer-section-navigation-menu md:basis-1/4">
+          <h4 class="footer-heading">Cheatsheet</h4>
+          <ul class="footer-section-navigation-menu-links">
+            
+            
+              <li><a href="https://blog.phpguru.net/post/symfony-5x-tutorial/">Symfony 5x Tutorial</a></li>              
+            
+              <li><a href="https://blog.phpguru.net/post/how-to-write-unit-in-php/">How to Write Unit in Php</a></li>              
+             
+          </ul>
+        </div>
+      </div>
+      <div class="container">
+        <div class="text-center">
+          <a href=""><span class="material-icons text-4xl m-4">facebook</span></a>
+          <a href=""><span class="material-icons text-4xl  m-4">smart_display</span></a>
+        </div>
+        <div class="text-center text-lg py-4">
+          Copyright @ PHPGuru 2025
+        </div>
+        <div class="text-center text-sm">
+          Powered by <a class="font-bold text-primary" href="https://gohugo.io/">Go Hugo</a> - Made
+          with love from <a class="font-bold text-primary" href="https://blog.phpguru.net">PHPGuru</a> -
+          Build
+          Version 2024-04-26 23:39:23 &#43;0700 &#43;07
+        </div>
+      </div>
+    </footer>
+
+    
+    
+      
+        
+        
+        
+          <script type="text/javascript" src="https://blog.phpguru.net/core/jquery-3.6.0.min.js"></script>
+        
+             
+    
+      
+        
+        
+        
+          <script type="text/javascript" src="https://blog.phpguru.net/themes/2022/public/main.js"></script>
+        
+             
+    
+      
+        
+        
+        
+          <script type="text/javascript" src="https://blog.phpguru.net/themes/2022/public/home.js"></script>
+        
+             
+    
+
+  
+  <script async>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=&ev=PageView&noscript=1"
+    /></noscript>
+        
+  </body>
+</html>

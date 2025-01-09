@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>symfony5x on Useful PHP Tricks, Laravel Tips, Tricks and Best Practices</title>
+    <link>https://blog.phpguru.net/tags/symfony5x/</link>
+    <description>Recent content in symfony5x on Useful PHP Tricks, Laravel Tips, Tricks and Best Practices</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 02 Apr 2024 02:37:35 +0700</lastBuildDate><atom:link href="https://blog.phpguru.net/tags/symfony5x/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Symfony 5x Tutorial</title>
+      <link>https://blog.phpguru.net/post/symfony-5x-tutorial/</link>
+      <pubDate>Tue, 02 Apr 2024 02:37:35 +0700</pubDate>
+      
+      <guid>https://blog.phpguru.net/post/symfony-5x-tutorial/</guid>
+      <description>References All in one Symfony Tutorial Source Code Glossary
+Install symfony cli Create new symfony project Getting start with controller Generate Entity CRUD User and Authentication Repository Service Feel free to download full source code at PHPGuru Symfony 5 Tutorial
+Install symfony cli Follow instruction from symfony official doc to install symfony cli in your local.
+Install scoop for window users
+# ubuntu/mac curl -sS https://get.symfony.com/cli/installer | bash # window scoop install symfony-cli Create new Symfony project symfony new symfony54-webapp --version=5.</description>
+    </item>
+    
+  </channel>
+</rss>
